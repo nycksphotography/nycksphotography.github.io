@@ -4,123 +4,167 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KS Photography</title>
+
   <style>
     :root{
       --bg:#0b0b0b;
-      --card:#111;
       --gold:#d4af37;
       --text:#f3f3f3;
       --muted:rgba(243,243,243,.75);
       --line:rgba(212,175,55,.35);
     }
+
     *{box-sizing:border-box}
+
     body{
       margin:0;
-      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-      background: radial-gradient(1200px 500px at 50% 0%, rgba(212,175,55,.12), transparent 55%), var(--bg);
+      font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+      background:
+        radial-gradient(1200px 500px at 50% 0%, rgba(212,175,55,.15), transparent 60%),
+        var(--bg);
       color:var(--text);
     }
-    .wrap{max-width:980px;margin:0 auto;padding:28px 18px 60px}
+
+    .wrap{
+      max-width:1000px;
+      margin:0 auto;
+      padding:32px 18px 70px;
+    }
+
     .hero{
       border:1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.03), transparent);
-      border-radius:18px;
+      border-radius:20px;
+      background:linear-gradient(180deg, rgba(255,255,255,.04), transparent);
       overflow:hidden;
     }
+
     .heroTop{
-      padding:44px 18px 28px;
+      padding:60px 20px 40px;
       text-align:center;
     }
-    .brand{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:14px;
-    }
-    /* Logo settings (you can adjust width if you want bigger/smaller) */
+
     .logo{
-      width:150px;
+      width:260px;
+      max-width:85vw;
       height:auto;
       display:block;
-      filter: drop-shadow(0 14px 30px rgba(0,0,0,.7));
+      margin:0 auto 16px;
+      filter: drop-shadow(0 22px 45px rgba(0,0,0,.9));
     }
-    h1{margin:0;font-size:44px;letter-spacing:.5px}
-    .tag{margin:6px 0 0; color:var(--muted); font-size:16px}
-    .divider{height:1px;background:var(--line); margin:18px auto 0; max-width:740px}
-    .ctaRow{margin:22px 0 0; display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+
+    h1{
+      margin:0;
+      font-size:46px;
+      letter-spacing:.5px;
+    }
+
+    .tag{
+      margin-top:8px;
+      font-size:17px;
+      color:var(--muted);
+    }
+
+    .divider{
+      height:1px;
+      background:var(--line);
+      max-width:760px;
+      margin:26px auto;
+    }
+
+    .ctaRow{
+      display:flex;
+      gap:14px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
     .btn{
-      display:inline-block;
-      padding:12px 18px;
+      padding:14px 22px;
       border-radius:999px;
       text-decoration:none;
       font-weight:700;
       border:1px solid var(--line);
       color:var(--text);
-      background: rgba(255,255,255,.02);
+      background:rgba(255,255,255,.03);
     }
+
     .btnGold{
-      background: linear-gradient(180deg, rgba(212,175,55,.95), rgba(212,175,55,.75));
+      background:linear-gradient(180deg, rgba(212,175,55,.95), rgba(212,175,55,.75));
       color:#111;
-      border:0;
+      border:none;
     }
-    .section{padding:34px 18px}
+
+    .section{
+      padding:44px 22px;
+      text-align:center;
+    }
+
     .headline{
-      text-align:center;
-      font-size:34px;
-      margin:0;
+      font-size:36px;
       color:var(--gold);
-      letter-spacing:1px;
+      letter-spacing:1.2px;
+      margin:0;
     }
+
     .subline{
-      text-align:center;
-      margin:10px 0 0;
-      color:var(--muted);
+      margin-top:12px;
       font-style:italic;
+      color:var(--muted);
+      font-size:18px;
     }
+
     .grid{
       display:grid;
-      grid-template-columns: 1fr;
-      gap:14px;
-      margin-top:22px;
+      grid-template-columns:1fr;
+      gap:16px;
       max-width:760px;
-      margin-left:auto;margin-right:auto;
+      margin:28px auto 0;
     }
+
     .card{
-      background: rgba(255,255,255,.02);
-      border:1px solid rgba(255,255,255,.06);
-      border-radius:14px;
-      padding:16px 16px;
-    }
-    .bullet{
+      padding:18px;
+      border-radius:16px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
       font-size:18px;
-      line-height:1.5;
-      margin:0;
     }
+
     .foot{
-      text-align:center;
+      margin-top:22px;
+      font-size:18px;
       color:var(--muted);
-      margin-top:16px;
+    }
+
+    .contact{
+      max-width:600px;
+      margin:32px auto 0;
+      padding:22px;
+      border-radius:16px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+      text-align:center;
+    }
+
+    .contact p{
+      margin:10px 0;
       font-size:18px;
     }
-    .contactGrid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:14px;
-      max-width:760px;
-      margin:22px auto 0;
-      align-items:start;
+
+    .contact a{
+      color:var(--gold);
+      text-decoration:none;
+      font-weight:700;
     }
-    .contactItem{margin:0; font-size:18px; line-height:1.6}
-    .contactItem a{color:var(--gold); text-decoration:none; font-weight:700}
+
     footer{
-      text-align:center;
-      color:rgba(243,243,243,.55);
-      margin-top:20px;
+      margin-top:28px;
       font-size:13px;
+      color:rgba(243,243,243,.55);
+      text-align:center;
     }
-    @media (min-width: 820px){
-      .grid{grid-template-columns: 1fr 1fr}
-      .contactGrid{grid-template-columns: 1fr}
+
+    @media(min-width:800px){
+      .grid{grid-template-columns:1fr 1fr}
     }
   </style>
 </head>
@@ -128,19 +172,18 @@
 <body>
   <div class="wrap">
     <div class="hero">
-      <div class="heroTop">
-        <div class="brand">
-          <!-- Upload your logo into the repo and name it EXACTLY: logo.png -->
-          <img class="logo" src="logo.png" alt="KS Photography Logo" />
 
-          <h1>KS Photography</h1>
-          <div class="tag">Premium Event Photography &amp; Experiences</div>
-        </div>
+      <div class="heroTop">
+        <!-- LOGO -->
+        <img src="logo.png" alt="KS Photography Logo" class="logo" />
+
+        <h1>KS Photography</h1>
+        <div class="tag">Premium Event Photography & Experiences</div>
 
         <div class="divider"></div>
 
         <div class="ctaRow">
-          <a class="btn btnGold" href="https://instagram.com/nyc_ksphotography" target="_blank" rel="noopener">Book on Instagram</a>
+          <a class="btn btnGold" href="https://instagram.com/nyc_ksphotography" target="_blank">Book on Instagram</a>
           <a class="btn" href="tel:3475599217">Call / Text</a>
           <a class="btn" href="mailto:nycksphotography@gmail.com">Email</a>
         </div>
@@ -148,30 +191,31 @@
 
       <div class="section">
         <h2 class="headline">CAPTURE THE MOMENT</h2>
-        <p class="subline">Elevate your event experience</p>
+        <div class="subline">Elevate your event experience</div>
 
         <div class="grid">
-          <div class="card"><p class="bullet">• Professional Event Photography</p></div>
-          <div class="card"><p class="bullet">• 360 Photo Booth</p></div>
-          <div class="card"><p class="bullet">• DSLR Print Photobooth</p></div>
-          <div class="card"><p class="bullet">• Backdrops &amp; Floral Walls</p></div>
+          <div class="card">Professional Event Photography</div>
+          <div class="card">360 Photo Booth</div>
+          <div class="card">DSLR Print Photobooth</div>
+          <div class="card">Backdrops & Floral Walls</div>
         </div>
 
-        <p class="foot">Weddings · Corporate Events · Birthdays · Private Parties</p>
+        <div class="foot">
+          Weddings · Corporate Events · Birthdays · Private Parties
+        </div>
 
         <div class="divider"></div>
 
-        <div class="contactGrid">
-          <div class="card">
-            <p class="contactItem"><strong>Karan (KD)</strong></p>
-            <p class="contactItem">📞 <a href="tel:3475599217">347-559-9217</a></p>
-            <p class="contactItem">✉️ <a href="mailto:nycksphotography@gmail.com">nycksphotography@gmail.com</a></p>
-            <p class="contactItem">📸 <a href="https://instagram.com/nyc_ksphotography" target="_blank" rel="noopener">@nyc_ksphotography</a></p>
-          </div>
+        <div class="contact">
+          <p><strong>Karan (KD)</strong></p>
+          <p>📞 <a href="tel:3475599217">347-559-9217</a></p>
+          <p>✉️ <a href="mailto:nycksphotography@gmail.com">nycksphotography@gmail.com</a></p>
+          <p>📸 <a href="https://instagram.com/nyc_ksphotography" target="_blank">@nyc_ksphotography</a></p>
         </div>
 
         <footer>© 2026 KS Photography</footer>
       </div>
+
     </div>
   </div>
 </body>
