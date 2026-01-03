@@ -97,21 +97,18 @@
       flex-wrap:wrap;
     }
 
-    .btn{
-      padding:14px 22px;
-      border-radius:999px;
-      text-decoration:none;
-      font-weight:700;
-      border:1px solid var(--line);
-      color:var(--text);
-      background:rgba(255,255,255,.03);
-    }
-
-    .btnGold{
-      background:linear-gradient(180deg, rgba(212,175,55,.95), rgba(212,175,55,.75));
-      color:#111;
-      border:none;
-    }
+   .btn{
+  padding:14px 26px;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:700;
+  border:none;
+  color:#111; /* black text */
+  background:linear-gradient(180deg, rgba(212,175,55,.95), rgba(212,175,55,.75));
+  box-shadow: 0 10px 24px rgba(0,0,0,.35);
+  min-width:190px; /* keeps them equal width */
+  text-align:center;
+}
 
     .section{
       padding:44px 22px;
@@ -200,11 +197,12 @@
 
         <div class="divider"></div>
 
-        <div class="ctaRow">
-          <a class="btn btnGold" href="https://instagram.com/nyc_ksphotography" target="_blank">Book on Instagram</a>
-          <a class="btn" href="tel:3475599217">Call / Text</a>
-          <a class="btn" href="mailto:nycksphotography@gmail.com">Email</a>
-        </div>
+      <div class="ctaRow">
+  <a class="btn" href="https://instagram.com/nyc_ksphotography" target="_blank">Book on Instagram</a>
+  <a class="btn" href="tel:3475599217">Call / Text</a>
+  <a class="btn" href="mailto:nycksphotography@gmail.com">Email</a>
+</div>
+
       </div>
 
       <div class="section">
