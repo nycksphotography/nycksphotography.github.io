@@ -79,7 +79,8 @@ body{
 }
 
 .btn{
-  padding:16px 20px;
+  height:56px;                 /* 🔒 forces equal height */
+  padding:0 20px;
   border-radius:999px;
   text-decoration:none;
   font-weight:700;
@@ -87,6 +88,12 @@ body{
   text-align:center;
   color:#111;
   background:linear-gradient(180deg,#e1c35a,#c9a93a);
+
+  display:flex;                /* centers text perfectly */
+  align-items:center;
+  justify-content:center;
+
+  line-height:1.1;
 }
 
 /* LOWER SECTION */
