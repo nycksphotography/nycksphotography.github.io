@@ -32,11 +32,17 @@
       text-align:center;
     }
     .brand{
-      display:flex; flex-direction:column; align-items:center; gap:14px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:14px;
     }
+    /* Logo settings (you can adjust width if you want bigger/smaller) */
     .logo{
-      width:120px; height:auto; display:block;
-      filter: drop-shadow(0 10px 25px rgba(0,0,0,.6));
+      width:150px;
+      height:auto;
+      display:block;
+      filter: drop-shadow(0 14px 30px rgba(0,0,0,.7));
     }
     h1{margin:0;font-size:44px;letter-spacing:.5px}
     .tag{margin:6px 0 0; color:var(--muted); font-size:16px}
@@ -106,12 +112,6 @@
     }
     .contactItem{margin:0; font-size:18px; line-height:1.6}
     .contactItem a{color:var(--gold); text-decoration:none; font-weight:700}
-    .flyerPreview{
-      width:100%;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.08);
-      display:block;
-    }
     footer{
       text-align:center;
       color:rgba(243,243,243,.55);
@@ -120,7 +120,7 @@
     }
     @media (min-width: 820px){
       .grid{grid-template-columns: 1fr 1fr}
-      .contactGrid{grid-template-columns: 1.2fr .8fr}
+      .contactGrid{grid-template-columns: 1fr}
     }
   </style>
 </head>
@@ -130,7 +130,7 @@
     <div class="hero">
       <div class="heroTop">
         <div class="brand">
-          <!-- OPTIONAL: Upload your logo file and rename to logo.png, then this will show it -->
+          <!-- Upload your logo into the repo and name it EXACTLY: logo.png -->
           <img class="logo" src="logo.png" alt="KS Photography Logo" />
 
           <h1>KS Photography</h1>
@@ -167,12 +167,6 @@
             <p class="contactItem">📞 <a href="tel:3475599217">347-559-9217</a></p>
             <p class="contactItem">✉️ <a href="mailto:nycksphotography@gmail.com">nycksphotography@gmail.com</a></p>
             <p class="contactItem">📸 <a href="https://instagram.com/nyc_ksphotography" target="_blank" rel="noopener">@nyc_ksphotography</a></p>
-          </div>
-
-          <!-- OPTIONAL: show the flyer image on the site (upload it and set the filename below) -->
-          <div class="card">
-            <p class="contactItem" style="margin-bottom:10px;"><strong>Flyer Preview</strong></p>
-            <img class="flyerPreview" src="88C891F4-EAB2-4254-A7EB-072070DDD0CB.jpeg" alt="KS Photography Flyer" />
           </div>
         </div>
 
