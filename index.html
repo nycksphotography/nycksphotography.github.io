@@ -1,69 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KS Photography</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body {
-      margin: 0;
-      font-family: Helvetica, Arial, sans-serif;
-      background: #0f0f0f;
-      color: white;
+    :root{
+      --bg:#0b0b0b;
+      --card:#111;
+      --gold:#d4af37;
+      --text:#f3f3f3;
+      --muted:rgba(243,243,243,.75);
+      --line:rgba(212,175,55,.35);
     }
-    header {
-      padding: 80px 20px;
-      text-align: center;
-      background: linear-gradient(to bottom, #000, #1a1a1a);
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      background: radial-gradient(1200px 500px at 50% 0%, rgba(212,175,55,.12), transparent 55%), var(--bg);
+      color:var(--text);
     }
-    header h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
+    .wrap{max-width:980px;margin:0 auto;padding:28px 18px 60px}
+    .hero{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), transparent);
+      border-radius:18px;
+      overflow:hidden;
     }
-    header p {
-      font-size: 18px;
-      opacity: 0.85;
+    .heroTop{
+      padding:44px 18px 28px;
+      text-align:center;
     }
-    section {
-      max-width: 900px;
-      margin: auto;
-      padding: 60px 20px;
-      text-align: center;
+    .brand{
+      display:flex; flex-direction:column; align-items:center; gap:14px;
     }
-    .btn {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 14px 30px;
-      background: gold;
-      color: black;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 30px;
+    .logo{
+      width:120px; height:auto; display:block;
+      filter: drop-shadow(0 10px 25px rgba(0,0,0,.6));
     }
-    footer {
-      text-align: center;
-      padding: 30px;
-      font-size: 14px;
-      opacity: 0.6;
+    h1{margin:0;font-size:44px;letter-spacing:.5px}
+    .tag{margin:6px 0 0; color:var(--muted); font-size:16px}
+    .divider{height:1px;background:var(--line); margin:18px auto 0; max-width:740px}
+    .ctaRow{margin:22px 0 0; display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+    .btn{
+      display:inline-block;
+      padding:12px 18px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:700;
+      border:1px solid var(--line);
+      color:var(--text);
+      background: rgba(255,255,255,.02);
+    }
+    .btnGold{
+      background: linear-gradient(180deg, rgba(212,175,55,.95), rgba(212,175,55,.75));
+      color:#111;
+      border:0;
+    }
+    .section{padding:34px 18px}
+    .headline{
+      text-align:center;
+      font-size:34px;
+      margin:0;
+      color:var(--gold);
+      letter-spacing:1px;
+    }
+    .subline{
+      text-align:center;
+      margin:10px 0 0;
+      color:var(--muted);
+      font-style:italic;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+      margin-top:22px;
+      max-width:760px;
+      margin-left:auto;margin-right:auto;
+    }
+    .card{
+      background: rgba(255,255,255,.02);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:14px;
+      padding:16px 16px;
+    }
+    .bullet{
+      font-size:18px;
+      line-height:1.5;
+      margin:0;
+    }
+    .foot{
+      text-align:center;
+      color:var(--muted);
+      margin-top:16px;
+      font-size:18px;
+    }
+    .contactGrid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+      max-width:760px;
+      margin:22px auto 0;
+      align-items:start;
+    }
+    .contactItem{margin:0; font-size:18px; line-height:1.6}
+    .contactItem a{color:var(--gold); text-decoration:none; font-weight:700}
+    .flyerPreview{
+      width:100%;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
+      display:block;
+    }
+    footer{
+      text-align:center;
+      color:rgba(243,243,243,.55);
+      margin-top:20px;
+      font-size:13px;
+    }
+    @media (min-width: 820px){
+      .grid{grid-template-columns: 1fr 1fr}
+      .contactGrid{grid-template-columns: 1.2fr .8fr}
     }
   </style>
 </head>
+
 <body>
+  <div class="wrap">
+    <div class="hero">
+      <div class="heroTop">
+        <div class="brand">
+          <!-- OPTIONAL: Upload your logo file and rename to logo.png, then this will show it -->
+          <!-- <img class="logo" src="logo.png" alt="KS Photography Logo" /> -->
 
-<header>
-  <h1>KS Photography</h1>
-  <p>Photography & Premium Photobooth Services</p>
-  <a class="btn" href="https://www.instagram.com/nyc_ksphotography/?hl=en">Book on Instagram</a>
-</header>
+          <h1>KS Photography</h1>
+          <div class="tag">Premium Event Photography &amp; Experiences</div>
+        </div>
 
-<section>
-  <h2>Our Services</h2>
-  <p>Weddings · Corporate Events · Birthdays · Private Parties</p>
-</section>
+        <div class="divider"></div>
 
-<footer>
-  © 2026 KS Photography
-</footer>
+        <div class="ctaRow">
+          <a class="btn btnGold" href="https://instagram.com/nyc_ksphotography" target="_blank" rel="noopener">Book on Instagram</a>
+          <a class="btn" href="tel:3475599217">Call / Text</a>
+          <a class="btn" href="mailto:nycksphotography@gmail.com">Email</a>
+        </div>
+      </div>
 
+      <div class="section">
+        <h2 class="headline">CAPTURE THE MOMENT</h2>
+        <p class="subline">Elevate your event experience</p>
+
+        <div class="grid">
+          <div class="card"><p class="bullet">• Professional Event Photography</p></div>
+          <div class="card"><p class="bullet">• 360 Photo Booth</p></div>
+          <div class="card"><p class="bullet">• DSLR Print Photobooth</p></div>
+          <div class="card"><p class="bullet">• Backdrops &amp; Floral Walls</p></div>
+        </div>
+
+        <p class="foot">Weddings · Corporate Events · Birthdays · Private Parties</p>
+
+        <div class="divider"></div>
+
+        <div class="contactGrid">
+          <div class="card">
+            <p class="contactItem"><strong>Karan (KD)</strong></p>
+            <p class="contactItem">📞 <a href="tel:3475599217">347-559-9217</a></p>
+            <p class="contactItem">✉️ <a href="mailto:nycksphotography@gmail.com">nycksphotography@gmail.com</a></p>
+            <p class="contactItem">📸 <a href="https://instagram.com/nyc_ksphotography" target="_blank" rel="noopener">@nyc_ksphotography</a></p>
+          </div>
+
+          <!-- OPTIONAL: show the flyer image on the site (upload it and set the filename below) -->
+          <div class="card">
+            <p class="contactItem" style="margin-bottom:10px;"><strong>Flyer Preview</strong></p>
+            <img class="flyerPreview" src="88C891F4-EAB2-4254-A7EB-072070DDD0CB.jpeg" alt="KS Photography Flyer" />
+          </div>
+        </div>
+
+        <footer>© 2026 KS Photography</footer>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
