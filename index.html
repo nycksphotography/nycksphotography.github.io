@@ -9,6 +9,7 @@
     :root{
       --bg:#0b0b0b;
       --gold:#d4af37;
+      --gold-dark:#b9972f;
       --text:#f3f3f3;
       --muted:rgba(243,243,243,.75);
       --line:rgba(212,175,55,.35);
@@ -38,48 +39,49 @@
       overflow:hidden;
     }
 
+    /* Reduced top padding so there's less dead space */
     .heroTop{
       padding:22px 20px 30px;
       text-align:center;
     }
 
-    /* LOGO WITH LUXURY GLOW ANIMATION */
+    /* BIG LOGO + moved down + tighter to title */
     .logo{
-  width:700px;         
-  max-width:92vw;      
-  height:auto;
-  display:block;
-  margin:0 auto -18px;
-  animation: logoGlow 3.2s ease-in-out infinite;
-  filter:
-    drop-shadow(0 22px 45px rgba(0,0,0,.9))
-    drop-shadow(0 0 26px rgba(212,175,55,.45));
-}
+      width:700px;
+      max-width:92vw;
+      height:auto;
+      display:block;
+      margin:24px auto -18px; /* pushes logo down + pulls title up */
+      animation: logoGlow 3.2s ease-in-out infinite;
+      filter:
+        drop-shadow(0 24px 48px rgba(0,0,0,.9))
+        drop-shadow(0 0 30px rgba(212,175,55,.5));
+    }
 
     @keyframes logoGlow{
-      0%, 100%{
+      0%,100%{
         filter:
-          drop-shadow(0 22px 45px rgba(0,0,0,.9))
-          drop-shadow(0 0 14px rgba(212,175,55,.25));
-        transform: translateY(0);
+          drop-shadow(0 24px 48px rgba(0,0,0,.9))
+          drop-shadow(0 0 18px rgba(212,175,55,.28));
       }
       50%{
         filter:
-          drop-shadow(0 22px 45px rgba(0,0,0,.9))
-          drop-shadow(0 0 26px rgba(212,175,55,.55));
-        transform: translateY(-2px);
+          drop-shadow(0 24px 48px rgba(0,0,0,.9))
+          drop-shadow(0 0 34px rgba(212,175,55,.55));
       }
     }
 
+    /* Tight heading spacing */
     h1{
       margin:0;
       padding:0;
       font-size:46px;
-      letter-spacing:1:05px;
+      line-height:1.05;
+      letter-spacing:.3px;
     }
 
     .tag{
-      margin-top:8px;
+      margin-top:10px;
       font-size:17px;
       color:var(--muted);
     }
@@ -88,9 +90,10 @@
       height:1px;
       background:var(--line);
       max-width:760px;
-      margin:26px auto;
+      margin:22px auto;
     }
 
+    /* ALL BUTTONS MATCHING: gold bg + black text */
     .ctaRow{
       display:flex;
       gap:14px;
@@ -98,18 +101,25 @@
       flex-wrap:wrap;
     }
 
-   .btn{
-  padding:14px 26px;
-  border-radius:999px;
-  text-decoration:none;
-  font-weight:700;
-  border:none;
-  color:#111; /* black text */
-  background:linear-gradient(180deg, rgba(212,175,55,.95), rgba(212,175,55,.75));
-  box-shadow: 0 10px 24px rgba(0,0,0,.35);
-  min-width:190px; /* keeps them equal width */
-  text-align:center;
-}
+    .btn{
+      padding:15px 26px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:800;
+      font-size:16px;
+      background:linear-gradient(180deg, var(--gold), var(--gold-dark));
+      color:#111;
+      border:none;
+      min-width:210px;
+      text-align:center;
+      box-shadow:0 10px 22px rgba(0,0,0,.45);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 14px 28px rgba(0,0,0,.6);
+    }
 
     .section{
       padding:44px 22px;
@@ -182,6 +192,7 @@
 
     @media(min-width:800px){
       .grid{grid-template-columns:1fr 1fr}
+      .btn{min-width:220px}
     }
   </style>
 </head>
@@ -198,13 +209,12 @@
 
         <div class="divider"></div>
 
-      <div class="ctaRow">
-  <a class="btn" href="https://instagram.com/nyc_ksphotography" target="_blank">Book on Instagram</a>
-<a class="btn" href="tel:3475599217">Call</a>
-<a class="btn" href="sms:3475599217&body=Hi%20KD!%20I%20would%20like%20to%20inquire%20about%20photography/photobooth%20services.%20Are%20you%20available%20on%20(my%20date)%3F">Text</a>
-  <a class="btn" href="mailto:nycksphotography@gmail.com">Email</a>
-</div>
-
+        <div class="ctaRow">
+          <a class="btn" href="https://instagram.com/nyc_ksphotography" target="_blank" rel="noopener">Book on Instagram</a>
+          <a class="btn" href="tel:3475599217">Call</a>
+          <a class="btn" href="sms:3475599217">Text</a>
+          <a class="btn" href="mailto:nycksphotography@gmail.com">Email</a>
+        </div>
       </div>
 
       <div class="section">
@@ -222,13 +232,11 @@
           Weddings · Corporate Events · Birthdays · Private Parties
         </div>
 
-        <div class="divider"></div>
-
         <div class="contact">
           <p><strong>Karan (KD)</strong></p>
           <p>📞 <a href="tel:3475599217">347-559-9217</a></p>
           <p>✉️ <a href="mailto:nycksphotography@gmail.com">nycksphotography@gmail.com</a></p>
-          <p>📸 <a href="https://instagram.com/nyc_ksphotography" target="_blank">@nyc_ksphotography</a></p>
+          <p>📸 <a href="https://instagram.com/nyc_ksphotography" target="_blank" rel="noopener">@nyc_ksphotography</a></p>
         </div>
 
         <footer>© 2026 KS Photography</footer>
