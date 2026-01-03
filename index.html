@@ -1,244 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>KS Photography</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>KS Photography</title>
 
-  <style>
-    :root{
-      --bg:#0b0b0b;
-      --gold:#d4af37;
-      --gold-dark:#b9972f;
-      --text:#f3f3f3;
-      --muted:rgba(243,243,243,.75);
-      --line:rgba(212,175,55,.35);
-    }
-
-    *{box-sizing:border-box}
-
-    body{
-      margin:0;
-      font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
-      background:
-        radial-gradient(1200px 500px at 50% 0%, rgba(212,175,55,.15), transparent 60%),
-        var(--bg);
-      color:var(--text);
-    }
-
-    .wrap{
-      max-width:1000px;
-      margin:0 auto;
-      padding:24px 16px 70px;
-    }
-
-    .hero{
-      border:1px solid var(--line);
-      border-radius:20px;
-      background:linear-gradient(180deg, rgba(255,255,255,.04), transparent);
-      overflow:hidden;
-    }
-
-    /* MUCH LESS TOP SPACE */
-    .heroTop{
-      padding:14px 20px 30px;
-      text-align:center;
-    }
-
-    /* BIG LOGO, LOWERED VISUALLY */
-   .logo{
-  width:720px;
-  max-width:92vw;
-  height:auto;
-  display:block;
-  margin:32px auto -24px;
-
-  /* REMOVE box-like glow */
-  filter:
-    drop-shadow(0 20px 40px rgba(0,0,0,.9));
-
-  animation: logoGlow 3.5s ease-in-out infinite;
+<style>
+:root{
+  --bg:#0b0b0b;
+  --gold:#d4af37;
+  --text:#f3f3f3;
+  --muted:rgba(243,243,243,.75);
+  --line:rgba(212,175,55,.35);
 }
 
-    @keyframes logoGlow{
-  0%, 100%{
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  background: radial-gradient(1200px 500px at 50% 0%, rgba(212,175,55,.12), transparent 55%), var(--bg);
+  color:var(--text);
+}
+
+.wrap{
+  max-width:980px;
+  margin:0 auto;
+  padding:22px 16px 60px;
+}
+
+/* CARD */
+.hero{
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:linear-gradient(180deg, rgba(255,255,255,.03), transparent);
+  padding:22px 16px 40px;
+  text-align:center;
+}
+
+/* LOGO */
+.logo{
+  width:620px;
+  max-width:90vw;
+  height:auto;
+  display:block;
+  margin:14px auto 10px;
+  clip-path:none;
+  object-fit:unset;
+
+  animation:logoGlow 3.6s ease-in-out infinite;
+}
+
+@keyframes logoGlow{
+  0%,100%{
     filter:
-      drop-shadow(0 20px 40px rgba(0,0,0,.9))
-      drop-shadow(0 0 16px rgba(212,175,55,.22));
+      drop-shadow(0 22px 42px rgba(0,0,0,.9))
+      drop-shadow(0 0 14px rgba(212,175,55,.22));
   }
   50%{
     filter:
-      drop-shadow(0 20px 40px rgba(0,0,0,.9))
+      drop-shadow(0 22px 42px rgba(0,0,0,.9))
       drop-shadow(0 0 26px rgba(212,175,55,.38));
   }
 }
-    }
 
-    h1{
-      margin:0;
-      padding:0;
-      font-size:46px;
-      line-height:1.05;
-      letter-spacing:.3px;
-    }
+/* TEXT */
+h1{
+  margin:8px 0 0;
+  font-size:42px;
+  letter-spacing:.4px;
+}
 
-    .tag{
-      margin-top:10px;
-      font-size:17px;
-      color:var(--muted);
-    }
+.tag{
+  margin:6px 0 18px;
+  font-size:16px;
+  color:var(--muted);
+}
 
-    .divider{
-      height:1px;
-      background:var(--line);
-      max-width:760px;
-      margin:22px auto;
-    }
+.divider{
+  height:1px;
+  background:var(--line);
+  max-width:720px;
+  margin:18px auto 22px;
+}
 
-    /* GOLD BUTTONS */
-    .ctaRow{
-      display:flex;
-      gap:14px;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
+/* BUTTONS */
+.cta{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  align-items:center;
+}
 
-    .btn{
-      padding:15px 26px;
-      border-radius:999px;
-      text-decoration:none;
-      font-weight:800;
-      font-size:16px;
-      background:linear-gradient(180deg, var(--gold), var(--gold-dark));
-      color:#111;
-      border:none;
-      min-width:210px;
-      text-align:center;
-      box-shadow:0 10px 22px rgba(0,0,0,.45);
-    }
+.btn{
+  width:100%;
+  max-width:340px;
+  padding:16px 22px;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:700;
+  font-size:17px;
+  text-align:center;
+  background:linear-gradient(180deg, rgba(212,175,55,.98), rgba(212,175,55,.82));
+  color:#111;
+}
 
-    .section{
-      padding:44px 22px;
-      text-align:center;
-    }
+/* SECTION */
+.section{
+  margin-top:36px;
+}
 
-    .headline{
-      font-size:36px;
-      color:var(--gold);
-      letter-spacing:1.2px;
-      margin:0;
-    }
+.headline{
+  font-size:34px;
+  letter-spacing:1px;
+  color:var(--gold);
+  margin:0;
+}
 
-    .subline{
-      margin-top:12px;
-      font-style:italic;
-      color:var(--muted);
-      font-size:18px;
-    }
+.subline{
+  margin:10px 0 22px;
+  font-style:italic;
+  color:var(--muted);
+}
 
-    .grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:16px;
-      max-width:760px;
-      margin:28px auto 0;
-    }
+/* SERVICES */
+.services{
+  max-width:680px;
+  margin:0 auto;
+  display:grid;
+  gap:14px;
+}
 
-    .card{
-      padding:18px;
-      border-radius:16px;
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.08);
-      font-size:18px;
-    }
+.service{
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  padding:14px;
+  background:rgba(255,255,255,.02);
+  font-size:18px;
+}
 
-    .foot{
-      margin-top:22px;
-      font-size:18px;
-      color:var(--muted);
-    }
+.footer{
+  margin-top:36px;
+  font-size:13px;
+  color:rgba(243,243,243,.55);
+}
 
-    .contact{
-      max-width:600px;
-      margin:32px auto 0;
-      padding:22px;
-      border-radius:16px;
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.08);
-      text-align:center;
-    }
-
-    .contact p{
-      margin:10px 0;
-      font-size:18px;
-    }
-
-    .contact a{
-      color:var(--gold);
-      text-decoration:none;
-      font-weight:700;
-    }
-
-    footer{
-      margin-top:28px;
-      font-size:13px;
-      color:rgba(243,243,243,.55);
-      text-align:center;
-    }
-
-    @media(min-width:800px){
-      .grid{grid-template-columns:1fr 1fr}
-      .btn{min-width:220px}
-    }
-  </style>
+/* DESKTOP */
+@media (min-width:900px){
+  h1{font-size:48px}
+  .logo{width:680px}
+}
+</style>
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="hero">
 
-      <div class="heroTop">
-        <img src="logo.png" alt="KS Photography Logo" class="logo" />
+<div class="wrap">
+  <div class="hero">
 
-        <h1>KS Photography</h1>
-        <div class="tag">Premium Event Photography & Experiences</div>
+    <!-- LOGO -->
+    <img src="logo.png" alt="KS Photography Logo" class="logo">
 
-        <div class="divider"></div>
+    <!-- TITLE -->
+    <h1>KS Photography</h1>
+    <div class="tag">Premium Event Photography &amp; Experiences</div>
 
-        <div class="ctaRow">
-          <a class="btn" href="https://instagram.com/nyc_ksphotography" target="_blank">Book on Instagram</a>
-          <a class="btn" href="tel:3475599217">Call</a>
-          <a class="btn" href="sms:3475599217">Text</a>
-          <a class="btn" href="mailto:nycksphotography@gmail.com">Email</a>
-        </div>
-      </div>
+    <div class="divider"></div>
 
-      <div class="section">
-        <h2 class="headline">CAPTURE THE MOMENT</h2>
-        <div class="subline">Elevate your event experience</div>
-
-        <div class="grid">
-          <div class="card">Professional Event Photography</div>
-          <div class="card">360 Photo Booth</div>
-          <div class="card">DSLR Print Photobooth</div>
-          <div class="card">Backdrops & Floral Walls</div>
-        </div>
-
-        <div class="foot">
-          Weddings · Corporate Events · Birthdays · Private Parties
-        </div>
-
-        <div class="contact">
-          <p><strong>Karan (KD)</strong></p>
-          <p>📞 <a href="tel:3475599217">347-559-9217</a></p>
-          <p>✉️ <a href="mailto:nycksphotography@gmail.com">nycksphotography@gmail.com</a></p>
-          <p>📸 <a href="https://instagram.com/nyc_ksphotography" target="_blank">@nyc_ksphotography</a></p>
-        </div>
-
-        <footer>© 2026 KS Photography</footer>
-      </div>
-
+    <!-- CTA BUTTONS -->
+    <div class="cta">
+      <a class="btn" href="https://instagram.com/nyc_ksphotography" target="_blank">Book on Instagram</a>
+      <a class="btn" href="tel:3475599217">Call</a>
+      <a class="btn" href="sms:3475599217">Text</a>
+      <a class="btn" href="mailto:nycksphotography@gmail.com">Email</a>
     </div>
+
+    <!-- SERVICES -->
+    <div class="section">
+      <h2 class="headline">CAPTURE THE MOMENT</h2>
+      <p class="subline">Elevate your event experience</p>
+
+      <div class="services">
+        <div class="service">• Professional Event Photography</div>
+        <div class="service">• 360 Photo Booth</div>
+        <div class="service">• DSLR Print Photobooth</div>
+        <div class="service">• Backdrops &amp; Floral Walls</div>
+      </div>
+    </div>
+
+    <div class="footer">© 2026 KS Photography</div>
+
   </div>
+</div>
+
 </body>
 </html>
