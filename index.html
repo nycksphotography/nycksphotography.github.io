@@ -29,7 +29,7 @@
     .wrap{
       max-width:1000px;
       margin:0 auto;
-      padding:32px 18px 70px;
+      padding:24px 16px 70px;
     }
 
     .hero{
@@ -39,19 +39,19 @@
       overflow:hidden;
     }
 
-    /* Reduced top padding so there's less dead space */
+    /* MUCH LESS TOP SPACE */
     .heroTop{
-      padding:22px 20px 30px;
+      padding:14px 20px 30px;
       text-align:center;
     }
 
-    /* BIG LOGO + moved down + tighter to title */
+    /* BIG LOGO, LOWERED VISUALLY */
     .logo{
-      width:700px;
+      width:720px;
       max-width:92vw;
       height:auto;
       display:block;
-      margin:24px auto -18px; /* pushes logo down + pulls title up */
+      margin:40px auto -22px; /* 👈 pushes logo DOWN */
       animation: logoGlow 3.2s ease-in-out infinite;
       filter:
         drop-shadow(0 24px 48px rgba(0,0,0,.9))
@@ -71,7 +71,6 @@
       }
     }
 
-    /* Tight heading spacing */
     h1{
       margin:0;
       padding:0;
@@ -93,7 +92,7 @@
       margin:22px auto;
     }
 
-    /* ALL BUTTONS MATCHING: gold bg + black text */
+    /* GOLD BUTTONS */
     .ctaRow{
       display:flex;
       gap:14px;
@@ -113,12 +112,6 @@
       min-width:210px;
       text-align:center;
       box-shadow:0 10px 22px rgba(0,0,0,.45);
-      transition:transform .2s ease, box-shadow .2s ease;
-    }
-
-    .btn:hover{
-      transform:translateY(-2px);
-      box-shadow:0 14px 28px rgba(0,0,0,.6);
     }
 
     .section{
@@ -210,7 +203,7 @@
         <div class="divider"></div>
 
         <div class="ctaRow">
-          <a class="btn" href="https://instagram.com/nyc_ksphotography" target="_blank" rel="noopener">Book on Instagram</a>
+          <a class="btn" href="https://instagram.com/nyc_ksphotography" target="_blank">Book on Instagram</a>
           <a class="btn" href="tel:3475599217">Call</a>
           <a class="btn" href="sms:3475599217">Text</a>
           <a class="btn" href="mailto:nycksphotography@gmail.com">Email</a>
@@ -236,7 +229,7 @@
           <p><strong>Karan (KD)</strong></p>
           <p>📞 <a href="tel:3475599217">347-559-9217</a></p>
           <p>✉️ <a href="mailto:nycksphotography@gmail.com">nycksphotography@gmail.com</a></p>
-          <p>📸 <a href="https://instagram.com/nyc_ksphotography" target="_blank" rel="noopener">@nyc_ksphotography</a></p>
+          <p>📸 <a href="https://instagram.com/nyc_ksphotography" target="_blank">@nyc_ksphotography</a></p>
         </div>
 
         <footer>© 2026 KS Photography</footer>
