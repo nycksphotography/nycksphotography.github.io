@@ -125,8 +125,9 @@
 
     /* Full width Quote button */
     .quoteRow{
-      margin-top:14px;
-    }
+  margin-top:18px;   /* separates from the 2x2 buttons */
+  margin-bottom:10px;
+}
     .btnOutline{
       background: rgba(255,255,255,.02);
       color: var(--gold);
@@ -134,6 +135,27 @@
       box-shadow:none;
       font-weight:800;
     }
+    /* Special standout Quote button */
+.btnQuote{
+  background: transparent;
+  color: var(--gold);
+  border: 2px solid var(--gold);
+  font-weight: 900;
+  letter-spacing: .5px;
+
+  box-shadow:
+    0 0 0 rgba(212,175,55,0),
+    inset 0 0 0 rgba(212,175,55,0);
+
+  transition: box-shadow .25s ease, transform .15s ease;
+}
+
+.btnQuote:hover{
+  box-shadow:
+    0 0 22px rgba(212,175,55,.45),
+    inset 0 0 14px rgba(212,175,55,.15);
+  transform: translateY(-1px);
+}
 
     /* CONTENT SECTION */
     .section{
