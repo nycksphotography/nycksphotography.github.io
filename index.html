@@ -86,9 +86,28 @@
 
     /* BUTTONS */
     .ctaArea{
-      margin:16px auto 0; /* slightly tighter */
-      max-width:760px;
-    }
+  margin:18px auto 0;
+  max-width:760px;
+  position:relative;
+}
+/* Subtle premium glow behind CTA area */
+.ctaArea::before{
+  content:"";
+  position:absolute;
+  inset:-14px -10px -18px;
+  border-radius:22px;
+  background: radial-gradient(circle at 50% 30%, rgba(212,175,55,.14), transparent 60%);
+  filter: blur(10px);
+  opacity:.9;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* Keep CTA content above the glow */
+.ctaArea > *{
+  position:relative;
+  z-index:1;
+}
 
     .ctaGrid{
       display:grid;
@@ -97,6 +116,30 @@
       margin-top:16px;
       margin-bottom:8px;
     }
+    .ctaGrid .btn{
+  height:60px;
+  font-size:16px;
+  font-weight:750;
+  opacity:1;
+
+  /* richer gold + subtle highlight */
+  background: linear-gradient(
+    180deg,
+    rgba(212,175,55,.92),
+    rgba(212,175,55,.70)
+  );
+
+  box-shadow:
+    0 12px 26px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.18); /* makes gold look “lit” */
+}
+
+.ctaGrid .btn:hover{
+  transform: translateY(-1px);
+  box-shadow:
+    0 16px 34px rgba(0,0,0,.45),
+    inset 0 1px 0 rgba(255,255,255,.22);
+}
 
     /* Base button (keeps your premium look) */
     .btn{
@@ -156,39 +199,41 @@
 
     /* Make Client Galleries more subtle (secondary) */
     .btnGallery{
-      font-size:16px;
-      height:52px;
-      opacity:.78;
-      border: 1px solid rgba(212,175,55,.20);
-      background: rgba(255,255,255,.015);
-    }
-    .btnGallery:hover{
-      opacity:.9;
-      transform: translateY(-1px);
-    }
+  font-size:16px;
+  height:54px;
+  opacity:.92;
+  border: 1px solid rgba(212,175,55,.28);
+  background: rgba(255,255,255,.02);
+  box-shadow: 0 10px 22px rgba(0,0,0,.35);
+}
 
     /* Special standout Quote button (HERO) */
-    .btnQuote{
-      height:70px;
-      font-size:19px;
-      background: transparent;
-      color: var(--gold);
-      border: 2px solid var(--gold);
-      font-weight: 900;
-      letter-spacing: .6px;
+    /* Luxury outlined hero button */
+.btnQuote{
+  height:72px;
+  font-size:19px;
+  background: rgba(10,10,10,.35); /* dark glass so gold outline pops */
+  color: var(--gold);
+  border: 2px solid rgba(212,175,55,.95);
+  font-weight:900;
+  letter-spacing:.5px;
 
-      box-shadow:
-        0 0 0 rgba(212,175,55,0),
-        inset 0 0 0 rgba(212,175,55,0);
+  box-shadow:
+    0 14px 34px rgba(0,0,0,.55),
+    0 0 26px rgba(212,175,55,.20),
+    inset 0 0 18px rgba(212,175,55,.08);
 
-      transition: box-shadow .25s ease, transform .15s ease;
-    }
-    .btnQuote:hover{
-      box-shadow:
-        0 0 24px rgba(212,175,55,.45),
-        inset 0 0 16px rgba(212,175,55,.14);
-      transform: translateY(-1px);
-    }
+  transition: transform .15s ease, box-shadow .25s ease, background .25s ease;
+}
+
+.btnQuote:hover{
+  background: rgba(212,175,55,.06);
+  box-shadow:
+    0 18px 40px rgba(0,0,0,.65),
+    0 0 34px rgba(212,175,55,.32),
+    inset 0 0 22px rgba(212,175,55,.12);
+  transform: translateY(-1px);
+}
 
     /* CONTENT SECTION */
     .section{
