@@ -103,13 +103,15 @@
   align-items:center;
   justify-content:center;
   text-align:center;
-  padding:16px 14px;
-  min-height:64px;
-  height:64px;              /* ✅ FORCE SAME HEIGHT */
-  white-space:nowrap;       /* ✅ PREVENT TEXT WRAP */
+
+  padding:0 14px;          /* ⬅ remove vertical padding */
+  height:64px;             /* ⬅ lock height */
+  line-height:1.15;        /* ⬅ controls 2-line spacing */
+
   border-radius:999px;
   font-weight:800;
   font-size:18px;
+
   background: linear-gradient(180deg, rgba(212,175,55,.95), rgba(212,175,55,.78));
   color:#111;
 }
