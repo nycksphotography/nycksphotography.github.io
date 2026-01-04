@@ -11,6 +11,7 @@
   --gold:#d4af37;
   --text:#f5f5f5;
   --muted:rgba(245,245,245,.75);
+  --line:rgba(212,175,55,.35);
 }
 
 *{box-sizing:border-box}
@@ -18,45 +19,46 @@
 body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
-  background:radial-gradient(900px 400px at 50% 0%,rgba(212,175,55,.15),transparent 60%),var(--bg);
+  background:radial-gradient(900px 420px at 50% 0%,rgba(212,175,55,.16),transparent 62%),var(--bg);
   color:var(--text);
 }
 
-.container{
-  max-width:980px;
+.wrap{
+  max-width:900px;
   margin:0 auto;
-  padding:26px 18px 60px;
+  padding:26px 18px 70px;
 }
 
 .card{
-  border-radius:22px;
-  padding:28px 20px 36px;
+  border-radius:24px;
+  padding:28px 18px 34px;
   background:linear-gradient(180deg,rgba(255,255,255,.04),transparent);
-  border:1px solid rgba(212,175,55,.35);
+  border:1px solid var(--line);
+  text-align:center;
 }
 
 .logo{
   width:360px;
-  max-width:85%;
-  display:block;
+  max-width:90%;
   margin:0 auto 10px;
+  display:block;
+  filter:drop-shadow(0 12px 24px rgba(0,0,0,.55));
 }
 
-.tagline{
-  text-align:center;
-  font-size:16px;
+.sub{
   color:var(--muted);
+  font-style:italic;
+  margin-top:6px;
 }
 
 .divider{
   height:1px;
-  background:rgba(212,175,55,.35);
-  margin:22px auto;
-  max-width:700px;
+  background:var(--line);
+  margin:18px auto;
+  max-width:740px;
 }
 
-/* BUTTONS */
-.actions{
+.buttonGrid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:14px;
@@ -65,109 +67,91 @@ body{
 }
 
 .btn{
-  height:56px;                 /* 🔒 keeps all buttons SAME height */
-  padding:0 14px;
+  height:56px;
   border-radius:999px;
-  font-weight:800;
+  font-weight:900;
   font-size:16px;
-  text-decoration:none;
-  background:linear-gradient(180deg,#e3c25b,#c9a73a);
-  color:#111;
-
-  display:flex;                /* centers text perfectly */
+  display:flex;
   align-items:center;
   justify-content:center;
-  text-align:center;
-  line-height:1.1;
+  text-decoration:none;
 }
 
-/* CAPTURE SECTION */
+.btnGold{
+  background:linear-gradient(180deg,#e3c25b,#c9a73a);
+  color:#111;
+}
+
 .section{
-  margin-top:48px;
-  text-align:center;
+  margin-top:36px;
 }
 
 .section h2{
   color:var(--gold);
-  font-size:34px;
-  margin:0;
-  letter-spacing:1px;
+  font-size:32px;
+  margin-bottom:6px;
 }
 
 .section p{
-  margin:10px 0 0;
   color:var(--muted);
   font-style:italic;
 }
 
-/* SERVICES */
 .offerings{
-  max-width:760px;
-  margin:26px auto 0;
+  margin-top:18px;
   display:grid;
-  gap:16px;
+  gap:14px;
+  max-width:600px;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 .offer{
-  padding:18px;
+  padding:14px;
   border-radius:14px;
-  background:rgba(255,255,255,.04);
+  background:rgba(255,255,255,.03);
   border:1px solid rgba(255,255,255,.08);
-  font-size:18px;
-
-  text-align:center;
-  display:flex;
-  align-items:center;
-  justify-content:center;
 }
 
-.footer{
-  text-align:center;
-  margin-top:34px;
-  color:rgba(245,245,245,.55);
+footer{
+  margin-top:26px;
   font-size:13px;
-}
-
-@media(min-width:760px){
-  .offerings{grid-template-columns:1fr 1fr;}
+  color:rgba(245,245,245,.55);
 }
 </style>
 </head>
 
 <body>
-<div class="container">
-
+<div class="wrap">
   <div class="card">
 
-    <img src="logo.png" alt="KS Photography Logo" class="logo">
+    <img src="logo.png" class="logo" alt="KS Photography Logo">
 
-    <div class="tagline">Premium Event Photography &amp; Experiences</div>
-
+    <div class="sub">Premium Event Photography &amp; Experiences</div>
     <div class="divider"></div>
 
-    <div class="actions">
-      <a class="btn" href="https://instagram.com/nyc_ksphotography" target="_blank" rel="noopener">Book on Instagram</a>
-      <a class="btn" href="tel:3475599217">Call</a>
-      <a class="btn" href="sms:3475599217">Text</a>
-      <a class="btn" href="mailto:nycksphotography@gmail.com">Email</a>
+    <div class="buttonGrid">
+      <a class="btn btnGold" href="https://instagram.com/nyc_ksphotography" target="_blank">Book on Instagram</a>
+      <a class="btn btnGold" href="quote.html">Request a Quote</a>
+      <a class="btn btnGold" href="tel:3475599217">Call</a>
+      <a class="btn btnGold" href="mailto:nycksphotography@gmail.com">Email</a>
     </div>
 
+    <div class="section">
+      <h2>CAPTURE THE MOMENT</h2>
+      <p>Elevate your event experience</p>
+
+      <div class="offerings">
+        <div class="offer">Professional Event Photography</div>
+        <div class="offer">360 Photo Booth</div>
+        <div class="offer">DSLR Print Photo Booth</div>
+        <div class="offer">Backdrops &amp; Floral Walls</div>
+      </div>
+    </div>
+
+    <footer>© 2026 KS Photography</footer>
+
   </div>
-
-  <div class="section">
-    <h2>CAPTURE THE MOMENT</h2>
-    <p>Elevate your event experience</p>
-  </div>
-
-  <div class="offerings">
-    <div class="offer">Professional Event Photography</div>
-    <div class="offer">360 Photo Booth Experience</div>
-    <div class="offer">DSLR Print Photo Booth</div>
-    <div class="offer">Backdrops &amp; Floral Walls</div>
-  </div>
-
-  <div class="footer">© 2026 KS Photography</div>
-
 </div>
 </body>
 </html>
