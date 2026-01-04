@@ -162,13 +162,26 @@
       gap:14px;
     }
     .serviceCard{
-      background: var(--card);
-      border: 1px solid var(--cardBorder);
-      border-radius:16px;
-      padding:18px 16px;
-      font-size:20px;
-      line-height:1.4;
-    }
+  background: var(--card);
+  border: 1px solid var(--cardBorder);
+  border-radius:16px;
+  padding:18px 16px;
+  font-size:20px;
+  line-height:1.4;
+}
+
+.serviceBtn{
+  display:block;
+  text-decoration:none;
+  color:var(--text);
+  cursor:pointer;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.serviceBtn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0,0,0,.35);
+}
 
     footer{
       text-align:center;
