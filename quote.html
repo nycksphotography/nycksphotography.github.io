@@ -117,9 +117,15 @@
       font-size:16px;
       outline:none;
     }
+    input::placeholder, textarea::placeholder{color:rgba(243,243,243,.45)}
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(212,175,55,.45);
+      box-shadow: 0 0 0 3px rgba(212,175,55,.10);
+    }
 
     .full{grid-column: 1 / -1;}
 
+    /* checkbox list */
     .checkWrap{
       background: var(--panel2);
       border:1px solid rgba(255,255,255,.10);
@@ -138,14 +144,20 @@
       display:flex;
       align-items:center;
       gap:10px;
-      padding:10px;
+      padding:10px 10px;
       border-radius:12px;
       background: rgba(255,255,255,.02);
       border:1px solid rgba(255,255,255,.06);
     }
     .check input{
       width:20px; height:20px;
+      margin:0;
       accent-color: var(--gold);
+    }
+    .check span{
+      font-size:16px;
+      color:rgba(243,243,243,.92);
+      font-weight:600;
     }
 
     .btnRow{
@@ -154,99 +166,269 @@
       flex-wrap:wrap;
       margin-top:14px;
     }
-    .btnGold{
-      padding:14px;
+    .btn{
+      flex:1 1 180px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      padding:14px 14px;
       border-radius:999px;
       font-weight:900;
-      background: linear-gradient(180deg, rgba(212,175,55,.95), rgba(184,146,47,.88));
-      border:0;
+      font-size:16px;
+      border:1px solid var(--line);
+      color:var(--gold);
+      background: rgba(255,255,255,.02);
       cursor:pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btnGold{
+      border:0;
+      color:#111;
+      background: linear-gradient(180deg, rgba(212,175,55,.95), rgba(184,146,47,.88));
+      box-shadow: 0 10px 24px rgba(0,0,0,.35);
+    }
+    .note{
+      margin:12px 2px 0;
+      color:rgba(243,243,243,.55);
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    footer{
+      text-align:center;
+      color:rgba(243,243,243,.55);
+      margin-top:16px;
+      font-size:13px;
+      padding-bottom:8px;
     }
   </style>
 </head>
 
 <body>
-<div class="wrap">
-<div class="hero">
-<div class="top">
-<img class="logoMini" src="logo.png">
-<h1>Request a Quote</h1>
-<p class="sub">Tell us a bit about your event and we’ll get back to you ASAP.</p>
-<div class="divider"></div>
-</div>
+  <div class="wrap">
+    <div class="hero">
+      <div class="top">
+        <a href="index.html" style="text-decoration:none; color:inherit;">
+          <img class="logoMini" src="logo.png" alt="KS Photography Logo" />
+        </a>
+        <h1>Request a Quote</h1>
+        <p class="sub">Tell us a bit about your event and we’ll get back to you ASAP.</p>
+        <div class="divider"></div>
+      </div>
 
-<div class="section">
-<div class="card">
+      <div class="section">
+        <div class="card">
 
-<form id="quoteForm" action="https://formsubmit.co/nycksphotography@gmail.com" method="POST" novalidate>
-<input type="hidden" name="_subject" value="New Request for Quote - KS Photography">
-<input type="hidden" name="_captcha" value="false">
-<input type="hidden" name="_template" value="table">
-<input type="hidden" name="_next" value="thank-you.html">
-<input type="text" name="_honey" style="display:none">
+          <!-- ✅ FormSubmit: submit sends to your email (no mail app) -->
+          <form
+            id="quoteForm"
+            action="https://formsubmit.co/nycksphotography@gmail.com"
+            method="POST"
+            novalidate
+          >
+            <!-- FormSubmit settings -->
+            <input type="hidden" name="_subject" value="New Request for Quote - KS Photography">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <!-- Spam honeypot (bots fill this; humans won't) -->
+            <input type="text" name="_honey" style="display:none">
 
-<div class="grid">
+            <!-- Optional: redirect after submit (create this file or change URL) -->
+            <input type="hidden" name="_next" value="thank-you.html">
 
-<!-- YOUR SERVICES -->
-<div class="full">
-<label>Services you are interested in *</label>
-<div class="checkWrap">
-<div class="checkGrid">
-<label class="check"><input type="checkbox" name="Services Interested In" value="Photography">Photography</label>
-<label class="check"><input type="checkbox" name="Services Interested In" value="360 Photo Booth">360 Photo Booth</label>
-<label class="check"><input type="checkbox" name="Services Interested In" value="DSLR Print Photobooth">DSLR Print Photobooth</label>
-<label class="check"><input type="checkbox" name="Services Interested In" value="Backdrops & Floral Walls">Backdrops & Floral Walls</label>
-</div>
-</div>
-</div>
+            <div class="grid">
+              <div class="full">
+                <label for="fullName">Full Name *</label>
+                <input id="fullName" name="Full Name" type="text" placeholder="Full Name" required />
+              </div>
 
-<!-- ADDITIONAL SERVICES (SEPARATE QUESTION) -->
-<div class="full">
-<label>Additional services you may need (optional)</label>
-<div class="checkWrap">
-<div class="checkGrid">
-<label class="check"><input type="checkbox" name="Additional Services Needed" value="DJ Services">DJ Services</label>
-<label class="check"><input type="checkbox" name="Additional Services Needed" value="Wedding Planner">Wedding Planner</label>
-<label class="check"><input type="checkbox" name="Additional Services Needed" value="Event Coordinator">Event Coordinator</label>
-<label class="check"><input type="checkbox" name="Additional Services Needed" value="Decorations / Event Decor">Decorations / Event Decor</label>
-<label class="check"><input type="checkbox" name="Additional Services Needed" value="Content Creator">Content Creator</label>
-<label class="check"><input type="checkbox" name="Additional Services Needed" value="Bhangra Dancers">Bhangra Dancers</label>
-<label class="check"><input type="checkbox" name="Additional Services Needed" value="MC / Host">MC / Host</label>
-<label class="check"><input type="checkbox" name="Additional Services Needed" value="Other">Other (Specify Below)</label>
-</div>
-</div>
-</div>
+              <div>
+                <label for="phone">Phone Number *</label>
+                <input id="phone" name="Phone Number" type="tel" placeholder="(347) 555-9217" required />
+              </div>
 
-<div class="full" id="additionalOtherWrap" style="display:none;">
-<label>If “Other”, please specify</label>
-<input id="additionalOther" name="Additional Services Needed - Other" type="text">
-</div>
+              <div>
+                <label for="email">Email *</label>
+                <input id="email" name="Email" type="email" placeholder="name@email.com" required />
+              </div>
 
-</div>
+              <div>
+                <label for="eventDate">Event Date *</label>
+                <input id="eventDate" name="Event Date" type="date" required />
+              </div>
 
-<div class="btnRow">
-<button type="submit" class="btnGold">Send Request</button>
-</div>
+              <div>
+                <label for="eventTime">Event Time *</label>
+                <input id="eventTime" name="Event Time" type="time" required />
+              </div>
 
-</form>
-</div>
-</div>
-</div>
-</div>
+              <div class="full">
+                <label for="location">Event Location (City, Venue, Address) *</label>
+                <input id="location" name="Event Location" type="text" placeholder="City, Venue, Address" required />
+              </div>
 
-<script>
-const additionalOtherWrap = document.getElementById('additionalOtherWrap');
-const additionalOtherInput = document.getElementById('additionalOther');
+              <div>
+                <label for="guestCount">Estimated Guest Count</label>
+                <input id="guestCount" name="Estimated Guest Count" type="number" min="0" step="1" placeholder="e.g., 150" />
+              </div>
 
-document.querySelectorAll('input[name="Additional Services Needed"]').forEach(cb=>{
-cb.addEventListener('change',()=>{
-const show = [...document.querySelectorAll('input[name="Additional Services Needed"]')]
-.find(i=>i.value==="Other" && i.checked);
-additionalOtherWrap.style.display = show ? 'block' : 'none';
-if(!show) additionalOtherInput.value='';
-});
-});
-</script>
+              <div>
+                <label for="eventType">Type of Event *</label>
+                <select id="eventType" name="Type of Event" required>
+                  <option value="" selected disabled>Select an option</option>
+                  <option>Wedding</option>
+                  <option>Birthday Party</option>
+                  <option>Baby Shower</option>
+                  <option>Bridal Shower</option>
+                  <option>Prom / School Event</option>
+                  <option>Corporate Event</option>
+                  <option>Engagement</option>
+                  <option>Other</option>
+                </select>
+              </div>
 
+              <!-- ✅ Only shows if they select "Other" -->
+              <div class="full" id="eventTypeOtherWrap" style="display:none;">
+                <label for="eventTypeOther">If “Other”, please specify *</label>
+                <input id="eventTypeOther" name="If Other, specify" type="text" placeholder="Describe the type of event" />
+              </div>
+
+              <div class="full">
+                <label>Services you are interested in *</label>
+                <div class="checkWrap">
+                  <div class="checkGrid">
+                    <label class="check"><input type="checkbox" name="Services Interested In" value="Photography" /> <span>Photography</span></label>
+                    <label class="check"><input type="checkbox" name="Services Interested In" value="360 Photo Booth" /> <span>360 Photo Booth</span></label>
+                    <label class="check"><input type="checkbox" name="Services Interested In" value="DSLR Print Photobooth" /> <span>DSLR Print Photobooth</span></label>
+                    <label class="check"><input type="checkbox" name="Services Interested In" value="Backdrops & Floral Walls" /> <span>Backdrops & Floral Walls</span></label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ✅ NEW: Additional services needed (optional) -->
+              <div class="full">
+                <label>Additional services you may need (optional)</label>
+                <div class="checkWrap">
+                  <div class="checkGrid">
+                    <label class="check"><input type="checkbox" name="Additional Services Needed" value="DJ Services" /> <span>DJ Services</span></label>
+                    <label class="check"><input type="checkbox" name="Additional Services Needed" value="Wedding Planner" /> <span>Wedding Planner</span></label>
+                    <label class="check"><input type="checkbox" name="Additional Services Needed" value="Event Coordinator" /> <span>Event Coordinator</span></label>
+                    <label class="check"><input type="checkbox" name="Additional Services Needed" value="Decorations / Event Decor" /> <span>Decorations / Event Decor</span></label>
+                    <label class="check"><input type="checkbox" name="Additional Services Needed" value="Content Creator" /> <span>Content Creator</span></label>
+                    <label class="check"><input type="checkbox" name="Additional Services Needed" value="Bhangra Dancers" /> <span>Bhangra Dancers</span></label>
+                    <label class="check"><input type="checkbox" name="Additional Services Needed" value="MC / Host" /> <span>MC / Host</span></label>
+                    <label class="check"><input type="checkbox" name="Additional Services Needed" value="Other (Specify Below)" /> <span>Other (Specify Below)</span></label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="full" id="additionalServicesOtherWrap" style="display:none;">
+                <label for="additionalServicesOther">If “Other”, please specify</label>
+                <input
+                  id="additionalServicesOther"
+                  name="Additional Services Needed - Other"
+                  type="text"
+                  placeholder="Tell us what additional services you’re looking for"
+                />
+              </div>
+
+              <div class="full">
+                <label for="details">Any additional details or requests</label>
+                <textarea id="details" name="Additional Details" rows="4" placeholder="Anything we should know? Theme, schedule, special requests, etc."></textarea>
+              </div>
+            </div>
+
+            <div class="btnRow">
+              <button type="submit" class="btn btnGold">Send Request</button>
+              <a class="btn" href="index.html">Back to Home</a>
+            </div>
+
+            <p class="note">
+              After you publish this page, do one test submission. FormSubmit will email you a confirmation link (one-time)
+              to verify nycksphotography@gmail.com. After that, submissions go directly to your inbox.
+            </p>
+          </form>
+
+          <footer>© 2026 KS Photography</footer>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('quoteForm');
+    const eventType = document.getElementById('eventType');
+    const otherWrap = document.getElementById('eventTypeOtherWrap');
+    const otherInput = document.getElementById('eventTypeOther');
+
+    const additionalServicesOtherWrap = document.getElementById('additionalServicesOtherWrap');
+    const additionalServicesOtherInput = document.getElementById('additionalServicesOther');
+
+    function toggleOther() {
+      const isOther = eventType.value === 'Other';
+      otherWrap.style.display = isOther ? 'block' : 'none';
+      otherInput.required = isOther;
+      if (!isOther) otherInput.value = '';
+    }
+    eventType.addEventListener('change', toggleOther);
+
+    function hasAtLeastOneService() {
+      return document.querySelectorAll('input[name="Services Interested In"]:checked').length > 0;
+    }
+
+    function toggleAdditionalServicesOther() {
+      const otherChecked = document.querySelector(
+        'input[name="Additional Services Needed"][value="Other (Specify Below)"]'
+      )?.checked;
+
+      additionalServicesOtherWrap.style.display = otherChecked ? 'block' : 'none';
+      if (!otherChecked) additionalServicesOtherInput.value = '';
+    }
+
+    document.querySelectorAll('input[name="Additional Services Needed"]').forEach(cb => {
+      cb.addEventListener('change', toggleAdditionalServicesOther);
+    });
+
+    form.addEventListener('submit', (e) => {
+      // Let HTML5 validation run first
+      if (!form.checkValidity()) {
+        e.preventDefault();
+        form.reportValidity();
+        return;
+      }
+
+      // Enforce at least one service selected (your services)
+      if (!hasAtLeastOneService()) {
+        e.preventDefault();
+        alert('Please select at least one service.');
+        return;
+      }
+
+      // Enforce "Other" specification (event type)
+      if (eventType.value === 'Other' && !otherInput.value.trim()) {
+        e.preventDefault();
+        alert('Please specify the type of event.');
+        otherInput.focus();
+        return;
+      }
+
+      // Optional: if they selected "Other" in additional services, require text
+      const additionalOtherChecked = document.querySelector(
+        'input[name="Additional Services Needed"][value="Other (Specify Below)"]'
+      )?.checked;
+
+      if (additionalOtherChecked && !additionalServicesOtherInput.value.trim()) {
+        e.preventDefault();
+        alert('Please specify the additional service you need.');
+        additionalServicesOtherInput.focus();
+        return;
+      }
+    });
+
+    // initialize
+    toggleOther();
+    toggleAdditionalServicesOther();
+  </script>
 </body>
 </html>
