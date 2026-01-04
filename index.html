@@ -201,6 +201,23 @@
       .headline{font-size:46px;}
       .services{grid-template-columns: 1fr 1fr;}
     }
+    /* Promo video styling */
+.videoSection{
+  margin:26px auto 0;
+  max-width:760px;
+}
+
+.videoWrap{
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  box-shadow:0 18px 40px rgba(0,0,0,.45);
+}
+
+.videoWrap video{
+  width:100%;
+  display:block;
+}
   </style>
 </head>
 
@@ -236,6 +253,15 @@
       <div class="section">
         <div class="headline">CAPTURE THE<br/>MOMENT</div>
         <div class="subline">Elevate your event experience</div>
+        <!-- Promo Video -->
+<div class="videoSection">
+  <div class="videoWrap">
+    <video controls playsinline preload="metadata">
+      <source src="54F8EBDC-241E-4046-B70F-65D38371D77Csegment_video_2.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
 <div class="servicesHint">
   Tap a service below to view details & included features
 </div>
