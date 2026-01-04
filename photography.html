@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Event Photography | KS Photography</title>
+
+  <style>
+    :root{
+      --bg:#0b0b0b;
+      --gold:#d4af37;
+      --text:#f3f3f3;
+      --muted:rgba(243,243,243,.72);
+      --line:rgba(212,175,55,.35);
+      --card: rgba(255,255,255,.02);
+      --cardBorder: rgba(255,255,255,.08);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+      background:
+        radial-gradient(1200px 600px at 50% 0%, rgba(212,175,55,.14), transparent 55%),
+        var(--bg);
+      color:var(--text);
+    }
+    .wrap{max-width:980px;margin:0 auto;padding:26px 18px 60px}
+
+    .panel{
+      border:1px solid var(--line);
+      border-radius:22px;
+      background: linear-gradient(180deg, rgba(255,255,255,.03), transparent);
+      overflow:hidden;
+    }
+
+    .hero{
+      padding:22px 18px 18px;
+      text-align:center;
+    }
+
+    .title{
+      margin:6px 0 0;
+      font-size:34px;
+      letter-spacing:.6px;
+      color:var(--gold);
+      font-weight:900;
+    }
+    .tag{
+      margin:10px 0 0;
+      color:var(--muted);
+      font-size:16px;
+      letter-spacing:.2px;
+    }
+    .divider{
+      height:1px;
+      background:var(--line);
+      margin:16px auto 0;
+      max-width:760px;
+    }
+
+    .section{
+      padding:18px 18px 26px;
+      text-align:center;
+    }
+
+    .note{
+      margin:14px auto 0;
+      max-width:760px;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.45;
+    }
+
+    .grid{
+      margin:18px auto 0;
+      max-width:760px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+      text-align:left;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--cardBorder);
+      border-radius:16px;
+      padding:16px 16px;
+    }
+
+    .card h3{
+      margin:0 0 10px;
+      color:var(--gold);
+      font-size:18px;
+      letter-spacing:.2px;
+    }
+
+    ul{
+      margin:0;
+      padding-left:18px;
+      color:var(--text);
+      line-height:1.55;
+    }
+    li{margin:6px 0}
+
+    .ctaArea{
+      margin:18px auto 0;
+      max-width:760px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+    }
+
+    .btn{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      height:64px;
+      padding:0 14px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:900;
+      font-size:18px;
+      letter-spacing:.2px;
+      border:0;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    .btnGold{
+      background: linear-gradient(180deg, rgba(212,175,55,.95), rgba(212,175,55,.78));
+      color:#111;
+      box-shadow: 0 14px 30px rgba(0,0,0,.35);
+    }
+    .btnGold:active{transform:translateY(1px)}
+
+    .btnOutline{
+      background: rgba(255,255,255,.02);
+      color: var(--gold);
+      border: 1px solid var(--line);
+    }
+
+    footer{
+      text-align:center;
+      color:rgba(243,243,243,.55);
+      margin:18px 0 22px;
+      font-size:13px;
+    }
+
+    @media (min-width: 820px){
+      .title{font-size:40px;}
+      .grid{grid-template-columns:1fr 1fr;}
+      .ctaArea{grid-template-columns:1fr 1fr;}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="panel">
+
+      <div class="hero">
+        <div class="title">Event Photography</div>
+        <div class="tag">Premium Event Photography &amp; Experiences</div>
+        <div class="divider"></div>
+      </div>
+
+      <div class="section">
+        <div class="note">
+          Here’s what to expect when booking KS Photography for event coverage. Tap “Request a Quote” for availability + a tailored package recommendation.
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <h3>What’s Included</h3>
+            <ul>
+              <li>1 professional photographer covering your event</li>
+              <li>Coverage of key moments throughout the event (entrances, family moments, dance floor, candids, etc.)</li>
+              <li>Focused coverage at the beginning for the couple + immediate family photos (as time allows)</li>
+              <li>High-resolution edited gallery delivered online</li>
+              <li>Professional lighting used as needed based on venue</li>
+              <li>Guidance/posing assistance so photos look natural and flattering</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>What We Capture</h3>
+            <ul>
+              <li>Couple portraits + family photos (typically at the beginning)</li>
+              <li>Event functions and traditions (ex: entrances, dances, shagun, speeches)</li>
+              <li>Candids of guests, reactions, and details</li>
+              <li>Decor, food, venue details, and overall atmosphere</li>
+              <li>Group photos upon request (time permitting)</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Optional Add-Ons (Upon Request)</h3>
+            <ul>
+              <li>Additional hours of coverage</li>
+              <li>Second photographer</li>
+              <li>Express delivery / rush edits</li>
+              <li>Highlight reel / short-form video coverage (if available)</li>
+              <li>Engagement-style mini shoot during the event (extra time)</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>To Help Us Prepare</h3>
+            <ul>
+              <li>Event date + full location/venue address</li>
+              <li>Start/end time + key moments timeline (if you have one)</li>
+              <li>Any must-have family/group photo list</li>
+              <li>Venue rules (flash restrictions, vendor check-in, etc.)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ctaArea">
+          <a class="btn btnGold" href="quote.html?service=photography">Request a Quote</a>
+          <a class="btn btnOutline" href="index.html">Back to Home</a>
+        </div>
+
+        <footer>© 2026 KS Photography</footer>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
