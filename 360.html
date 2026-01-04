@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>360 Photo Booth | KS Photography</title>
+
+  <style>
+    :root{
+      --bg:#0b0b0b;
+      --gold:#d4af37;
+      --text:#f3f3f3;
+      --muted:rgba(243,243,243,.75);
+      --line:rgba(212,175,55,.35);
+      --card: rgba(255,255,255,.03);
+      --border: rgba(255,255,255,.08);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+      background:
+        radial-gradient(1200px 600px at 50% 0%, rgba(212,175,55,.14), transparent 55%),
+        var(--bg);
+      color:var(--text);
+    }
+    .wrap{max-width:900px;margin:0 auto;padding:30px 18px 60px}
+
+    .panel{
+      border:1px solid var(--line);
+      border-radius:22px;
+      background: linear-gradient(180deg, rgba(255,255,255,.03), transparent);
+      padding:28px 22px 36px;
+    }
+
+    h1{
+      margin:0;
+      text-align:center;
+      color:var(--gold);
+      font-size:38px;
+      letter-spacing:1px;
+    }
+    .subtitle{
+      text-align:center;
+      margin:10px 0 22px;
+      color:var(--muted);
+      font-style:italic;
+      font-size:18px;
+    }
+
+    .sectionTitle{
+      margin:26px 0 12px;
+      font-size:22px;
+      color:var(--gold);
+      letter-spacing:.5px;
+      text-align:center;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:18px 18px;
+      margin-top:14px;
+    }
+
+    ul{
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+    li{
+      padding:8px 0;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      font-size:18px;
+    }
+    li:last-child{border-bottom:none}
+
+    .note{
+      margin-top:18px;
+      text-align:center;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .cta{
+      margin-top:26px;
+      display:flex;
+      justify-content:center;
+    }
+    .btn{
+      padding:16px 28px;
+      height:64px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:999px;
+      font-weight:800;
+      font-size:18px;
+      text-decoration:none;
+      background: linear-gradient(180deg, rgba(212,175,55,.95), rgba(212,175,55,.78));
+      color:#111;
+      box-shadow:0 14px 30px rgba(0,0,0,.35);
+    }
+
+    footer{
+      text-align:center;
+      margin-top:26px;
+      color:rgba(243,243,243,.55);
+      font-size:13px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="panel">
+
+      <h1>360 Photo Booth</h1>
+      <div class="subtitle">An immersive, high-energy experience your guests will love</div>
+
+      <!-- INCLUDED -->
+      <div class="sectionTitle">What’s Included</div>
+      <div class="card">
+        <ul>
+          <li>Glass 360 LED Platform</li>
+          <li>Professional 360 Camera Setup</li>
+          <li>On-site Booth Attendant</li>
+          <li>iPad Sharing Station</li>
+          <li>Instant Video Sharing</li>
+          <li>Props for Guest Interaction</li>
+          <li>Online Gallery with All Videos Created</li>
+          <li>Jaggo Props (available upon request)</li>
+        </ul>
+      </div>
+
+      <!-- OPTIONAL -->
+      <div class="sectionTitle">Optional Add-Ons (Additional Cost)</div>
+      <div class="card">
+        <ul>
+          <li>Custom Video Overlay / Filter (per request)</li>
+          <li>Sequin Backdrop</li>
+          <li>Floral Backdrop</li>
+          <li>Custom Props</li>
+          <li>Gold Stanchions</li>
+          <li>Extended Service Time</li>
+        </ul>
+      </div>
+
+      <div class="note">
+        Optional features are available at an additional cost and can be customized based on your event.
+      </div>
+
+      <div class="cta">
+        <a class="btn" href="quote.html">Request a Quote</a>
+      </div>
+
+      <footer>© 2026 KS Photography</footer>
+
+    </div>
+  </div>
+</body>
+</html>
