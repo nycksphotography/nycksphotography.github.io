@@ -34,7 +34,7 @@
     }
 
     .hero{
-      padding:28px 18px 16px; /* tightened bottom padding to reduce gap */
+      padding:28px 18px 16px;
       text-align:center;
     }
 
@@ -86,28 +86,29 @@
 
     /* BUTTONS */
     .ctaArea{
-  margin:18px auto 0;
-  max-width:760px;
-  position:relative;
-}
-/* Subtle premium glow behind CTA area */
-.ctaArea::before{
-  content:"";
-  position:absolute;
-  inset:-14px -10px -18px;
-  border-radius:22px;
-  background: radial-gradient(circle at 50% 30%, rgba(212,175,55,.14), transparent 60%);
-  filter: blur(10px);
-  opacity:.9;
-  pointer-events:none;
-  z-index:0;
-}
+      margin:18px auto 0;
+      max-width:760px;
+      position:relative;
+    }
 
-/* Keep CTA content above the glow */
-.ctaArea > *{
-  position:relative;
-  z-index:1;
-}
+    /* Subtle premium glow behind CTA area */
+    .ctaArea::before{
+      content:"";
+      position:absolute;
+      inset:-14px -10px -18px;
+      border-radius:22px;
+      background: radial-gradient(circle at 50% 30%, rgba(212,175,55,.14), transparent 60%);
+      filter: blur(10px);
+      opacity:.9;
+      pointer-events:none;
+      z-index:0;
+    }
+
+    /* Keep CTA content above the glow */
+    .ctaArea > *{
+      position:relative;
+      z-index:1;
+    }
 
     .ctaGrid{
       display:grid;
@@ -116,30 +117,6 @@
       margin-top:16px;
       margin-bottom:8px;
     }
-    .ctaGrid .btn{
-  height:60px;
-  font-size:16px;
-  font-weight:750;
-  opacity:1;
-
-  /* richer gold + subtle highlight */
-  background: linear-gradient(
-    180deg,
-    rgba(212,175,55,.92),
-    rgba(212,175,55,.70)
-  );
-
-  box-shadow:
-    0 12px 26px rgba(0,0,0,.35),
-    inset 0 1px 0 rgba(255,255,255,.18); /* makes gold look “lit” */
-}
-
-.ctaGrid .btn:hover{
-  transform: translateY(-1px);
-  box-shadow:
-    0 16px 34px rgba(0,0,0,.45),
-    inset 0 1px 0 rgba(255,255,255,.22);
-}
 
     /* Base button (keeps your premium look) */
     .btn{
@@ -164,23 +141,35 @@
       border:0;
       box-shadow: 0 14px 30px rgba(0,0,0,.35);
       -webkit-tap-highlight-color: transparent;
-      transition: transform .15s ease, box-shadow .2s ease, opacity .2s ease;
+      transition: transform .15s ease, box-shadow .2s ease, opacity .2s ease, background .25s ease;
     }
     .btn:active{transform: translateY(1px)}
 
-    /* Make the TOP 2x2 contact buttons feel secondary */
+    /* Contact buttons – luxury gold (secondary but not dull) */
     .ctaGrid .btn{
-      height:58px;
+      height:60px;
       font-size:16px;
       font-weight:750;
-      opacity:.88;
-      box-shadow: 0 10px 22px rgba(0,0,0,.28);
-      background: linear-gradient(180deg, rgba(212,175,55,.82), rgba(212,175,55,.62));
-    }
-    .ctaGrid .btn:hover{
       opacity:1;
-      box-shadow: 0 14px 30px rgba(0,0,0,.35);
+
+      background: linear-gradient(
+        180deg,
+        rgba(212,175,55,.92),
+        rgba(212,175,55,.70)
+      );
+
+      border: 1px solid rgba(255,255,255,.10);
+
+      box-shadow:
+        0 12px 26px rgba(0,0,0,.35),
+        inset 0 1px 0 rgba(255,255,255,.18);
+    }
+
+    .ctaGrid .btn:hover{
       transform: translateY(-1px);
+      box-shadow:
+        0 16px 34px rgba(0,0,0,.45),
+        inset 0 1px 0 rgba(255,255,255,.22);
     }
 
     /* Full width rows */
@@ -197,51 +186,50 @@
       font-weight:800;
     }
 
-    /* Make Client Galleries more subtle (secondary) */
+    /* Client Galleries – subtle secondary */
     .btnGallery{
-  font-size:16px;
-  height:54px;
-  opacity:.92;
-  border: 1px solid rgba(212,175,55,.28);
-  background: rgba(255,255,255,.02);
-  box-shadow: 0 10px 22px rgba(0,0,0,.35);
-}
+      font-size:16px;
+      height:54px;
+      opacity:.92;
+      border: 1px solid rgba(212,175,55,.28);
+      background: rgba(255,255,255,.02);
+      box-shadow: 0 10px 22px rgba(0,0,0,.35);
+    }
 
-    /* Special standout Quote button (HERO) */
     /* Luxury outlined hero button */
-.btnQuote{
-  height:72px;
-  font-size:19px;
-  background: rgba(10,10,10,.35); /* dark glass so gold outline pops */
-  color: var(--gold);
-  border: 2px solid rgba(212,175,55,.95);
-  font-weight:900;
-  letter-spacing:.5px;
+    .btnQuote{
+      height:72px;
+      font-size:19px;
+      background: rgba(10,10,10,.35);
+      color: var(--gold);
+      border: 2px solid rgba(212,175,55,.95);
+      font-weight:900;
+      letter-spacing:.5px;
 
-  box-shadow:
-    0 14px 34px rgba(0,0,0,.55),
-    0 0 26px rgba(212,175,55,.20),
-    inset 0 0 18px rgba(212,175,55,.08);
+      box-shadow:
+        0 14px 34px rgba(0,0,0,.55),
+        0 0 26px rgba(212,175,55,.20),
+        inset 0 0 18px rgba(212,175,55,.08);
 
-  transition: transform .15s ease, box-shadow .25s ease, background .25s ease;
-}
+      transition: transform .15s ease, box-shadow .25s ease, background .25s ease;
+    }
 
-.btnQuote:hover{
-  background: rgba(212,175,55,.06);
-  box-shadow:
-    0 18px 40px rgba(0,0,0,.65),
-    0 0 34px rgba(212,175,55,.32),
-    inset 0 0 22px rgba(212,175,55,.12);
-  transform: translateY(-1px);
-}
+    .btnQuote:hover{
+      background: rgba(212,175,55,.06);
+      box-shadow:
+        0 18px 40px rgba(0,0,0,.65),
+        0 0 34px rgba(212,175,55,.32),
+        inset 0 0 22px rgba(212,175,55,.12);
+      transform: translateY(-1px);
+    }
 
     /* CONTENT SECTION */
     .section{
-      padding:14px 18px 30px; /* tightened top padding to reduce gap */
+      padding:14px 18px 30px;
       text-align:center;
     }
     .headline{
-      margin:10px 0 0; /* reduced from 22px */
+      margin:10px 0 0;
       font-size:40px;
       letter-spacing:1px;
       color:var(--gold);
@@ -254,7 +242,7 @@
     }
 
     .servicesHint{
-      margin:10px auto 6px; /* slightly tighter */
+      margin:10px auto 6px;
       max-width:760px;
       color:var(--muted);
       font-size:15px;
