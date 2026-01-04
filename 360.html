@@ -1,162 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>360 Photo Booth | KS Photography</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Request a Quote | KS Photography</title>
 
-  <style>
-    :root{
-      --bg:#0b0b0b;
-      --gold:#d4af37;
-      --text:#f3f3f3;
-      --muted:rgba(243,243,243,.75);
-      --line:rgba(212,175,55,.35);
-      --card: rgba(255,255,255,.03);
-      --border: rgba(255,255,255,.08);
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
-      background:
-        radial-gradient(1200px 600px at 50% 0%, rgba(212,175,55,.14), transparent 55%),
-        var(--bg);
-      color:var(--text);
-    }
-    .wrap{max-width:900px;margin:0 auto;padding:30px 18px 60px}
+<style>
+:root{
+  --bg:#0b0b0b;
+  --gold:#d4af37;
+  --text:#f3f3f3;
+  --muted:rgba(243,243,243,.7);
+  --line:rgba(212,175,55,.35);
+  --card:rgba(255,255,255,.03);
+  --cardBorder:rgba(255,255,255,.12);
+}
 
-    .panel{
-      border:1px solid var(--line);
-      border-radius:22px;
-      background: linear-gradient(180deg, rgba(255,255,255,.03), transparent);
-      padding:28px 22px 36px;
-    }
+*{box-sizing:border-box}
 
-    h1{
-      margin:0;
-      text-align:center;
-      color:var(--gold);
-      font-size:38px;
-      letter-spacing:1px;
-    }
-    .subtitle{
-      text-align:center;
-      margin:10px 0 22px;
-      color:var(--muted);
-      font-style:italic;
-      font-size:18px;
-    }
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  background:
+    radial-gradient(1200px 600px at 50% 0%, rgba(212,175,55,.14), transparent 55%),
+    var(--bg);
+  color:var(--text);
+}
 
-    .sectionTitle{
-      margin:26px 0 12px;
-      font-size:22px;
-      color:var(--gold);
-      letter-spacing:.5px;
-      text-align:center;
-    }
+.wrap{
+  max-width:760px;
+  margin:0 auto;
+  padding:28px 18px 60px;
+}
 
-    .card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:16px;
-      padding:18px;
-      margin-top:14px;
-    }
+.panel{
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:linear-gradient(180deg, rgba(255,255,255,.03), transparent);
+  padding:26px 18px 30px;
+}
 
-    ul{
-      list-style:none;
-      padding:0;
-      margin:0;
-    }
-    li{
-      padding:8px 0;
-      border-bottom:1px solid rgba(255,255,255,.06);
-      font-size:18px;
-    }
-    li:last-child{border-bottom:none}
+h1{
+  text-align:center;
+  color:var(--gold);
+  font-size:34px;
+  margin-bottom:10px;
+}
 
-    .note{
-      margin-top:18px;
-      text-align:center;
-      color:var(--muted);
-      font-size:15px;
-    }
+.subtitle{
+  text-align:center;
+  color:var(--muted);
+  margin-bottom:24px;
+}
 
-    .cta{
-      margin-top:26px;
-      display:flex;
-      justify-content:center;
-    }
-    .btn{
-      padding:16px 28px;
-      height:64px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      border-radius:999px;
-      font-weight:800;
-      font-size:18px;
-      text-decoration:none;
-      background: linear-gradient(180deg, rgba(212,175,55,.95), rgba(212,175,55,.78));
-      color:#111;
-      box-shadow:0 14px 30px rgba(0,0,0,.35);
-    }
+.sectionTitle{
+  color:var(--gold);
+  margin:26px 0 10px;
+  font-size:22px;
+}
 
-    footer{
-      text-align:center;
-      margin-top:26px;
-      color:rgba(243,243,243,.55);
-      font-size:13px;
-    }
-  </style>
+.serviceInfo{
+  background:var(--card);
+  border:1px solid var(--cardBorder);
+  border-radius:16px;
+  padding:18px;
+  line-height:1.5;
+}
+
+.serviceInfo ul{
+  padding-left:18px;
+  margin:10px 0;
+}
+
+.serviceInfo li{
+  margin-bottom:6px;
+}
+
+.optional{
+  color:var(--muted);
+  font-size:14px;
+}
+
+form{
+  display:grid;
+  gap:14px;
+  margin-top:22px;
+}
+
+input, select, textarea{
+  width:100%;
+  padding:16px;
+  border-radius:14px;
+  border:1px solid var(--cardBorder);
+  background:var(--card);
+  color:var(--text);
+  font-size:16px;
+}
+
+textarea{
+  min-height:100px;
+}
+
+.checkboxGroup{
+  display:grid;
+  gap:10px;
+}
+
+.checkboxGroup label{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+button, .backBtn{
+  width:100%;
+  height:64px;
+  border-radius:999px;
+  font-size:18px;
+  font-weight:800;
+  border:none;
+  cursor:pointer;
+}
+
+button{
+  background:linear-gradient(180deg, rgba(212,175,55,.95), rgba(212,175,55,.78));
+  color:#111;
+  margin-top:10px;
+}
+
+.backBtn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:14px;
+  text-decoration:none;
+  border:1px solid var(--line);
+  background:transparent;
+  color:var(--gold);
+}
+
+footer{
+  text-align:center;
+  color:rgba(243,243,243,.5);
+  margin-top:26px;
+  font-size:13px;
+}
+</style>
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="panel">
+<div class="wrap">
+<div class="panel">
 
-      <h1>360 Photo Booth</h1>
-      <div class="subtitle">An immersive, high-energy experience your guests will love</div>
+<h1>Request a Quote</h1>
+<div class="subtitle">Tell us about your event and we’ll be in touch</div>
 
-      <!-- INCLUDED -->
-      <div class="sectionTitle">What’s Included</div>
-      <div class="card">
-        <ul>
-          <li>Glass 360 LED Platform</li>
-          <li>Professional 360 Camera Setup</li>
-          <li>On-site Booth Attendant</li>
-          <li>iPad Sharing Station</li>
-          <li>Instant Video Sharing</li>
-          <li>Props</li>
-          <li>Sequin Backdrop</li>
-          <li>Custom Video Overlay / Filter</li>
-          <li>Gold Stanchions</li>
-          <li>Online Gallery with All Videos Created</li>
-          <li>Jaggo Props (available upon request)</li>
-        </ul>
-      </div>
+<!-- 360 SERVICE DETAILS -->
+<div class="sectionTitle">360 Photo Booth Experience</div>
+<div class="serviceInfo">
+<strong>Included:</strong>
+<ul>
+  <li>Glass 360 LED Booth</li>
+  <li>3 Hours of Service</li>
+  <li>iPad Sharing Station</li>
+  <li>Props</li>
+  <li>Sequin Backdrop</li>
+  <li>Custom Video Filter (upon request)</li>
+  <li>Gold Stanchions</li>
+  <li>1 Professional Booth Attendant</li>
+  <li>Online Video Gallery</li>
+</ul>
 
-      <!-- OPTIONAL -->
-      <div class="sectionTitle">Optional Add-Ons</div>
-      <div class="card">
-        <ul>
-          <li>Custom Props</li>
-          <li>Floral Backdrop</li>
-        </ul>
-      </div>
+<strong>Optional Add-Ons:</strong>
+<ul class="optional">
+  <li>Custom Props (additional)</li>
+  <li>Floral Backdrops (additional)</li>
+</ul>
+</div>
 
-      <div class="note">
-        Optional add-ons are available for an additional cost.
-      </div>
+<!-- FORM -->
+<form action="mailto:nycksphotography@gmail.com" method="POST" enctype="text/plain">
 
-      <div class="cta">
-        <a class="btn" href="quote.html">Request a Quote</a>
-      </div>
+<input type="text" name="Full Name" placeholder="Full Name" required>
+<input type="tel" name="Phone Number" placeholder="Phone Number" required>
+<input type="email" name="Email" placeholder="Email" required>
 
-      <footer>© 2026 KS Photography</footer>
+<input type="date" name="Event Date" required>
+<input type="time" name="Event Time" required>
 
-    </div>
-  </div>
+<input type="text" name="Event Location" placeholder="Event Location (City / Venue / Address)" required>
+
+<select name="Event Type" required>
+  <option value="">Type of Event</option>
+  <option>Wedding</option>
+  <option>Birthday</option>
+  <option>Corporate Event</option>
+  <option>Engagement</option>
+  <option>Other</option>
+</select>
+
+<label>Services Interested In:</label>
+<div class="checkboxGroup">
+  <label><input type="checkbox" name="Service" value="Photography"> Photography</label>
+  <label><input type="checkbox" name="Service" value="360 Booth"> 360 Booth</label>
+  <label><input type="checkbox" name="Service" value="DSLR Booth"> DSLR Print Booth</label>
+  <label><input type="checkbox" name="Service" value="Floral Backdrops"> Floral Backdrops</label>
+</div>
+
+<textarea name="Additional Details" placeholder="Any additional details or requests"></textarea>
+
+<button type="submit">Submit Request</button>
+
+<a class="backBtn" href="index.html">← Back to Home</a>
+
+</form>
+
+<footer>© 2026 KS Photography</footer>
+
+</div>
+</div>
 </body>
 </html>
