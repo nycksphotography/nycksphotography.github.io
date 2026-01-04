@@ -1,223 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Request a Quote | KS Photography</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>360 Photo Booth | KS Photography</title>
 
-<style>
-:root{
-  --bg:#0b0b0b;
-  --gold:#d4af37;
-  --text:#f3f3f3;
-  --muted:rgba(243,243,243,.7);
-  --line:rgba(212,175,55,.35);
-  --card:rgba(255,255,255,.03);
-  --cardBorder:rgba(255,255,255,.12);
-}
+  <style>
+    :root{
+      --bg:#0b0b0b;
+      --gold:#d4af37;
+      --text:#f3f3f3;
+      --muted:rgba(243,243,243,.72);
+      --line:rgba(212,175,55,.35);
+      --card: rgba(255,255,255,.02);
+      --cardBorder: rgba(255,255,255,.08);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+      background:
+        radial-gradient(1200px 600px at 50% 0%, rgba(212,175,55,.14), transparent 55%),
+        var(--bg);
+      color:var(--text);
+    }
+    .wrap{max-width:980px;margin:0 auto;padding:26px 18px 60px}
 
-*{box-sizing:border-box}
+    .panel{
+      border:1px solid var(--line);
+      border-radius:22px;
+      background: linear-gradient(180deg, rgba(255,255,255,.03), transparent);
+      overflow:hidden;
+    }
 
-body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
-  background:
-    radial-gradient(1200px 600px at 50% 0%, rgba(212,175,55,.14), transparent 55%),
-    var(--bg);
-  color:var(--text);
-}
+    .hero{
+      padding:22px 18px 18px;
+      text-align:center;
+    }
 
-.wrap{
-  max-width:760px;
-  margin:0 auto;
-  padding:28px 18px 60px;
-}
+    .title{
+      margin:6px 0 0;
+      font-size:34px;
+      letter-spacing:.6px;
+      color:var(--gold);
+      font-weight:900;
+    }
+    .tag{
+      margin:10px 0 0;
+      color:var(--muted);
+      font-size:16px;
+      letter-spacing:.2px;
+    }
+    .divider{
+      height:1px;
+      background:var(--line);
+      margin:16px auto 0;
+      max-width:760px;
+    }
 
-.panel{
-  border:1px solid var(--line);
-  border-radius:22px;
-  background:linear-gradient(180deg, rgba(255,255,255,.03), transparent);
-  padding:26px 18px 30px;
-}
+    .section{
+      padding:18px 18px 26px;
+      text-align:center;
+    }
 
-h1{
-  text-align:center;
-  color:var(--gold);
-  font-size:34px;
-  margin-bottom:10px;
-}
+    .note{
+      margin:14px auto 0;
+      max-width:760px;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.4;
+    }
 
-.subtitle{
-  text-align:center;
-  color:var(--muted);
-  margin-bottom:24px;
-}
+    .grid{
+      margin:18px auto 0;
+      max-width:760px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+      text-align:left;
+    }
 
-.sectionTitle{
-  color:var(--gold);
-  margin:26px 0 10px;
-  font-size:22px;
-}
+    .card{
+      background: var(--card);
+      border: 1px solid var(--cardBorder);
+      border-radius:16px;
+      padding:16px 16px;
+    }
 
-.serviceInfo{
-  background:var(--card);
-  border:1px solid var(--cardBorder);
-  border-radius:16px;
-  padding:18px;
-  line-height:1.5;
-}
+    .card h3{
+      margin:0 0 10px;
+      color:var(--gold);
+      font-size:18px;
+      letter-spacing:.2px;
+    }
 
-.serviceInfo ul{
-  padding-left:18px;
-  margin:10px 0;
-}
+    ul{
+      margin:0;
+      padding-left:18px;
+      color:var(--text);
+      line-height:1.55;
+    }
+    li{margin:6px 0}
 
-.serviceInfo li{
-  margin-bottom:6px;
-}
+    .ctaArea{
+      margin:18px auto 0;
+      max-width:760px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+    }
 
-.optional{
-  color:var(--muted);
-  font-size:14px;
-}
+    .btn{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      height:64px;
+      padding:0 14px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:900;
+      font-size:18px;
+      letter-spacing:.2px;
+      border:0;
+      -webkit-tap-highlight-color:transparent;
+    }
 
-form{
-  display:grid;
-  gap:14px;
-  margin-top:22px;
-}
+    .btnGold{
+      background: linear-gradient(180deg, rgba(212,175,55,.95), rgba(212,175,55,.78));
+      color:#111;
+      box-shadow: 0 14px 30px rgba(0,0,0,.35);
+    }
+    .btnGold:active{transform:translateY(1px)}
 
-input, select, textarea{
-  width:100%;
-  padding:16px;
-  border-radius:14px;
-  border:1px solid var(--cardBorder);
-  background:var(--card);
-  color:var(--text);
-  font-size:16px;
-}
+    .btnOutline{
+      background: rgba(255,255,255,.02);
+      color: var(--gold);
+      border: 1px solid var(--line);
+    }
 
-textarea{
-  min-height:100px;
-}
+    footer{
+      text-align:center;
+      color:rgba(243,243,243,.55);
+      margin:18px 0 22px;
+      font-size:13px;
+    }
 
-.checkboxGroup{
-  display:grid;
-  gap:10px;
-}
-
-.checkboxGroup label{
-  display:flex;
-  gap:10px;
-  align-items:center;
-}
-
-button, .backBtn{
-  width:100%;
-  height:64px;
-  border-radius:999px;
-  font-size:18px;
-  font-weight:800;
-  border:none;
-  cursor:pointer;
-}
-
-button{
-  background:linear-gradient(180deg, rgba(212,175,55,.95), rgba(212,175,55,.78));
-  color:#111;
-  margin-top:10px;
-}
-
-.backBtn{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-top:14px;
-  text-decoration:none;
-  border:1px solid var(--line);
-  background:transparent;
-  color:var(--gold);
-}
-
-footer{
-  text-align:center;
-  color:rgba(243,243,243,.5);
-  margin-top:26px;
-  font-size:13px;
-}
-</style>
+    @media (min-width: 820px){
+      .title{font-size:40px;}
+      .grid{grid-template-columns:1fr 1fr;}
+      .ctaArea{grid-template-columns:1fr 1fr;}
+    }
+  </style>
 </head>
 
 <body>
-<div class="wrap">
-<div class="panel">
+  <div class="wrap">
+    <div class="panel">
 
-<h1>Request a Quote</h1>
-<div class="subtitle">Tell us about your event and we’ll be in touch</div>
+      <div class="hero">
+        <div class="title">360 Photo Booth</div>
+        <div class="tag">Premium Event Photography &amp; Experiences</div>
+        <div class="divider"></div>
+      </div>
 
-<!-- 360 SERVICE DETAILS -->
-<div class="sectionTitle">360 Photo Booth Experience</div>
-<div class="serviceInfo">
-<strong>Included:</strong>
-<ul>
-  <li>Glass 360 LED Booth</li>
-  <li>3 Hours of Service</li>
-  <li>iPad Sharing Station</li>
-  <li>Props</li>
-  <li>Sequin Backdrop</li>
-  <li>Custom Video Filter (upon request)</li>
-  <li>Gold Stanchions</li>
-  <li>1 Professional Booth Attendant</li>
-  <li>Online Video Gallery</li>
-</ul>
+      <div class="section">
+        <div class="note">
+          Tap “Request a Quote” if you’d like availability + a package recommendation for your event.
+        </div>
 
-<strong>Optional Add-Ons:</strong>
-<ul class="optional">
-  <li>Custom Props (additional)</li>
-  <li>Floral Backdrops (additional)</li>
-</ul>
-</div>
+        <div class="grid">
+          <div class="card">
+            <h3>Included</h3>
+            <ul>
+              <li>Glass 360 LED Booth</li>
+              <li>3 hours of service</li>
+              <li>iPad Sharing Station</li>
+              <li>Props</li>
+              <li>Sequin Backdrop (optional use at event)</li>
+              <li>Custom Video Filter (available upon request)</li>
+              <li>Gold Stanchions</li>
+              <li>1 Photobooth Attendant</li>
+              <li>Online video link with all videos created</li>
+              <li>Jaggo props (available upon request: umbrella, jaggo, pakhia)</li>
+            </ul>
+          </div>
 
-<!-- FORM -->
-<form action="mailto:nycksphotography@gmail.com" method="POST" enctype="text/plain">
+          <div class="card">
+            <h3>Optional Add-Ons (Extra Charges)</h3>
+            <ul>
+              <li>Custom Props (per prop)</li>
+              <li>Floral Backdrop / Floral Wall</li>
+            </ul>
+          </div>
+        </div>
 
-<input type="text" name="Full Name" placeholder="Full Name" required>
-<input type="tel" name="Phone Number" placeholder="Phone Number" required>
-<input type="email" name="Email" placeholder="Email" required>
+        <div class="ctaArea">
+          <a class="btn btnGold" href="quote.html?service=360">Request a Quote</a>
+          <a class="btn btnOutline" href="index.html">Back to Home</a>
+        </div>
 
-<input type="date" name="Event Date" required>
-<input type="time" name="Event Time" required>
+        <footer>© 2026 KS Photography</footer>
+      </div>
 
-<input type="text" name="Event Location" placeholder="Event Location (City / Venue / Address)" required>
-
-<select name="Event Type" required>
-  <option value="">Type of Event</option>
-  <option>Wedding</option>
-  <option>Birthday</option>
-  <option>Corporate Event</option>
-  <option>Engagement</option>
-  <option>Other</option>
-</select>
-
-<label>Services Interested In:</label>
-<div class="checkboxGroup">
-  <label><input type="checkbox" name="Service" value="Photography"> Photography</label>
-  <label><input type="checkbox" name="Service" value="360 Booth"> 360 Booth</label>
-  <label><input type="checkbox" name="Service" value="DSLR Booth"> DSLR Print Booth</label>
-  <label><input type="checkbox" name="Service" value="Floral Backdrops"> Floral Backdrops</label>
-</div>
-
-<textarea name="Additional Details" placeholder="Any additional details or requests"></textarea>
-
-<button type="submit">Submit Request</button>
-
-<a class="backBtn" href="index.html">← Back to Home</a>
-
-</form>
-
-<footer>© 2026 KS Photography</footer>
-
-</div>
-</div>
+    </div>
+  </div>
 </body>
 </html>
