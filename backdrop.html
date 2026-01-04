@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Backdrops & Floral Walls | KS Photography</title>
+
+  <style>
+    :root{
+      --bg:#0b0b0b;
+      --gold:#d4af37;
+      --text:#f3f3f3;
+      --muted:rgba(243,243,243,.72);
+      --line:rgba(212,175,55,.35);
+      --card: rgba(255,255,255,.02);
+      --cardBorder: rgba(255,255,255,.08);
+    }
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+      background:
+        radial-gradient(1200px 600px at 50% 0%, rgba(212,175,55,.14), transparent 55%),
+        var(--bg);
+      color:var(--text);
+    }
+
+    .wrap{max-width:980px;margin:0 auto;padding:26px 18px 60px}
+
+    .panel{
+      border:1px solid var(--line);
+      border-radius:22px;
+      background: linear-gradient(180deg, rgba(255,255,255,.03), transparent);
+      overflow:hidden;
+    }
+
+    .hero{
+      padding:22px 18px 18px;
+      text-align:center;
+    }
+
+    .title{
+      font-size:34px;
+      color:var(--gold);
+      font-weight:900;
+      letter-spacing:.6px;
+      margin:6px 0 0;
+    }
+
+    .tag{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:16px;
+    }
+
+    .divider{
+      height:1px;
+      background:var(--line);
+      margin:16px auto 0;
+      max-width:760px;
+    }
+
+    .section{
+      padding:20px 18px 26px;
+    }
+
+    .intro{
+      text-align:center;
+      max-width:760px;
+      margin:0 auto 24px;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.45;
+    }
+
+    .wall{
+      max-width:760px;
+      margin:0 auto 26px;
+      background:var(--card);
+      border:1px solid var(--cardBorder);
+      border-radius:18px;
+      padding:16px;
+    }
+
+    .wall h3{
+      color:var(--gold);
+      margin:0 0 8px;
+      font-size:20px;
+      letter-spacing:.2px;
+    }
+
+    .wall p{
+      margin:0 0 12px;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.45;
+    }
+
+    .media{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+    }
+
+    .media img,
+    .media video{
+      width:100%;
+      border-radius:14px;
+      display:block;
+      background:#000;
+    }
+
+    .ctaArea{
+      max-width:760px;
+      margin:22px auto 0;
+      display:grid;
+      gap:12px;
+    }
+
+    .btn{
+      height:64px;
+      border-radius:999px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:18px;
+      font-weight:900;
+      text-decoration:none;
+      letter-spacing:.2px;
+    }
+
+    .btnGold{
+      background:linear-gradient(180deg, rgba(212,175,55,.95), rgba(212,175,55,.78));
+      color:#111;
+    }
+
+    .btnOutline{
+      border:1px solid var(--line);
+      color:var(--gold);
+    }
+
+    footer{
+      margin-top:18px;
+      text-align:center;
+      font-size:13px;
+      color:rgba(243,243,243,.55);
+    }
+
+    @media (min-width:820px){
+      .title{font-size:40px;}
+      .media{grid-template-columns:1fr 1fr;}
+      .ctaArea{grid-template-columns:1fr 1fr;}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="panel">
+
+      <div class="hero">
+        <div class="title">Backdrops & Floral Walls</div>
+        <div class="tag">Premium Statement Pieces for Any Event</div>
+        <div class="divider"></div>
+      </div>
+
+      <div class="section">
+        <div class="intro">
+          Our floral walls are designed to elevate photo moments, entrances, photobooths,
+          sweetheart tables, and content creation. Each backdrop includes professional setup
+          and creates a high-impact visual for your event.
+        </div>
+
+        <!-- BACKDROP 1 -->
+        <div class="wall">
+          <h3>Classic White Floral Wall</h3>
+          <p>
+            A clean, elegant white floral wall that pairs seamlessly with any event style —
+            perfect for timeless photos and luxury setups.
+          </p>
+          <div class="media">
+            <img src="images/white-floral.jpg" alt="Classic White Floral Wall">
+            <video controls muted playsinline>
+              <source src="videos/white-floral.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- BACKDROP 2 -->
+        <div class="wall">
+          <h3>Blush & Ivory Floral Wall</h3>
+          <p>
+            Soft blush and ivory tones create a romantic, upscale look ideal for birthdays,
+            baby showers, engagements, and elegant celebrations.
+          </p>
+          <div class="media">
+            <img src="images/blush-floral.jpg" alt="Blush Floral Wall">
+            <video controls muted playsinline>
+              <source src="videos/blush-floral.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <!-- BACKDROP 3 -->
+        <div class="wall">
+          <h3>Red Rose Floral Wall</h3>
+          <p>
+            Bold red and deep rose tones designed to make a statement — perfect for milestone
+            birthdays, proposals, cultural events, and high-impact photo moments.
+          </p>
+          <div class="media">
+            <img src="images/red-floral.jpg" alt="Red Rose Floral Wall">
+            <video controls muted playsinline>
+              <source src="videos/red-floral.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <div class="ctaArea">
+          <a href="quote.html?service=floral" class="btn btnGold">Request a Quote</a>
+          <a href="index.html" class="btn btnOutline">Back to Home</a>
+        </div>
+
+        <footer>© 2026 KS Photography</footer>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
