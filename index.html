@@ -34,7 +34,7 @@
     }
 
     .hero{
-      padding:28px 18px 22px;
+      padding:28px 18px 16px; /* tightened bottom padding to reduce gap */
       text-align:center;
     }
 
@@ -86,7 +86,7 @@
 
     /* BUTTONS */
     .ctaArea{
-      margin:18px auto 0;
+      margin:16px auto 0; /* slightly tighter */
       max-width:760px;
     }
 
@@ -94,100 +94,127 @@
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap:14px;
-      margin-top:18px;
+      margin-top:16px;
+      margin-bottom:8px;
     }
 
-.btn{
-  width:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
+    /* Base button (keeps your premium look) */
+    .btn{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
 
-  padding:0 14px;
-  height:64px;                  /* locks all button heights */
-  line-height:1.15;
+      padding:0 14px;
+      height:64px;
+      line-height:1.15;
 
-  border-radius:999px;
-  text-decoration:none;         /* prevents underline */
-  font-weight:800;
-  font-size:18px;
-  letter-spacing:.2px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:800;
+      font-size:18px;
+      letter-spacing:.2px;
 
-  background: linear-gradient(180deg, rgba(212,175,55,.95), rgba(212,175,55,.78));
-  color:#111;
-  border:0;
-  box-shadow: 0 14px 30px rgba(0,0,0,.35);
-  -webkit-tap-highlight-color: transparent;
-}
+      background: linear-gradient(180deg, rgba(212,175,55,.95), rgba(212,175,55,.78));
+      color:#111;
+      border:0;
+      box-shadow: 0 14px 30px rgba(0,0,0,.35);
+      -webkit-tap-highlight-color: transparent;
+      transition: transform .15s ease, box-shadow .2s ease, opacity .2s ease;
+    }
+    .btn:active{transform: translateY(1px)}
 
-.btn:active{transform: translateY(1px)}
+    /* Make the TOP 2x2 contact buttons feel secondary */
+    .ctaGrid .btn{
+      height:58px;
+      font-size:16px;
+      font-weight:750;
+      opacity:.88;
+      box-shadow: 0 10px 22px rgba(0,0,0,.28);
+      background: linear-gradient(180deg, rgba(212,175,55,.82), rgba(212,175,55,.62));
+    }
+    .ctaGrid .btn:hover{
+      opacity:1;
+      box-shadow: 0 14px 30px rgba(0,0,0,.35);
+      transform: translateY(-1px);
+    }
 
-    /* Full width Quote button */
+    /* Full width rows */
     .quoteRow{
-  margin-top:18px;   /* separates from the 2x2 buttons */
-  margin-bottom:10px;
-}
+      margin-top:12px;
+      margin-bottom:8px;
+    }
+
     .btnOutline{
       background: rgba(255,255,255,.02);
       color: var(--gold);
-      border: 1px solid var(--line);
+      border: 1px solid rgba(212,175,55,.22);
       box-shadow:none;
       font-weight:800;
     }
-    /* Smaller + less dominant galleries button */
-.btnGallery{
-  font-size:16px;
-  height:54px;
-  opacity:.85;
-}
-    /* Special standout Quote button */
-.btnQuote{
-  background: transparent;
-  color: var(--gold);
-  border: 2px solid var(--gold);
-  font-weight: 900;
-  letter-spacing: .5px;
 
-  box-shadow:
-    0 0 0 rgba(212,175,55,0),
-    inset 0 0 0 rgba(212,175,55,0);
+    /* Make Client Galleries more subtle (secondary) */
+    .btnGallery{
+      font-size:16px;
+      height:52px;
+      opacity:.78;
+      border: 1px solid rgba(212,175,55,.20);
+      background: rgba(255,255,255,.015);
+    }
+    .btnGallery:hover{
+      opacity:.9;
+      transform: translateY(-1px);
+    }
 
-  transition: box-shadow .25s ease, transform .15s ease;
-}
+    /* Special standout Quote button (HERO) */
+    .btnQuote{
+      height:70px;
+      font-size:19px;
+      background: transparent;
+      color: var(--gold);
+      border: 2px solid var(--gold);
+      font-weight: 900;
+      letter-spacing: .6px;
 
-.btnQuote:hover{
-  box-shadow:
-    0 0 22px rgba(212,175,55,.45),
-    inset 0 0 14px rgba(212,175,55,.15);
-  transform: translateY(-1px);
-}
+      box-shadow:
+        0 0 0 rgba(212,175,55,0),
+        inset 0 0 0 rgba(212,175,55,0);
+
+      transition: box-shadow .25s ease, transform .15s ease;
+    }
+    .btnQuote:hover{
+      box-shadow:
+        0 0 24px rgba(212,175,55,.45),
+        inset 0 0 16px rgba(212,175,55,.14);
+      transform: translateY(-1px);
+    }
 
     /* CONTENT SECTION */
     .section{
-      padding:26px 18px 30px;
+      padding:14px 18px 30px; /* tightened top padding to reduce gap */
       text-align:center;
     }
     .headline{
-      margin:22px 0 0;
+      margin:10px 0 0; /* reduced from 22px */
       font-size:40px;
       letter-spacing:1px;
       color:var(--gold);
     }
     .subline{
-      margin:10px 0 0;
+      margin:8px 0 0;
       color:var(--muted);
       font-style:italic;
       font-size:18px;
     }
-    
+
     .servicesHint{
-  margin:14px auto 6px;
-  max-width:760px;
-  color:var(--muted);
-  font-size:15px;
-  font-style:italic;
-}
+      margin:10px auto 6px; /* slightly tighter */
+      max-width:760px;
+      color:var(--muted);
+      font-size:15px;
+      font-style:italic;
+    }
 
     .services{
       margin:18px auto 0;
@@ -197,26 +224,25 @@
       gap:14px;
     }
     .serviceCard{
-  background: var(--card);
-  border: 1px solid var(--cardBorder);
-  border-radius:16px;
-  padding:18px 16px;
-  font-size:20px;
-  line-height:1.4;
-}
+      background: var(--card);
+      border: 1px solid var(--cardBorder);
+      border-radius:16px;
+      padding:18px 16px;
+      font-size:20px;
+      line-height:1.4;
+    }
 
-.serviceBtn{
-  display:block;
-  text-decoration:none;
-  color:var(--text);
-  cursor:pointer;
-  transition: transform .15s ease, box-shadow .15s ease;
-}
-
-.serviceBtn:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(0,0,0,.35);
-}
+    .serviceBtn{
+      display:block;
+      text-decoration:none;
+      color:var(--text);
+      cursor:pointer;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .serviceBtn:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0,0,0,.35);
+    }
 
     footer{
       text-align:center;
@@ -229,36 +255,30 @@
       .headline{font-size:46px;}
       .services{grid-template-columns: 1fr 1fr;}
     }
+
     /* Promo video styling */
-/* Promo video styling */
-.videoSection{
-  margin:26px auto 0;
-  max-width:640px; /* smaller on desktop */
-}
-
-.videoWrap{
-  border-radius:18px;
-  overflow:hidden;
-  border:1px solid var(--line);
-  box-shadow:0 18px 40px rgba(0,0,0,.45);
-  background:#000;            /* prevents weird empty space */
-}
-
-.videoWrap video{
-  width:100%;
-  max-height:360px;           /* desktop size */
-  height:auto;                /* keeps natural ratio */
-  object-fit:contain;         /* NO cropping, NO stretching */
-  display:block;
-  background:#000;
-}
-
-/* Mobile adjustment */
-@media (max-width: 600px){
-  .videoWrap video{
-    max-height:260px;         /* smaller on phones */
-  }
-}
+    .videoSection{
+      margin:20px auto 0;
+      max-width:640px;
+    }
+    .videoWrap{
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      box-shadow:0 18px 40px rgba(0,0,0,.45);
+      background:#000;
+    }
+    .videoWrap video{
+      width:100%;
+      max-height:360px;
+      height:auto;
+      object-fit:contain;
+      display:block;
+      background:#000;
+    }
+    @media (max-width: 600px){
+      .videoWrap video{max-height:260px;}
+    }
   </style>
 </head>
 
@@ -268,7 +288,6 @@
       <div class="hero">
 
         <div class="logoWrap">
-          <!-- Make sure your file in the repo is EXACTLY named: logo.png -->
           <img class="logo" src="logo.png" alt="KS Photography Logo" />
         </div>
 
@@ -276,7 +295,6 @@
         <div class="divider"></div>
 
         <div class="ctaArea">
-          <!-- 2x2 grid: Instagram / Call / Text / Email -->
           <div class="ctaGrid">
             <a class="btn" href="https://instagram.com/nyc_ksphotography" target="_blank" rel="noopener">Instagram</a>
             <a class="btn" href="tel:3475599217">Call</a>
@@ -284,64 +302,49 @@
             <a class="btn" href="mailto:nycksphotography@gmail.com">Email</a>
           </div>
 
-          <!-- Quote button is its own row -->
           <div class="quoteRow">
-  <a class="btn btnQuote" href="quote.html">
-  Request a Quote
-</a>
-</div>
+            <a class="btn btnQuote" href="quote.html">Request a Quote</a>
+          </div>
 
-<div class="servicesHint">
-  Existing clients can access their password-protected galleries below
-</div>
+          <div class="servicesHint">
+            Access your private, password-protected gallery below
+          </div>
 
-<div class="quoteRow">
-  <a class="btn btnOutline btnGallery"
-     href="https://ks-photography-zu.photonesto.com/g"
-     target="_blank"
-     rel="noopener">
-    Client Galleries
-  </a>
-</div>
+          <div class="quoteRow">
+            <a class="btn btnOutline btnGallery"
+               href="https://ks-photography-zu.photonesto.com/g"
+               target="_blank"
+               rel="noopener">
+              Client Galleries
+            </a>
+          </div>
         </div>
       </div>
 
       <div class="section">
         <div class="headline">CAPTURE THE<br/>MOMENT</div>
         <div class="subline">Elevate your event experience</div>
-        <!-- Promo Video -->
-<div class="videoSection">
-  <div class="videoWrap">
-    <video controls playsinline preload="metadata">
-      <source src="54F8EBDC-241E-4046-B70F-65D38371D77Csegment_video_2.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
-</div>
-<div class="servicesHint">
-  Tap a service below to view details & included features
-</div>
 
-        <!-- No bullet points -->
+        <div class="videoSection">
+          <div class="videoWrap">
+            <video controls playsinline preload="metadata">
+              <source src="54F8EBDC-241E-4046-B70F-65D38371D77Csegment_video_2.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+
+        <div class="servicesHint">
+          Tap a service below to view details & included features
+        </div>
+
         <div class="services">
+          <a class="serviceCard serviceBtn" href="photography.html">Professional Event Photography</a>
+          <a class="serviceCard serviceBtn" href="360.html">360 Photobooth</a>
+          <a class="serviceCard serviceBtn" href="dslr.html">DSLR Print Photobooth</a>
+          <a class="serviceCard serviceBtn" href="backdrops.html">Backdrops &amp; Floral Walls</a>
+        </div>
 
-  <a class="serviceCard serviceBtn" href="photography.html">
-    Professional Event Photography
-  </a>
-
-  <a class="serviceCard serviceBtn" href="360.html">
-    360 Photobooth
-  </a>
-
-  <a class="serviceCard serviceBtn" href="dslr.html">
-    DSLR Print Photobooth
-  </a>
-
-  <a class="serviceCard serviceBtn" href="backdrops.html">
-    Backdrops &amp; Floral Walls
-  </a>
-
-</div>
         <footer>© 2026 KS Photography</footer>
       </div>
     </div>
