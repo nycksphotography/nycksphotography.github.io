@@ -196,13 +196,26 @@
     }
 
     footer{
-      text-align:center;
-      color:rgba(243,243,243,.55);
-      margin-top:16px;
-      font-size:13px;
-      padding-bottom:8px;
-    }
-  </style>
+  text-align:center;
+  color:rgba(243,243,243,.55);
+  margin-top:16px;
+  font-size:13px;
+  padding-bottom:8px;
+}
+
+/* Additional Services grid: 2 columns on phone, 3 columns on desktop */
+.checkGrid3{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:10px;
+}
+
+@media (min-width:820px){
+  .checkGrid3{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+</style>
 </head>
 
 <body>
