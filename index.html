@@ -104,25 +104,24 @@
   justify-content:center;
   text-align:center;
 
-  padding:0 14px;          /* ⬅ remove vertical padding */
-  height:64px;             /* ⬅ lock height */
-  line-height:1.15;        /* ⬅ controls 2-line spacing */
+  padding:0 14px;
+  height:64px;                  /* locks all button heights */
+  line-height:1.15;
 
   border-radius:999px;
+  text-decoration:none;         /* prevents underline */
   font-weight:800;
   font-size:18px;
+  letter-spacing:.2px;
 
   background: linear-gradient(180deg, rgba(212,175,55,.95), rgba(212,175,55,.78));
   color:#111;
+  border:0;
+  box-shadow: 0 14px 30px rgba(0,0,0,.35);
+  -webkit-tap-highlight-color: transparent;
 }
 
-      background: linear-gradient(180deg, rgba(212,175,55,.95), rgba(212,175,55,.78));
-      color:#111;
-      border:0;
-      box-shadow: 0 14px 30px rgba(0,0,0,.35);
-      -webkit-tap-highlight-color: transparent;
-    }
-    .btn:active{transform: translateY(1px)}
+.btn:active{transform: translateY(1px)}
 
     /* Full width Quote button */
     .quoteRow{
