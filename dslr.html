@@ -2,152 +2,210 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DSLR Photobooth | KS Photography</title>
 
   <style>
-    body {
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      background: #f8f5f2;
-      margin: 0;
-      padding: 0;
-      color: #333;
+    :root{
+      --bg:#0b0b0b;
+      --gold:#d4af37;
+      --text:#f3f3f3;
+      --muted:rgba(243,243,243,.72);
+      --line:rgba(212,175,55,.35);
+      --card: rgba(255,255,255,.02);
+      --cardBorder: rgba(255,255,255,.08);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+      background:
+        radial-gradient(1200px 600px at 50% 0%, rgba(212,175,55,.14), transparent 55%),
+        var(--bg);
+      color:var(--text);
+    }
+    .wrap{max-width:980px;margin:0 auto;padding:26px 18px 60px}
+
+    .panel{
+      border:1px solid var(--line);
+      border-radius:22px;
+      background: linear-gradient(180deg, rgba(255,255,255,.03), transparent);
+      overflow:hidden;
     }
 
-    .container {
-      max-width: 900px;
-      margin: 60px auto;
-      padding: 40px 25px;
-      background: #fff;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      border-radius: 8px;
-      text-align: center;
+    .hero{
+      padding:22px 18px 18px;
+      text-align:center;
     }
 
-    h1 {
-      font-size: 36px;
-      margin-bottom: 10px;
-      letter-spacing: 1px;
+    .title{
+      margin:6px 0 0;
+      font-size:34px;
+      letter-spacing:.6px;
+      color:var(--gold);
+      font-weight:900;
+    }
+    .tag{
+      margin:10px 0 0;
+      color:var(--muted);
+      font-size:16px;
+      letter-spacing:.2px;
+    }
+    .divider{
+      height:1px;
+      background:var(--line);
+      margin:16px auto 0;
+      max-width:760px;
     }
 
-    .subtitle {
-      font-size: 16px;
-      color: #777;
-      margin-bottom: 40px;
+    .section{
+      padding:18px 18px 26px;
+      text-align:center;
     }
 
-    .section {
-      text-align: left;
-      margin-bottom: 40px;
+    .note{
+      margin:14px auto 0;
+      max-width:760px;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.4;
     }
 
-    .section h2 {
-      font-size: 22px;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 10px;
-      margin-bottom: 20px;
+    .grid{
+      margin:18px auto 0;
+      max-width:760px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+      text-align:left;
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    .card{
+      background: var(--card);
+      border: 1px solid var(--cardBorder);
+      border-radius:16px;
+      padding:16px 16px;
     }
 
-    ul li {
-      padding: 10px 0;
-      border-bottom: 1px solid #eee;
-      font-size: 16px;
+    .card h3{
+      margin:0 0 10px;
+      color:var(--gold);
+      font-size:18px;
+      letter-spacing:.2px;
     }
 
-    ul li:last-child {
-      border-bottom: none;
+    ul{
+      margin:0;
+      padding-left:18px;
+      color:var(--text);
+      line-height:1.55;
+    }
+    li{margin:6px 0}
+
+    .ctaArea{
+      margin:18px auto 0;
+      max-width:760px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
     }
 
-    .note {
-      font-size: 14px;
-      color: #666;
-      margin-top: 10px;
+    .btn{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      height:64px;
+      padding:0 14px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:900;
+      font-size:18px;
+      letter-spacing:.2px;
+      border:0;
+      -webkit-tap-highlight-color:transparent;
     }
 
-    .btn {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 14px 30px;
-      background: #000;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 30px;
-      font-size: 15px;
-      transition: background 0.3s ease;
+    .btnGold{
+      background: linear-gradient(180deg, rgba(212,175,55,.95), rgba(212,175,55,.78));
+      color:#111;
+      box-shadow: 0 14px 30px rgba(0,0,0,.35);
+    }
+    .btnGold:active{transform:translateY(1px)}
+
+    .btnOutline{
+      background: rgba(255,255,255,.02);
+      color: var(--gold);
+      border: 1px solid var(--line);
     }
 
-    .btn:hover {
-      background: #444;
+    footer{
+      text-align:center;
+      color:rgba(243,243,243,.55);
+      margin:18px 0 22px;
+      font-size:13px;
     }
 
-    .btn.secondary {
-      background: transparent;
-      color: #000;
-      border: 1px solid #000;
-      margin-left: 15px;
-    }
-
-    .btn.secondary:hover {
-      background: #000;
-      color: #fff;
-    }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 28px;
-      }
+    @media (min-width: 820px){
+      .title{font-size:40px;}
+      .grid{grid-template-columns:1fr 1fr;}
+      .ctaArea{grid-template-columns:1fr 1fr;}
     }
   </style>
 </head>
 
 <body>
+  <div class="wrap">
+    <div class="panel">
 
-  <div class="container">
+      <div class="hero">
+        <div class="title">DSLR Photobooth</div>
+        <div class="tag">Premium Event Photography &amp; Experiences</div>
+        <div class="divider"></div>
+      </div>
 
-    <h1>DSLR Photobooth</h1>
-    <p class="subtitle">
-      A premium, high-quality DSLR Photobooth experience perfect for weddings, engagements, birthdays, and corporate events.
-    </p>
+      <div class="section">
+        <div class="note">
+          Tap “Request a Quote” if you’d like availability + a package recommendation for your event.
+        </div>
 
-    <div class="section">
-      <h2>Included Features</h2>
-      <ul>
-        <li>2×6 & 4×6 Professional Prints</li>
-        <li>3 Hours of Service</li>
-        <li>DSLR Camera with LED Mirror Photobooth</li>
-        <li>Unlimited Prints During Event</li>
-        <li>Custom Photo Strip / Print Design</li>
-        <li>Sequin Backdrop</li>
-        <li>Wide Selection of Props</li>
-        <li>Jaggo Props (Umbrella, Jaggo & Pakhia upon request)</li>
-        <li>1 Professional Photobooth Attendant</li>
-        <li>Password-Protected Online Album with All Photos & Designs</li>
-      </ul>
+        <div class="grid">
+          <div class="card">
+            <h3>Included</h3>
+            <ul>
+              <li>2×6 &amp; 4×6 Professional Prints</li>
+              <li>3 hours of service</li>
+              <li>LED Mirror Photobooth</li>
+              <li>Props</li>
+              <li>Sequin Backdrop</li>
+              <li>Custom Strip / Print Design</li>
+              <li>1 Photobooth Attendant</li>
+              <li>Password-Protected Online Album (photos + designs)</li>
+              <li>Jaggo props (available upon request: umbrella, jaggo, pakhia)</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Optional Add-Ons (Extra Charges)</h3>
+            <ul>
+              <li>Plain White Backdrop (Black &amp; White Prints)</li>
+              <li>Photo Album</li>
+              <li>Custom Props</li>
+              <li>Floral Backdrop / Floral Wall</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ctaArea">
+          <a class="btn btnGold" href="quote.html?service=dslr">Request a Quote</a>
+          <a class="btn btnOutline" href="index.html">Back to Home</a>
+        </div>
+
+        <footer>© 2026 KS Photography</footer>
+      </div>
+
     </div>
-
-    <div class="section">
-      <h2>Optional Add-Ons</h2>
-      <ul>
-        <li>Plain White Backdrop – Black & White Prints</li>
-        <li>Custom Props</li>
-        <li>Photo Album</li>
-        <li>Floral Backdrop</li>
-      </ul>
-      <p class="note">
-        *Optional features are available at additional cost.
-      </p>
-    </div>
-
-    <a href="quote.html?service=dslr" class="btn">Request a Quote</a>
-    <a href="index.html" class="btn secondary">Back to Home</a>
-
   </div>
-
 </body>
 </html>
