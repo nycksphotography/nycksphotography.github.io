@@ -219,53 +219,63 @@
 
       <div class="section">
         <div class="card">
-          <!--
-            ✅ FREE + stays on your site:
-            This uses mailto to open the visitor's email app with all details pre-filled.
-            For true “automatic send without email app”, you’d need a backend/form service.
-          -->
-          <form id="quoteForm" novalidate>
+
+          <!-- ✅ FormSubmit: submit sends to your email (no mail app) -->
+          <form
+            id="quoteForm"
+            action="https://formsubmit.co/nycksphotography@gmail.com"
+            method="POST"
+            novalidate
+          >
+            <!-- FormSubmit settings -->
+            <input type="hidden" name="_subject" value="New Request for Quote - KS Photography">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <!-- Spam honeypot (bots fill this; humans won't) -->
+            <input type="text" name="_honey" style="display:none">
+
+            <!-- Optional: redirect after submit (create this file or change URL) -->
+            <input type="hidden" name="_next" value="thank-you.html">
+
             <div class="grid">
               <div class="full">
                 <label for="fullName">Full Name *</label>
-                <input id="fullName" name="fullName" type="text" placeholder="Full Name" required />
+                <input id="fullName" name="Full Name" type="text" placeholder="Full Name" required />
               </div>
 
               <div>
                 <label for="phone">Phone Number *</label>
-                <input id="phone" name="phone" type="tel" placeholder="(347) 555-9217" required />
+                <input id="phone" name="Phone Number" type="tel" placeholder="(347) 555-9217" required />
               </div>
 
               <div>
                 <label for="email">Email *</label>
-                <input id="email" name="email" type="email" placeholder="name@email.com" required />
+                <input id="email" name="Email" type="email" placeholder="name@email.com" required />
               </div>
 
-              <!-- ✅ Event Date shown clearly -->
               <div>
                 <label for="eventDate">Event Date *</label>
-                <input id="eventDate" name="eventDate" type="date" required />
+                <input id="eventDate" name="Event Date" type="date" required />
               </div>
 
-              <!-- ✅ Event Time shown clearly -->
               <div>
                 <label for="eventTime">Event Time *</label>
-                <input id="eventTime" name="eventTime" type="time" required />
+                <input id="eventTime" name="Event Time" type="time" required />
               </div>
 
               <div class="full">
                 <label for="location">Event Location (City, Venue, Address) *</label>
-                <input id="location" name="location" type="text" placeholder="City, Venue, Address" required />
+                <input id="location" name="Event Location" type="text" placeholder="City, Venue, Address" required />
               </div>
 
               <div>
                 <label for="guestCount">Estimated Guest Count</label>
-                <input id="guestCount" name="guestCount" type="number" min="0" step="1" placeholder="e.g., 150" />
+                <input id="guestCount" name="Estimated Guest Count" type="number" min="0" step="1" placeholder="e.g., 150" />
               </div>
 
               <div>
                 <label for="eventType">Type of Event *</label>
-                <select id="eventType" name="eventType" required>
+                <select id="eventType" name="Type of Event" required>
                   <option value="" selected disabled>Select an option</option>
                   <option>Wedding</option>
                   <option>Birthday Party</option>
@@ -281,24 +291,39 @@
               <!-- ✅ Only shows if they select "Other" -->
               <div class="full" id="eventTypeOtherWrap" style="display:none;">
                 <label for="eventTypeOther">If “Other”, please specify *</label>
-                <input id="eventTypeOther" name="eventTypeOther" type="text" placeholder="Describe the type of event" />
+                <input id="eventTypeOther" name="If Other, specify" type="text" placeholder="Describe the type of event" />
               </div>
 
               <div class="full">
                 <label>Services you are interested in *</label>
                 <div class="checkWrap">
                   <div class="checkGrid">
-                    <label class="check"><input type="checkbox" name="services" value="Photography" /> <span>Photography</span></label>
-                    <label class="check"><input type="checkbox" name="services" value="360 Photo Booth" /> <span>360 Photo Booth</span></label>
-                    <label class="check"><input type="checkbox" name="services" value="DSLR Print Photobooth" /> <span>DSLR Print Photobooth</span></label>
-                    <label class="check"><input type="checkbox" name="services" value="Backdrops & Floral Walls" /> <span>Backdrops & Floral Walls</span></label>
+                    <label class="check">
+                      <input type="checkbox" name="Services Interested In" value="Photography" />
+                      <span>Photography</span>
+                    </label>
+
+                    <label class="check">
+                      <input type="checkbox" name="Services Interested In" value="360 Photo Booth" />
+                      <span>360 Photo Booth</span>
+                    </label>
+
+                    <label class="check">
+                      <input type="checkbox" name="Services Interested In" value="DSLR Print Photobooth" />
+                      <span>DSLR Print Photobooth</span>
+                    </label>
+
+                    <label class="check">
+                      <input type="checkbox" name="Services Interested In" value="Backdrops & Floral Walls" />
+                      <span>Backdrops & Floral Walls</span>
+                    </label>
                   </div>
                 </div>
               </div>
 
               <div class="full">
                 <label for="details">Any additional details or requests</label>
-                <textarea id="details" name="details" rows="4" placeholder="Anything we should know? Theme, schedule, special requests, etc."></textarea>
+                <textarea id="details" name="Additional Details" rows="4" placeholder="Anything we should know? Theme, schedule, special requests, etc."></textarea>
               </div>
             </div>
 
@@ -308,8 +333,8 @@
             </div>
 
             <p class="note">
-              This will open your email app with the request pre-filled (free + no redirect to another site).
-              If you want it to auto-send without the customer’s email app, that requires a backend/form service.
+              After you publish this page, do one test submission. FormSubmit will email you a confirmation link (one-time)
+              to verify nycksphotography@gmail.com. After that, submissions go directly to your inbox.
             </p>
           </form>
 
@@ -333,67 +358,34 @@
     }
     eventType.addEventListener('change', toggleOther);
 
-    function getCheckedServices() {
-      return [...document.querySelectorAll('input[name="services"]:checked')].map(x => x.value);
+    function hasAtLeastOneService() {
+      return document.querySelectorAll('input[name="Services Interested In"]:checked').length > 0;
     }
 
     form.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      // basic required fields check
-      const requiredOk = form.checkValidity();
-      const services = getCheckedServices();
-
-      if (!requiredOk) {
+      // Let HTML5 validation run first
+      if (!form.checkValidity()) {
+        e.preventDefault();
         form.reportValidity();
         return;
       }
 
-      if (services.length === 0) {
+      // Enforce at least one service selected
+      if (!hasAtLeastOneService()) {
+        e.preventDefault();
         alert('Please select at least one service.');
         return;
       }
 
-      // gather values
-      const fullName = document.getElementById('fullName').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const eventDate = document.getElementById('eventDate').value;
-      const eventTime = document.getElementById('eventTime').value;
-      const location = document.getElementById('location').value.trim();
-      const guestCount = document.getElementById('guestCount').value.trim();
-      const type = eventType.value;
-      const typeOther = otherInput.value.trim();
-      const details = document.getElementById('details').value.trim();
+      // Enforce "Other" specification
+      if (eventType.value === 'Other' && !otherInput.value.trim()) {
+        e.preventDefault();
+        alert('Please specify the type of event.');
+        otherInput.focus();
+        return;
+      }
 
-      const finalType = (type === 'Other') ? `Other: ${typeOther}` : type;
-
-      const subject = `Quote Request - ${fullName} (${eventDate || 'Event Date'})`;
-
-      const bodyLines = [
-        'NEW QUOTE REQUEST',
-        '-------------------------',
-        `Full Name: ${fullName}`,
-        `Phone: ${phone}`,
-        `Email: ${email}`,
-        '',
-        `Event Date: ${eventDate}`,
-        `Event Time: ${eventTime}`,
-        `Event Location: ${location}`,
-        `Estimated Guest Count: ${guestCount || 'N/A'}`,
-        `Type of Event: ${finalType}`,
-        '',
-        `Services Interested In: ${services.join(', ')}`,
-        '',
-        'Additional Details:',
-        details || 'N/A',
-        '',
-        '---',
-        'Sent from nycksphotography.github.io'
-      ];
-
-      const mailto = `mailto:nycksphotography@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
-      window.location.href = mailto;
+      // ✅ If all good, DO NOT preventDefault — the form will submit to FormSubmit
     });
 
     // initialize
