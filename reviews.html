@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KS Reviews</title>
+
+  <style>
+    :root{
+      --bg:#0b0b0b;
+      --gold:#d4af37;
+      --text:#f3f3f3;
+      --muted:rgba(243,243,243,.72);
+      --line:rgba(212,175,55,.35);
+      --card: rgba(255,255,255,.02);
+      --cardBorder: rgba(255,255,255,.08);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:-apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      background:
+        radial-gradient(1200px 600px at 50% 0%, rgba(212,175,55,.14), transparent 55%),
+        var(--bg);
+      color:var(--text);
+    }
+
+    .wrap{max-width:980px;margin:0 auto;padding:26px 18px 60px}
+
+    .panel{
+      border:1px solid var(--line);
+      border-radius:22px;
+      background: linear-gradient(180deg, rgba(255,255,255,.03), transparent);
+      overflow:hidden;
+    }
+
+    .top{
+      padding:22px 18px 10px;
+      text-align:center;
+    }
+
+    .title{
+      margin:0;
+      font-size:34px;
+      letter-spacing:.8px;
+      color:var(--gold);
+      font-weight:900;
+    }
+
+    .subtitle{
+      margin:10px auto 0;
+      max-width:760px;
+      color:var(--muted);
+      font-style:italic;
+      font-size:16px;
+      line-height:1.4;
+    }
+
+    .divider{
+      height:1px;
+      background:var(--line);
+      margin:16px auto 0;
+      max-width:760px;
+    }
+
+    .content{
+      padding:18px 18px 26px;
+      max-width:820px;
+      margin:0 auto;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:16px;
+    }
+    @media (min-width: 820px){
+      .grid{grid-template-columns: 1.05fr .95fr;}
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--cardBorder);
+      border-radius:18px;
+      padding:18px 16px;
+    }
+
+    .card h2{
+      margin:0 0 10px;
+      font-size:18px;
+      letter-spacing:.2px;
+      color:var(--text);
+    }
+
+    .field{
+      margin:12px 0 0;
+    }
+    label{
+      display:block;
+      font-size:13px;
+      color:var(--muted);
+      margin:0 0 6px;
+    }
+    input, textarea{
+      width:100%;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.10);
+      color: var(--text);
+      border-radius:14px;
+      padding:12px 12px;
+      font-size:16px;
+      outline:none;
+    }
+    textarea{min-height:110px; resize:vertical;}
+
+    .row{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+
+    /* Star selector */
+    .stars{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      user-select:none;
+    }
+    .starBtn{
+      width:34px; height:34px;
+      display:grid;
+      place-items:center;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      cursor:pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      font-size:18px;
+      line-height:1;
+    }
+    .starBtn:active{transform: translateY(1px);}
+    .starBtn.filled{
+      background: rgba(212,175,55,.16);
+      border-color: rgba(212,175,55,.35);
+    }
+    .starBtn span{
+      color: rgba(255,255,255,.40);
+    }
+    .starBtn.filled span{
+      color: var(--gold);
+      text-shadow: 0 0 14px rgba(212,175,55,.25);
+    }
+
+    /* Buttons */
+    .btn{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+
+      padding:0 14px;
+      height:60px;
+      line-height:1.15;
+
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:900;
+      font-size:17px;
+      letter-spacing:.2px;
+
+      background: linear-gradient(180deg, rgba(212,175,55,.98), rgba(212,175,55,.78));
+      color:#111;
+      border:0;
+      box-shadow: 0 14px 30px rgba(0,0,0,.35);
+      cursor:pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn:active{transform: translateY(1px);}
+
+    .btnGhost{
+      background: rgba(255,255,255,.02);
+      color: var(--gold);
+      border: 1px solid var(--line);
+      box-shadow:none;
+      font-weight:900;
+      height:54px;
+    }
+
+    .note{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.35;
+    }
+
+    /* Reviews list */
+    .listHead{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:8px;
+    }
+    .count{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .review{
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+      border-radius:16px;
+      padding:14px 14px;
+      margin-top:12px;
+    }
+    .reviewTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .name{
+      font-weight:900;
+      letter-spacing:.2px;
+    }
+    .date{
+      color:var(--muted);
+      font-size:12px;
+    }
+    .starsText{
+      margin-top:6px;
+      color:var(--gold);
+      letter-spacing:1px;
+      font-size:14px;
+    }
+    .text{
+      margin-top:10px;
+      color:rgba(243,243,243,.88);
+      line-height:1.45;
+      white-space:pre-wrap;
+    }
+
+    .status{
+      margin-top:12px;
+      color:var(--muted);
+      font-size:13px;
+      min-height:18px;
+    }
+
+    footer{
+      text-align:center;
+      color:rgba(243,243,243,.55);
+      margin:18px 0 24px;
+      font-size:13px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="panel">
+      <div class="top">
+        <h1 class="title">REVIEWS</h1>
+        <div class="subtitle">
+          Leave a quick review below. Reviews can be moderated by KS Photography.
+        </div>
+        <div class="divider"></div>
+      </div>
+
+      <div class="content">
+        <div class="grid">
+
+          <!-- LEFT: Submit review -->
+          <div class="card">
+            <h2>Leave a Review</h2>
+
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" type="text" placeholder="Your name" maxlength="60" />
+            </div>
+
+            <div class="field">
+              <label>Stars</label>
+              <div class="row">
+                <div class="stars" id="stars">
+                  <!-- buttons injected by JS -->
+                </div>
+                <div class="count" id="starsLabel">5 / 5</div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="review">Review</label>
+              <textarea id="review" placeholder="Write your review..." maxlength="1000"></textarea>
+            </div>
+
+            <div class="row" style="margin-top:14px;">
+              <button class="btn" id="submitBtn" type="button">Submit Review</button>
+              <a class="btn btnGhost" href="index.html">Back to Home</a>
+            </div>
+
+            <div class="note">
+              Tip: If you ever need a review removed, you can hide or delete it from your Google Sheet.
+            </div>
+
+            <div class="status" id="status"></div>
+          </div>
+
+          <!-- RIGHT: Reviews list -->
+          <div class="card">
+            <div class="listHead">
+              <h2 style="margin:0;">Recent Reviews</h2>
+              <div class="count" id="reviewCount">Loading…</div>
+            </div>
+            <div class="note" style="margin-top:0;">
+              Only reviews marked <b>Approved</b> and not <b>Hidden</b> will show here.
+            </div>
+
+            <div id="reviews"></div>
+
+            <div class="row" style="margin-top:14px;">
+              <button class="btn btnGhost" id="refreshBtn" type="button">Refresh Reviews</button>
+            </div>
+          </div>
+
+        </div>
+
+        <footer>© 2026 KS Photography</footer>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ✅ Your live Apps Script Web App URL
+    const API_URL = "https://script.google.com/macros/s/AKfycbzphK-YtvCl37sTNd-Nx2ONXos-rd5raUTRFVBMRsVvRK4Lfgdjvow3ROz0NTNJ96aX/exec";
+
+    // Star selector
+    let currentStars = 5;
+    const starsWrap = document.getElementById("stars");
+    const starsLabel = document.getElementById("starsLabel");
+
+    function renderStarButtons(){
+      starsWrap.innerHTML = "";
+      for(let i=1;i<=5;i++){
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "starBtn" + (i<=currentStars ? " filled" : "");
+        b.innerHTML = "<span>★</span>";
+        b.addEventListener("click", () => {
+          currentStars = i;
+          updateStarsUI();
+        });
+        starsWrap.appendChild(b);
+      }
+    }
+    function updateStarsUI(){
+      const btns = starsWrap.querySelectorAll(".starBtn");
+      btns.forEach((b, idx) => {
+        const i = idx + 1;
+        b.classList.toggle("filled", i <= currentStars);
+      });
+      starsLabel.textContent = currentStars + " / 5";
+    }
+
+    renderStarButtons();
+    updateStarsUI();
+
+    // Submit
+    const statusEl = document.getElementById("status");
+    const submitBtn = document.getElementById("submitBtn");
+
+    function setStatus(msg, isError=false){
+      statusEl.textContent = msg;
+      statusEl.style.color = isError ? "rgba(255,120,120,.95)" : "rgba(243,243,243,.72)";
+    }
+
+    submitBtn.addEventListener("click", async () => {
+      const name = (document.getElementById("name").value || "").trim();
+      const review = (document.getElementById("review").value || "").trim();
+
+      if(!review){
+        setStatus("Please write a review before submitting.", true);
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = "0.7";
+      setStatus("Submitting…");
+
+      try{
+        const payload = { name, stars: currentStars, review };
+
+        const res = await fetch(API_URL, {
+          method: "POST",
+          mode: "cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload)
+        });
+
+        const text = await res.text();
+        // Apps Script often returns JSON text; try parse, but don't require it.
+        try { JSON.parse(text); } catch(e) {}
+
+        setStatus("Thank you! Your review was submitted.");
+        document.getElementById("review").value = "";
+        // optional: keep name as-is
+
+        await loadReviews(); // refresh list
+      }catch(err){
+        setStatus("Error submitting review. Please try again.", true);
+        console.error(err);
+      }finally{
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = "1";
+      }
+    });
+
+    // Load & render reviews
+    const reviewsEl = document.getElementById("reviews");
+    const reviewCountEl = document.getElementById("reviewCount");
+    const refreshBtn = document.getElementById("refreshBtn");
+
+    refreshBtn.addEventListener("click", loadReviews);
+
+    function starsToText(n){
+      const filled = "★".repeat(Math.max(0, Math.min(5, n)));
+      const empty = "☆".repeat(5 - filled.length);
+      return filled + empty;
+    }
+
+    function formatDate(value){
+      if(!value) return "";
+      const d = new Date(value);
+      if(isNaN(d.getTime())) return String(value);
+      return d.toLocaleDateString(undefined, { year:"numeric", month:"short", day:"numeric" });
+    }
+
+    function normalizeRows(raw){
+      // Accept: array of rows OR {rows:[...]} OR {data:[...]}
+      if(Array.isArray(raw)) return raw;
+      if(raw && Array.isArray(raw.rows)) return raw.rows;
+      if(raw && Array.isArray(raw.data)) return raw.data;
+      return [];
+    }
+
+    async function loadReviews(){
+      reviewCountEl.textContent = "Loading…";
+      reviewsEl.innerHTML = "";
+
+      try{
+        const res = await fetch(API_URL, { method: "GET", mode: "cors" });
+        const raw = await res.json();
+        const rows = normalizeRows(raw);
+
+        // Expect your sheet columns:
+        // Timestamp, Name, Stars, Review, Approved, Hidden
+        const visible = rows
+          .filter(r => {
+            const approved = String(r.approved ?? r.Approved ?? "").toLowerCase();
+            const hidden = String(r.hidden ?? r.Hidden ?? "").toLowerCase();
+            // show if approved true and hidden not true
+            const isApproved = approved === "true" || approved === "yes" || approved === "1";
+            const isHidden = hidden === "true" || hidden === "yes" || hidden === "1";
+            return isApproved && !isHidden;
+          })
+          .sort((a,b) => {
+            const ta = new Date(a.timestamp || a.Timestamp || 0).getTime() || 0;
+            const tb = new Date(b.timestamp || b.Timestamp || 0).getTime() || 0;
+            return tb - ta;
+          });
+
+        reviewCountEl.textContent = visible.length + " showing";
+
+        if(!visible.length){
+          reviewsEl.innerHTML = `<div class="note">No approved reviews yet.</div>`;
+          return;
+        }
+
+        for(const r of visible){
+          const name = (r.name || r.Name || "Anonymous").toString();
+          const stars = parseInt(r.stars || r.Stars || 5, 10) || 5;
+          const review = (r.review || r.Review || "").toString();
+          const date = formatDate(r.timestamp || r.Timestamp);
+
+          const div = document.createElement("div");
+          div.className = "review";
+          div.innerHTML = `
+            <div class="reviewTop">
+              <div class="name">${escapeHtml(name)}</div>
+              <div class="date">${escapeHtml(date)}</div>
+            </div>
+            <div class="starsText">${escapeHtml(starsToText(stars))}</div>
+            <div class="text">${escapeHtml(review)}</div>
+          `;
+          reviewsEl.appendChild(div);
+        }
+      }catch(err){
+        console.error(err);
+        reviewCountEl.textContent = "Error";
+        reviewsEl.innerHTML = `<div class="note" style="color:rgba(255,120,120,.95)">Could not load reviews. Check that your web app access is set to “Anyone” and the URL is correct.</div>`;
+      }
+    }
+
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    // initial load
+    loadReviews();
+  </script>
+</body>
+</html>
