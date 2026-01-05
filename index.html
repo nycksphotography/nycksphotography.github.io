@@ -24,6 +24,7 @@
         var(--bg);
       color:var(--text);
     }
+
     .wrap{max-width:980px;margin:0 auto;padding:26px 18px 60px}
 
     .panel{
@@ -41,14 +42,11 @@
     /* LOGO */
     .logo{
       width:min(360px, 78vw);
-      height:auto;
       display:block;
       margin:0 auto 10px;
       filter: drop-shadow(0 12px 30px rgba(0,0,0,.65));
-      transform: translateZ(0);
     }
 
-    /* Soft, rounded glow behind logo (NOT square) */
     .logoWrap{
       display:inline-block;
       position:relative;
@@ -67,16 +65,16 @@
       pointer-events:none;
     }
     @keyframes glow{
-      0%,100%{opacity:.65; transform: scale(0.98);}
+      0%,100%{opacity:.65; transform: scale(.98);}
       50%{opacity:1; transform: scale(1.02);}
     }
 
     .tag{
-      margin:10px 0 0;
+      margin-top:10px;
       color:var(--muted);
       font-size:16px;
-      letter-spacing:.2px;
     }
+
     .divider{
       height:1px;
       background:var(--line);
@@ -84,426 +82,186 @@
       max-width:760px;
     }
 
-    /* BUTTONS */
+    /* CTA AREA */
     .ctaArea{
       margin:18px auto 0;
       max-width:760px;
       position:relative;
     }
 
-    /* Subtle premium glow behind CTA area */
-    .ctaArea::before{
-      content:"";
-      position:absolute;
-      inset:-14px -10px -18px;
-      border-radius:22px;
-      background: radial-gradient(circle at 50% 30%, rgba(212,175,55,.14), transparent 60%);
-      filter: blur(10px);
-      opacity:.9;
-      pointer-events:none;
-      z-index:0;
-    }
-
-    /* Keep CTA content above the glow */
-    .ctaArea > *{
-      position:relative;
-      z-index:1;
-    }
-
     .ctaGrid{
       display:grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns:1fr 1fr;
       gap:14px;
       margin-top:16px;
-      margin-bottom:8px;
     }
 
-    /* Base button (keeps your premium look) */
     .btn{
       width:100%;
+      height:60px;
       display:flex;
       align-items:center;
       justify-content:center;
-      text-align:center;
-
-      padding:0 14px;
-      height:64px;
-      line-height:1.15;
-
       border-radius:999px;
+      font-size:16px;
+      font-weight:800;
       text-decoration:none;
-      font-weight:800;
-      font-size:18px;
-      letter-spacing:.2px;
-
-      background: linear-gradient(180deg, rgba(212,175,55,.95), rgba(212,175,55,.78));
       color:#111;
+      background: linear-gradient(180deg, rgba(212,175,55,.95), rgba(212,175,55,.78));
+      box-shadow:0 12px 26px rgba(0,0,0,.35);
       border:0;
-      box-shadow: 0 14px 30px rgba(0,0,0,.35);
-      -webkit-tap-highlight-color: transparent;
-      transition: transform .15s ease, box-shadow .2s ease, opacity .2s ease, background .25s ease;
-    }
-    .btn:active{transform: translateY(1px)}
-
-    /* Contact buttons – luxury gold (secondary but not dull) */
-    .ctaGrid .btn{
-      height:60px;
-      font-size:16px;
-      font-weight:750;
-      opacity:1;
-
-      background: linear-gradient(
-        180deg,
-        rgba(212,175,55,.92),
-        rgba(212,175,55,.70)
-      );
-
-      border: 1px solid rgba(255,255,255,.10);
-
-      box-shadow:
-        0 12px 26px rgba(0,0,0,.35),
-        inset 0 1px 0 rgba(255,255,255,.18);
     }
 
-    .ctaGrid .btn:hover{
-      transform: translateY(-1px);
-      box-shadow:
-        0 16px 34px rgba(0,0,0,.45),
-        inset 0 1px 0 rgba(255,255,255,.22);
-    }
+    .quoteRow{ margin-top:12px; }
 
-    /* Full width rows */
-    .quoteRow{
-      margin-top:12px;
-      margin-bottom:2px; /* tight spacing */
-    }
-
-    .btnOutline{
-      background: rgba(255,255,255,.02);
-      color: var(--gold);
-      border: 1px solid rgba(212,175,55,.22);
-      box-shadow:none;
-      font-weight:800;
-    }
-
-    /* Client Galleries – subtle secondary */
-    .btnGallery{
-      font-size:16px;
-      height:54px;
-      opacity:.92;
-      border: 1px solid rgba(212,175,55,.28);
-      background: rgba(255,255,255,.02);
-      box-shadow: 0 10px 22px rgba(0,0,0,.35);
-    }
-
-    /* Luxury outlined hero button */
     .btnQuote{
       height:72px;
       font-size:19px;
       background: rgba(10,10,10,.35);
-      color: var(--gold);
-      border: 2px solid rgba(212,175,55,.95);
-      font-weight:900;
-      letter-spacing:.5px;
-
+      color:var(--gold);
+      border:2px solid rgba(212,175,55,.95);
       box-shadow:
         0 14px 34px rgba(0,0,0,.55),
-        0 0 26px rgba(212,175,55,.20),
-        inset 0 0 18px rgba(212,175,55,.08);
-
-      transition: transform .15s ease, box-shadow .25s ease, background .25s ease;
+        0 0 26px rgba(212,175,55,.20);
     }
 
-    .btnQuote:hover{
-      background: rgba(212,175,55,.06);
-      box-shadow:
-        0 18px 40px rgba(0,0,0,.65),
-        0 0 34px rgba(212,175,55,.32),
-        inset 0 0 22px rgba(212,175,55,.12);
-      transform: translateY(-1px);
+    .btnOutline{
+      background: rgba(255,255,255,.02);
+      color:var(--gold);
+      border:1px solid rgba(212,175,55,.28);
+      box-shadow:0 10px 22px rgba(0,0,0,.35);
     }
 
-    /* CONTENT SECTION */
+    /* SAME SIZE BUTTONS */
+    .btnGallery,
+    .btnReviews{
+      height:54px;
+      font-size:16px;
+      font-weight:800;
+    }
+
+    /* CONTENT */
     .section{
-      padding:6px 18px 30px;
+      padding:10px 18px 30px;
       text-align:center;
     }
+
     .headline{
       margin:18px 0 6px;
       font-size:40px;
-      letter-spacing:1px;
       color:var(--gold);
+      letter-spacing:1px;
     }
+
     .subline{
-      margin:4px 0 0;
       color:var(--muted);
       font-style:italic;
       font-size:18px;
     }
 
-    .servicesHint{
-      margin:10px auto 6px;
-      max-width:760px;
-      color:var(--muted);
-      font-size:15px;
-      font-style:italic;
-    }
-
-    .services{
-      margin:18px auto 0;
-      max-width:760px;
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:14px;
-    }
-    .serviceCard{
-      background: var(--card);
-      border: 1px solid var(--cardBorder);
-      border-radius:16px;
-      padding:18px 16px;
-      font-size:20px;
-      line-height:1.4;
-    }
-
-    .serviceBtn{
-      display:block;
-      text-decoration:none;
-      color:var(--text);
-      cursor:pointer;
-      transition: transform .15s ease, box-shadow .15s ease;
-    }
-    .serviceBtn:hover{
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(0,0,0,.35);
-    }
-
-    footer{
-      text-align:center;
-      color:rgba(243,243,243,.55);
-      margin:18px 0 24px;
-      font-size:13px;
-    }
-
-    @media (min-width: 820px){
-      .headline{font-size:46px;}
-      .services{grid-template-columns: 1fr 1fr;}
-    }
-
-    /* Promo video styling */
     .videoSection{
       margin:20px auto 0;
       max-width:640px;
     }
+
     .videoWrap{
       border-radius:18px;
       overflow:hidden;
       border:1px solid var(--line);
       box-shadow:0 18px 40px rgba(0,0,0,.45);
-      background:#000;
-    }
-    .videoWrap video{
-      width:100%;
-      max-height:360px;
-      height:auto;
-      object-fit:contain;
-      display:block;
-      background:#000;
-    }
-    @media (max-width: 600px){
-      .videoWrap video{max-height:260px;}
     }
 
-    /* ===== Average Rating (Homepage) - smaller + subtle ===== */
-    .ratingWidget{
+    video{width:100%;display:block;background:#000;}
+
+    .services{
+      margin:18px auto 0;
       max-width:760px;
-      margin:6px auto 2px;
-      display:none; /* shown by JS when there are reviews */
+      display:grid;
+      gap:14px;
     }
-    .ratingPill{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(212,175,55,.22);
-      background: rgba(255,255,255,.02);
-      box-shadow: 0 10px 22px rgba(0,0,0,.28);
-    }
-    .starBar{
-      position:relative;
-      display:inline-block;
-      font-size:16px;          /* smaller */
-      letter-spacing:1px;      /* tighter */
-      line-height:1;
-      color: rgba(212,175,55,.26);
-    }
-    .starBar .fill{
-      position:absolute;
-      top:0; left:0;
-      overflow:hidden;
-      white-space:nowrap;
-      color: var(--gold);
-      width:0%;
-    }
-    .ratingText{
-      font-weight:900;
-      color: rgba(243,243,243,.78);
-      font-size:13px;          /* smaller */
-      white-space:nowrap;
-    }
-    .ratingLink{
-      color: var(--gold);
-      font-weight:900;
-      text-decoration:none;
-      font-size:13px;
-      white-space:nowrap;
-    }
-    .ratingLink:active{opacity:.85}
 
-    @media (max-width: 380px){
-      .ratingPill{gap:8px; padding:9px 12px;}
-      .starBar{font-size:15px;}
-      .ratingText,.ratingLink{font-size:12px;}
+    .serviceCard{
+      background:var(--card);
+      border:1px solid var(--cardBorder);
+      border-radius:16px;
+      padding:18px;
+      font-size:20px;
+      color:var(--text);
+      text-decoration:none;
+    }
+
+    footer{
+      text-align:center;
+      color:rgba(243,243,243,.55);
+      margin:18px 0;
+      font-size:13px;
+    }
+
+    @media (min-width:820px){
+      .services{grid-template-columns:1fr 1fr;}
+      .headline{font-size:46px;}
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="panel">
-      <div class="hero">
+<div class="wrap">
+  <div class="panel">
 
-        <div class="logoWrap">
-          <img class="logo" src="logo.png" alt="KS Photography Logo" />
-        </div>
-
-        <div class="tag">Premium Event Photography &amp; Experiences</div>
-        <div class="divider"></div>
-
-        <div class="ctaArea">
-          <div class="ctaGrid">
-            <a class="btn" href="https://instagram.com/nyc_ksphotography" target="_blank" rel="noopener">Instagram</a>
-            <a class="btn" href="tel:3475599217">Call</a>
-            <a class="btn" href="sms:3475599217">Text</a>
-            <a class="btn" href="mailto:nycksphotography@gmail.com">Email</a>
-          </div>
-
-          <div class="quoteRow">
-            <a class="btn btnQuote" href="quote.html">Request a Quote</a>
-          </div>
-
-          <div class="servicesHint">
-            Access your private, password-protected gallery below
-          </div>
-
-          <div class="quoteRow">
-            <a class="btn btnOutline btnGallery"
-               href="https://ks-photography-zu.photonesto.com/g"
-               target="_blank"
-               rel="noopener">
-              Client Galleries
-            </a>
-          </div>
-
-          <!-- Average Rating (between Galleries and Reviews) -->
-          <div class="ratingWidget" id="ratingWidget">
-            <div class="ratingPill">
-              <div class="starBar" aria-label="Average rating">
-                <div class="fill" id="avgFill">★★★★★</div>
-                ★★★★★
-              </div>
-              <div class="ratingText" id="avgText"></div>
-              <a class="ratingLink" href="reviews.html">View</a>
-            </div>
-          </div>
-
-          <div class="quoteRow">
-            <a class="btn btnOutline" href="reviews.html">Reviews</a>
-          </div>
-
-        </div>
+    <div class="hero">
+      <div class="logoWrap">
+        <img src="logo.png" class="logo" alt="KS Photography">
       </div>
+      <div class="tag">Premium Event Photography & Experiences</div>
+      <div class="divider"></div>
 
-      <div class="section">
-        <div class="headline">CAPTURE THE<br/>MOMENT</div>
-        <div class="subline">Elevate your event experience</div>
-
-        <div class="videoSection">
-          <div class="videoWrap">
-            <video controls playsinline preload="metadata">
-              <source src="54F8EBDC-241E-4046-B70F-65D38371D77Csegment_video_2.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </div>
+      <div class="ctaArea">
+        <div class="ctaGrid">
+          <a class="btn" href="https://instagram.com/nyc_ksphotography" target="_blank">Instagram</a>
+          <a class="btn" href="tel:3475599217">Call</a>
+          <a class="btn" href="sms:3475599217">Text</a>
+          <a class="btn" href="mailto:nycksphotography@gmail.com">Email</a>
         </div>
 
-        <div class="servicesHint">
-          Tap a service below to view details & included features
+        <div class="quoteRow">
+          <a class="btn btnQuote" href="quote.html">Request a Quote</a>
         </div>
 
-        <div class="services">
-          <a class="serviceCard serviceBtn" href="photography.html">Professional Event Photography</a>
-          <a class="serviceCard serviceBtn" href="360.html">360 Photobooth</a>
-          <a class="serviceCard serviceBtn" href="dslr.html">DSLR Print Photobooth</a>
-          <a class="serviceCard serviceBtn" href="backdrops.html">Backdrops &amp; Floral Walls</a>
+        <div class="quoteRow">
+          <a class="btn btnOutline btnGallery"
+             href="https://ks-photography-zu.photonesto.com/g"
+             target="_blank">Client Galleries</a>
         </div>
 
-        <footer>© 2026 KS Photography</footer>
+        <div class="quoteRow">
+          <a class="btn btnOutline btnReviews" href="reviews.html">Reviews</a>
+        </div>
       </div>
     </div>
+
+    <div class="section">
+      <div class="headline">CAPTURE THE<br>MOMENT</div>
+      <div class="subline">Elevate your event experience</div>
+
+      <div class="videoSection">
+        <div class="videoWrap">
+          <video controls playsinline preload="metadata">
+            <source src="54F8EBDC-241E-4046-B70F-65D38371D77Csegment_video_2.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="services">
+        <a class="serviceCard" href="photography.html">Professional Event Photography</a>
+        <a class="serviceCard" href="360.html">360 Photobooth</a>
+        <a class="serviceCard" href="dslr.html">DSLR Print Photobooth</a>
+        <a class="serviceCard" href="backdrops.html">Backdrops & Floral Walls</a>
+      </div>
+
+      <footer>© 2026 KS Photography</footer>
+    </div>
+
   </div>
-
-  <script>
-    // Reviews API (Apps Script Web App)
-    const REVIEWS_API_URL = "https://script.google.com/macros/s/AKfycbzphK-YtvCl37sTNd-Nx2ONXos-rd5raUTRFVBMRsVvRK4Lfgdjvow3ROz0NTNJ96aX/exec";
-
-    function normalizeReviewsResponse(data){
-      // Supports BOTH formats:
-      // 1) { reviews: [...] }
-      // 2) [ ... ]
-      if(Array.isArray(data)) return data;
-      if(data && Array.isArray(data.reviews)) return data.reviews;
-      return [];
-    }
-
-    async function loadAverageRating(){
-      const widget = document.getElementById("ratingWidget");
-      const fill = document.getElementById("avgFill");
-      const text = document.getElementById("avgText");
-      if(!widget || !fill || !text) return;
-
-      try{
-        const res = await fetch(REVIEWS_API_URL, { method: "GET" });
-        if(!res.ok) throw new Error("Bad response");
-
-        const data = await res.json();
-        const rows = normalizeReviewsResponse(data);
-        if(rows.length === 0) return;
-
-        let sum = 0, count = 0;
-        for(const r of rows){
-          const s = parseInt(r.stars, 10);
-          if(s >= 1 && s <= 5){
-            sum += s;
-            count += 1;
-          }
-        }
-        if(count === 0) return;
-
-        const avg = sum / count;
-        const pct = Math.max(0, Math.min(100, (avg / 5) * 100));
-
-        fill.style.width = pct + "%";
-        text.textContent = `${avg.toFixed(1)} (${count})`;
-
-        widget.style.display = "block";
-      }catch(e){
-        // stay hidden if it can't load
-      }
-    }
-
-    loadAverageRating();
-  </script>
+</div>
 </body>
 </html>
