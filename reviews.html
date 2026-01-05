@@ -59,9 +59,7 @@
       max-width:760px;
     }
 
-    .section{
-      padding:18px 18px 26px;
-    }
+    .section{ padding:18px 18px 26px; }
 
     .card{
       max-width:760px;
@@ -104,57 +102,73 @@
       color: rgba(243,243,243,.45);
     }
 
-    /* Stars */
+    /* ⭐ Average rating card (top of page content) */
+    .avgCard{
+      max-width:760px;
+      margin:0 auto 14px;
+      background: linear-gradient(180deg, rgba(255,255,255,.04), transparent);
+      border:1px solid rgba(212,175,55,.25);
+      border-radius:18px;
+      padding:14px 14px;
+      text-align:center;
+    }
+    .avgStars{
+      font-size:24px;
+      color:var(--gold);
+      letter-spacing:2px; /* closer stars */
+      line-height:1.1;
+    }
+    .avgLine{
+      margin-top:6px;
+      font-weight:900;
+      font-size:18px;
+    }
+    .avgSub{
+      margin-top:4px;
+      color:rgba(243,243,243,.62);
+      font-size:13px;
+      font-weight:800;
+    }
+
+    /* Stars (selection) */
     .starsRow{
-  display:flex;
-  gap:10px;
-  flex-wrap:nowrap;          /* keeps stars on ONE line */
-  align-items:center;
-  justify-content:space-between;
-}
+      display:flex;
+      gap:8px;               /* closer spacing */
+      flex-wrap:nowrap;      /* keep on one line */
+      align-items:center;
+      justify-content:space-between;
+    }
+    .starBtn{
+      width:46px;            /* smaller */
+      height:46px;
+      border-radius:14px;
+      border:1px solid rgba(212,175,55,.35);
+      background: rgba(255,255,255,.02);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition: transform .12s ease, box-shadow .12s ease, background .12s ease; /* ✅ fixed */
+      -webkit-tap-highlight-color: transparent;
+      user-select:none;
+    }
+    .starBtn:active{ transform: translateY(1px); }
+    .starBtn.selected{
+      background: rgba(212,175,55,.14);
+      box-shadow: 0 8px 18px rgba(0,0,0,.35);
+    }
+    .starIcon{
+      font-size:20px;        /* smaller star */
+      color: rgba(212,175,55,.55);
+      line-height:1;
+    }
+    .starBtn.selected .starIcon{ color: var(--gold); }
 
-.starBtn{
-  width:48px;                /* smaller */
-  height:48px;
-  border-radius:14px;
-  border:1px solid rgba(212,175,55,.35);
-  background: rgba(255,255,255,.02);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  transition: transform .12s ease, box-shadow .12 .12s ease, background .12s ease;
-  -webkit-tap-highlight-color: transparent;
-  user-select:none;
-}
-
-.starBtn:active{
-  transform: translateY(1px);
-}
-
-.starBtn.selected{
-  background: rgba(212,175,55,.14);
-  box-shadow: 0 8px 18px rgba(0,0,0,.35);
-}
-
-.starIcon{
-  font-size:22px;            /* smaller star */
-  color: rgba(212,175,55,.55);
-  line-height:1;
-}
-
-/* extra safety for very small phones */
-@media (max-width: 380px){
-  .starBtn{
-    width:44px;
-    height:44px;
-  }
-  .starIcon{
-    font-size:20px;
-  }
-}
-    .starBtn.selected .starIcon{
-      color: var(--gold);
+    /* extra safety for very small phones */
+    @media (max-width: 380px){
+      .starsRow{ gap:6px; }
+      .starBtn{ width:42px; height:42px; }
+      .starIcon{ font-size:18px; }
     }
 
     .starsMeta{
@@ -191,6 +205,7 @@
       cursor:pointer;
       -webkit-tap-highlight-color: transparent;
       user-select:none;
+      color:#111;
     }
 
     /* Prevent iOS Safari from coloring button/link text blue */
@@ -275,9 +290,7 @@
       font-size:12px;
     }
 
-    .refreshRow{
-      margin-top:12px;
-    }
+    .refreshRow{ margin-top:12px; }
 
     .hint{
       color: rgba(243,243,243,.65);
@@ -308,6 +321,14 @@
       </div>
 
       <div class="section">
+
+        <!-- ⭐ Average rating (auto-updates from your sheet) -->
+        <div class="avgCard">
+          <div class="avgStars" id="avgStars">★★★★★</div>
+          <div class="avgLine"><span id="avgValue">–</span> / 5</div>
+          <div class="avgSub"><span id="avgCount">–</span> reviews</div>
+        </div>
+
         <div class="card">
           <div class="label">Leave a Review</div>
 
@@ -364,6 +385,10 @@
     const msgOk = document.getElementById("msgOk");
     const msgErr = document.getElementById("msgErr");
 
+    const avgStarsEl = document.getElementById("avgStars");
+    const avgValueEl = document.getElementById("avgValue");
+    const avgCountEl = document.getElementById("avgCount");
+
     function hideMsgs(){
       msgOk.style.display = "none";
       msgErr.style.display = "none";
@@ -379,7 +404,6 @@
       starsMeta.textContent = n ? `${n} / 5` : "Select a rating";
     }
 
-    // Click stars
     starBtns.forEach(btn => {
       btn.addEventListener("click", () => {
         const n = parseInt(btn.dataset.star, 10);
@@ -401,6 +425,28 @@
         .replaceAll("'","&#039;");
     }
 
+    function updateAverage(rows){
+      const starsList = rows
+        .map(r => parseInt(r.stars, 10))
+        .filter(n => !isNaN(n) && n >= 1 && n <= 5);
+
+      const count = starsList.length;
+      if(!count){
+        avgValueEl.textContent = "–";
+        avgCountEl.textContent = "0";
+        avgStarsEl.textContent = "☆☆☆☆☆";
+        return;
+      }
+
+      const avg = starsList.reduce((a,b)=>a+b,0) / count;
+      const rounded = Math.round(avg * 10) / 10;
+
+      const full = Math.round(avg); // simple visual fill
+      avgStarsEl.textContent = starString(full);
+      avgValueEl.textContent = rounded.toFixed(1);
+      avgCountEl.textContent = String(count);
+    }
+
     async function loadReviews(){
       const list = document.getElementById("reviewsList");
       list.innerHTML = `<div class="hint">Loading…</div>`;
@@ -411,6 +457,9 @@
 
         const data = await res.json();
         const rows = Array.isArray(data.reviews) ? data.reviews : [];
+
+        // Update average display using whatever the API returns
+        updateAverage(rows);
 
         if(rows.length === 0){
           list.innerHTML = `<div class="hint">No reviews yet.</div>`;
@@ -437,6 +486,11 @@
         }).join("");
 
       }catch(err){
+        // Keep the top average card neutral if fetch fails
+        avgValueEl.textContent = "–";
+        avgCountEl.textContent = "–";
+        avgStarsEl.textContent = "☆☆☆☆☆";
+
         list.innerHTML =
           `<div class="hint" style="color:rgba(255,92,92,.95);font-weight:900">
             Reviews are temporarily unavailable. Please try again later.
@@ -479,15 +533,12 @@
 
         if(!ok) throw new Error("Not ok");
 
-        // Thank you message
         msgOk.style.display = "block";
 
-        // Reset form
         document.getElementById("name").value = "";
         document.getElementById("review").value = "";
         setStars(0);
 
-        // Reload list
         await loadReviews();
 
       }catch(err){
@@ -502,7 +553,6 @@
     submitBtn.addEventListener("click", submitReview);
     refreshBtn.addEventListener("click", loadReviews);
 
-    // Initial load
     loadReviews();
   </script>
 </body>
