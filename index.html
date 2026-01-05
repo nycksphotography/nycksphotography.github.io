@@ -313,31 +313,30 @@
       .videoWrap video{max-height:260px;}
     }
 
-    /* ===== Average Rating (Homepage) ===== */
+    /* ===== Average Rating (Homepage) - smaller + subtle ===== */
     .ratingWidget{
-      margin:10px auto 2px;   /* tight spacing */
       max-width:760px;
-      text-align:center;
+      margin:6px auto 2px;
+      display:none; /* shown by JS when there are reviews */
     }
-    .ratingCaption{
-      color: var(--muted);
-      font-size:14px;
-      font-style:italic;
-      margin:0 0 8px;
-    }
-    .ratingRow{
+    .ratingPill{
       display:flex;
       align-items:center;
       justify-content:center;
       gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(212,175,55,.22);
+      background: rgba(255,255,255,.02);
+      box-shadow: 0 10px 22px rgba(0,0,0,.28);
     }
     .starBar{
       position:relative;
       display:inline-block;
-      font-size:18px;
-      letter-spacing:2px;
+      font-size:16px;          /* smaller */
+      letter-spacing:1px;      /* tighter */
       line-height:1;
-      color: rgba(212,175,55,.28);
+      color: rgba(212,175,55,.26);
     }
     .starBar .fill{
       position:absolute;
@@ -349,8 +348,23 @@
     }
     .ratingText{
       font-weight:900;
-      color: rgba(243,243,243,.82);
-      font-size:14px;
+      color: rgba(243,243,243,.78);
+      font-size:13px;          /* smaller */
+      white-space:nowrap;
+    }
+    .ratingLink{
+      color: var(--gold);
+      font-weight:900;
+      text-decoration:none;
+      font-size:13px;
+      white-space:nowrap;
+    }
+    .ratingLink:active{opacity:.85}
+
+    @media (max-width: 380px){
+      .ratingPill{gap:8px; padding:9px 12px;}
+      .starBar{font-size:15px;}
+      .ratingText,.ratingLink{font-size:12px;}
     }
   </style>
 </head>
@@ -393,14 +407,14 @@
           </div>
 
           <!-- Average Rating (between Galleries and Reviews) -->
-          <div class="ratingWidget" id="ratingWidget" style="display:none;">
-            <div class="ratingCaption">Average rating from client reviews</div>
-            <div class="ratingRow">
+          <div class="ratingWidget" id="ratingWidget">
+            <div class="ratingPill">
               <div class="starBar" aria-label="Average rating">
                 <div class="fill" id="avgFill">★★★★★</div>
                 ★★★★★
               </div>
               <div class="ratingText" id="avgText"></div>
+              <a class="ratingLink" href="reviews.html">View</a>
             </div>
           </div>
 
@@ -444,6 +458,15 @@
     // Reviews API (Apps Script Web App)
     const REVIEWS_API_URL = "https://script.google.com/macros/s/AKfycbzphK-YtvCl37sTNd-Nx2ONXos-rd5raUTRFVBMRsVvRK4Lfgdjvow3ROz0NTNJ96aX/exec";
 
+    function normalizeReviewsResponse(data){
+      // Supports BOTH formats:
+      // 1) { reviews: [...] }
+      // 2) [ ... ]
+      if(Array.isArray(data)) return data;
+      if(data && Array.isArray(data.reviews)) return data.reviews;
+      return [];
+    }
+
     async function loadAverageRating(){
       const widget = document.getElementById("ratingWidget");
       const fill = document.getElementById("avgFill");
@@ -455,28 +478,28 @@
         if(!res.ok) throw new Error("Bad response");
 
         const data = await res.json();
-        const rows = Array.isArray(data.reviews) ? data.reviews : [];
+        const rows = normalizeReviewsResponse(data);
         if(rows.length === 0) return;
 
         let sum = 0, count = 0;
-        rows.forEach(r => {
+        for(const r of rows){
           const s = parseInt(r.stars, 10);
           if(s >= 1 && s <= 5){
             sum += s;
             count += 1;
           }
-        });
+        }
         if(count === 0) return;
 
         const avg = sum / count;
         const pct = Math.max(0, Math.min(100, (avg / 5) * 100));
 
         fill.style.width = pct + "%";
-        text.textContent = `${avg.toFixed(1)} / 5 (${count})`;
+        text.textContent = `${avg.toFixed(1)} (${count})`;
 
         widget.style.display = "block";
       }catch(e){
-        // keep hidden if it can't load (no ugly errors on homepage)
+        // stay hidden if it can't load
       }
     }
 
