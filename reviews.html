@@ -1,485 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>KS Photography Reviews</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reviews – KS Photography</title>
 
-  <style>
-    :root{
-      --bg:#0b0b0b;
-      --gold:#d4af37;
-      --text:#f3f3f3;
-      --muted:rgba(243,243,243,.72);
-      --line:rgba(212,175,55,.35);
-      --card: rgba(255,255,255,.02);
-      --cardBorder: rgba(255,255,255,.08);
-      --danger:#ff6b6b;
-      --ok:#4ade80;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:-apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-      background:
-        radial-gradient(1200px 600px at 50% 0%, rgba(212,175,55,.14), transparent 55%),
-        var(--bg);
-      color:var(--text);
-    }
-    .wrap{max-width:980px;margin:0 auto;padding:26px 18px 60px}
-    .panel{
-      border:1px solid var(--line);
-      border-radius:22px;
-      background: linear-gradient(180deg, rgba(255,255,255,.03), transparent);
-      overflow:hidden;
-    }
-    .hero{
-      padding:22px 18px 10px;
-      text-align:center;
-    }
-    .title{
-      margin:8px 0 0;
-      color:var(--gold);
-      font-size:34px;
-      letter-spacing:.8px;
-      font-weight:900;
-    }
-    .subtitle{
-      margin:10px auto 0;
-      max-width:760px;
-      color:var(--muted);
-      font-style:italic;
-      font-size:16px;
-      line-height:1.4;
-    }
-    .divider{
-      height:1px;
-      background:var(--line);
-      margin:16px auto 0;
-      max-width:760px;
-    }
+<style>
+:root{
+  --bg:#0b0b0b;
+  --gold:#d4af37;
+  --text:#f3f3f3;
+  --muted:rgba(243,243,243,.72);
+  --line:rgba(212,175,55,.35);
+  --card: rgba(255,255,255,.03);
+}
 
-    .section{
-      padding:18px 18px 26px;
-      text-align:center;
-    }
+*{box-sizing:border-box}
 
-    .card{
-      margin:16px auto 0;
-      max-width:760px;
-      text-align:left;
-      background: var(--card);
-      border:1px solid var(--cardBorder);
-      border-radius:18px;
-      padding:18px 16px;
-    }
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  background:
+    radial-gradient(1200px 600px at 50% 0%, rgba(212,175,55,.14), transparent 55%),
+    var(--bg);
+  color:var(--text);
+}
 
-    label{
-      display:block;
-      margin:12px 0 8px;
-      font-weight:800;
-      letter-spacing:.2px;
-      color:rgba(243,243,243,.92);
-    }
+.wrap{
+  max-width:720px;
+  margin:0 auto;
+  padding:26px 18px 60px;
+}
 
-    .input, .textarea, select{
-      width:100%;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      color: var(--text);
-      padding:14px 14px;
-      font-size:16px;
-      outline:none;
-    }
-    .textarea{min-height:120px; resize:vertical;}
+.panel{
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:linear-gradient(180deg, rgba(255,255,255,.04), transparent);
+  padding:26px 18px;
+}
 
-    /* Buttons (match your site) */
-    .btn{
-      width:100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
+h1{
+  text-align:center;
+  color:var(--gold);
+  letter-spacing:1px;
+  margin-bottom:8px;
+}
 
-      padding:0 14px;
-      height:64px;
-      line-height:1.15;
+.intro{
+  text-align:center;
+  color:var(--muted);
+  font-size:16px;
+  margin-bottom:22px;
+}
 
-      border-radius:999px;
-      text-decoration:none;
-      font-weight:900;
-      font-size:18px;
-      letter-spacing:.2px;
+.divider{
+  height:1px;
+  background:var(--line);
+  margin:22px 0;
+}
 
-      background: linear-gradient(180deg, rgba(212,175,55,.95), rgba(212,175,55,.78));
-      color:#111;
-      border:0;
-      box-shadow: 0 14px 30px rgba(0,0,0,.35);
-      -webkit-tap-highlight-color: transparent;
-      cursor:pointer;
-    }
-    .btn:active{transform: translateY(1px)}
+label{
+  display:block;
+  margin:14px 0 6px;
+  font-weight:600;
+}
 
-    .btnOutline{
-      background: rgba(255,255,255,.02);
-      color: var(--gold);
-      border: 1px solid var(--line);
-      box-shadow:none;
-      font-weight:900;
-    }
+input, textarea{
+  width:100%;
+  padding:14px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.12);
+  background:#111;
+  color:var(--text);
+  font-size:16px;
+}
 
-    .btnRow{
-      max-width:760px;
-      margin:14px auto 0;
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:12px;
-    }
+textarea{min-height:120px; resize:none}
 
-    /* Stars */
-    .starRow{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-    .stars{
-      display:flex;
-      gap:10px;
-      align-items:center;
-    }
-    .starBtn{
-      width:44px;
-      height:44px;
-      border-radius:14px;
-      border:1px solid rgba(212,175,55,.35);
-      background: rgba(212,175,55,.08);
-      display:grid;
-      place-items:center;
-      cursor:pointer;
-      user-select:none;
-      -webkit-tap-highlight-color: transparent;
-      transition: transform .12s ease, background .12s ease;
-    }
-    .starBtn:active{transform: scale(.98);}
-    .starBtn svg{
-      width:22px;height:22px;
-      fill: rgba(212,175,55,.35);
-    }
-    .starBtn.active{
-      background: rgba(212,175,55,.18);
-      border-color: rgba(212,175,55,.6);
-    }
-    .starBtn.active svg{
-      fill: rgba(212,175,55,1);
-    }
-    .starValue{
-      color:var(--muted);
-      font-weight:800;
-      min-width:70px;
-      text-align:right;
-    }
+.stars{
+  display:flex;
+  gap:10px;
+  margin:8px 0;
+}
 
-    /* Reviews list */
-    .reviewsHeader{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-end;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .reviewsTitle{
-      margin:0;
-      font-size:22px;
-      font-weight:900;
-      color:rgba(243,243,243,.95);
-    }
-    .reviewsNote{
-      margin:6px 0 0;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.4;
-    }
-    .status{
-      margin:10px 0 0;
-      font-size:14px;
-      color:var(--muted);
-    }
-    .status.ok{color:rgba(74,222,128,.95)}
-    .status.err{color:var(--danger)}
+.star{
+  width:48px;
+  height:48px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  cursor:pointer;
+  color:var(--gold);
+  background:rgba(255,255,255,.03);
+}
 
-    .reviewItem{
-      margin-top:14px;
-      padding:14px 14px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.08);
-      background: rgba(0,0,0,.18);
-    }
-    .reviewTop{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-    .reviewName{
-      font-weight:900;
-      color:rgba(243,243,243,.95);
-    }
-    .reviewMeta{
-      color:var(--muted);
-      font-size:13px;
-    }
-    .reviewText{
-      margin:10px 0 0;
-      color:rgba(243,243,243,.90);
-      line-height:1.45;
-      white-space:pre-wrap;
-    }
+.star.active{
+  background:rgba(212,175,55,.2);
+}
 
-    footer{
-      text-align:center;
-      color:rgba(243,243,243,.55);
-      margin:18px 0 20px;
-      font-size:13px;
-    }
-  </style>
+.count{
+  color:var(--muted);
+  font-size:14px;
+  margin-bottom:10px;
+}
+
+.btn{
+  width:100%;
+  height:64px;
+  border-radius:999px;
+  border:none;
+  font-size:18px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.btnPrimary{
+  background:linear-gradient(180deg, rgba(212,175,55,.95), rgba(212,175,55,.78));
+  color:#111;
+  margin-top:16px;
+}
+
+.btnOutline{
+  margin-top:12px;
+  background:rgba(255,255,255,.02);
+  color:var(--gold);
+  border:1px solid var(--line);
+}
+
+.reviews{
+  margin-top:28px;
+}
+
+.reviewCard{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:14px;
+  margin-top:12px;
+}
+
+.reviewStars{
+  color:var(--gold);
+  margin-bottom:6px;
+}
+
+.footer{
+  text-align:center;
+  color:rgba(243,243,243,.5);
+  font-size:13px;
+  margin-top:28px;
+}
+</style>
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="panel">
-      <div class="hero">
-        <div class="title">Reviews</div>
-        <div class="subtitle">Leave a quick review — it helps others feel confident booking KS Photography.</div>
-        <div class="divider"></div>
-      </div>
+<div class="wrap">
+  <div class="panel">
 
-      <div class="section">
-
-        <!-- FORM CARD -->
-        <div class="card">
-          <label for="name">Your name</label>
-          <input id="name" class="input" type="text" placeholder="Full name" maxlength="60"/>
-
-          <label>Stars</label>
-          <div class="starRow">
-            <div class="stars" id="stars">
-              <!-- 5 star buttons injected by JS -->
-            </div>
-            <div class="starValue" id="starValue">5 / 5</div>
-          </div>
-
-          <label for="review">Review</label>
-          <textarea id="review" class="textarea" placeholder="Write your review..." maxlength="1000"></textarea>
-
-          <div class="btnRow">
-            <button class="btn" id="submitBtn" type="button">Submit Review</button>
-            <a class="btn btnOutline" href="index.html">Back to Home</a>
-          </div>
-
-          <div class="status" id="submitStatus"></div>
-        </div>
-
-        <!-- RECENT REVIEWS -->
-        <div class="card" style="margin-top:18px;">
-          <div class="reviewsHeader">
-            <div>
-              <h3 class="reviewsTitle">Recent Reviews</h3>
-              <div class="reviewsNote">Showing approved reviews.</div>
-            </div>
-            <button class="btn btnOutline" id="refreshBtn" type="button" style="height:54px; font-size:16px;">
-              Refresh
-            </button>
-          </div>
-
-          <div class="status" id="loadStatus">Loading reviews…</div>
-          <div id="reviewsList"></div>
-        </div>
-
-        <footer>© 2026 KS Photography</footer>
-      </div>
+    <h1>Reviews</h1>
+    <div class="intro">
+      We truly appreciate every review. Your feedback helps future clients feel confident
+      and allows us to continue delivering unforgettable experiences.
     </div>
+
+    <div class="divider"></div>
+
+    <label>Your name</label>
+    <input id="name" placeholder="Full name">
+
+    <label>Stars</label>
+    <div class="stars" id="stars">
+      <div class="star" data-v="1">★</div>
+      <div class="star" data-v="2">★</div>
+      <div class="star" data-v="3">★</div>
+      <div class="star" data-v="4">★</div>
+      <div class="star" data-v="5">★</div>
+    </div>
+    <div class="count" id="count">5 / 5</div>
+
+    <label>Review</label>
+    <textarea id="review" placeholder="Write your review..."></textarea>
+
+    <button class="btn btnPrimary" onclick="submitReview()">Submit Review</button>
+    <button class="btn btnOutline" onclick="location.href='index.html'">Back to Home</button>
+
+    <div class="reviews">
+      <h3 style="color:var(--gold); margin-bottom:6px;">Recent Reviews</h3>
+      <div id="reviewsList"></div>
+    </div>
+
+    <div class="footer">© 2026 KS Photography</div>
   </div>
+</div>
 
-  <script>
-    // ✅ Your Apps Script Web App URL (do not change except if you redeploy and it gives a new URL)
-    const API_URL = "https://script.google.com/macros/s/AKfycbzphK-YtvCl37sTNd-Nx2ONXos-rd5raUTRFVBMRsVvRK4Lfgdjvow3ROz0NTNJ96aX/exec";
+<script>
+const SCRIPT_URL = https://script.google.com/macros/s/AKfycbzphK-YtvCl37sTNd-Nx2ONXos-rd5raUTRFVBMRsVvRK4Lfgdjvow3ROz0NTNJ96aX/exec;
+let stars = 5;
 
-    // Star UI
-    let selectedStars = 5;
-    const starsEl = document.getElementById("stars");
-    const starValueEl = document.getElementById("starValue");
+document.querySelectorAll('.star').forEach(s=>{
+  s.onclick = ()=>{
+    stars = Number(s.dataset.v);
+    document.querySelectorAll('.star').forEach(x=>{
+      x.classList.toggle('active', Number(x.dataset.v) <= stars);
+    });
+    document.getElementById('count').innerText = stars+" / 5";
+  };
+  s.classList.add('active');
+});
 
-    function starSVG(){
-      return `
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7-5.4-4.7 7.1-.6L12 2z"></path>
-        </svg>`;
-    }
-
-    function renderStars(){
-      starsEl.innerHTML = "";
-      for(let i=1;i<=5;i++){
-        const b = document.createElement("div");
-        b.className = "starBtn" + (i <= selectedStars ? " active" : "");
-        b.innerHTML = starSVG();
-        b.setAttribute("role","button");
-        b.setAttribute("aria-label", i + " star");
-        b.addEventListener("click", () => {
-          selectedStars = i;
-          starValueEl.textContent = selectedStars + " / 5";
-          renderStars();
-        });
-        starsEl.appendChild(b);
-      }
-      starValueEl.textContent = selectedStars + " / 5";
-    }
-    renderStars();
-
-    // Helpers
-    function escapeHTML(str){
-      return String(str || "").replace(/[&<>"']/g, s => ({
-        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-      }[s]));
-    }
-
-    function formatDate(ts){
-      try{
-        const d = new Date(ts);
-        if(isNaN(d.getTime())) return "";
-        return d.toLocaleDateString(undefined, {year:"numeric", month:"short", day:"numeric"});
-      }catch(e){ return ""; }
-    }
-
-    function starsText(n){
-      const x = Math.max(1, Math.min(5, parseInt(n,10) || 5));
-      return "★".repeat(x) + "☆".repeat(5-x);
-    }
-
-    // Load reviews
-    const loadStatus = document.getElementById("loadStatus");
-    const reviewsList = document.getElementById("reviewsList");
-
-    async function loadReviews(){
-      loadStatus.className = "status";
-      loadStatus.textContent = "Loading reviews…";
-      reviewsList.innerHTML = "";
-
-      try{
-        const res = await fetch(API_URL, { method: "GET" });
-        const data = await res.json();
-
-        if(!Array.isArray(data)) throw new Error("Bad JSON");
-
-        if(data.length === 0){
-          loadStatus.textContent = "No reviews yet.";
-          return;
-        }
-
-        loadStatus.className = "status ok";
-        loadStatus.textContent = "Loaded " + data.length + " review(s).";
-
-        // newest first (if timestamp exists)
-        data.sort((a,b) => {
-          const ta = new Date(a.timestamp || a.date || 0).getTime();
-          const tb = new Date(b.timestamp || b.date || 0).getTime();
-          return tb - ta;
-        });
-
-        const fragment = document.createDocumentFragment();
-
-        data.forEach(r => {
-          const item = document.createElement("div");
-          item.className = "reviewItem";
-
-          const name = escapeHTML(r.name || "Anonymous");
-          const stars = escapeHTML(starsText(r.stars));
-          const date = escapeHTML(formatDate(r.timestamp || r.date));
-          const text = escapeHTML(r.review || "");
-
-          item.innerHTML = `
-            <div class="reviewTop">
-              <div class="reviewName">${name}</div>
-              <div class="reviewMeta">${stars}${date ? " • " + date : ""}</div>
-            </div>
-            <div class="reviewText">${text}</div>
-          `;
-          fragment.appendChild(item);
-        });
-
-        reviewsList.appendChild(fragment);
-
-      }catch(err){
-        // Clean error message (no mention of your settings)
-        loadStatus.className = "status err";
-        loadStatus.textContent = "Reviews are temporarily unavailable. Please try again later.";
-      }
-    }
-
-    document.getElementById("refreshBtn").addEventListener("click", loadReviews);
+function submitReview(){
+  fetch(SCRIPT_URL,{
+    method:"POST",
+    body:JSON.stringify({
+      name:document.getElementById('name').value,
+      stars:stars,
+      review:document.getElementById('review').value
+    })
+  }).then(()=>{
+    document.getElementById('review').value="";
     loadReviews();
+    alert("Thank you for your review!");
+  });
+}
 
-    // Submit review
-    const submitBtn = document.getElementById("submitBtn");
-    const submitStatus = document.getElementById("submitStatus");
+function loadReviews(){
+  fetch(SCRIPT_URL)
+    .then(r=>r.json())
+    .then(data=>{
+      const box=document.getElementById('reviewsList');
+      box.innerHTML="";
+      data.forEach(r=>{
+        const d=document.createElement('div');
+        d.className="reviewCard";
+        d.innerHTML=
+          `<div class="reviewStars">${"★".repeat(r.stars)}</div>
+           <strong>${r.name}</strong>
+           <div>${r.review}</div>`;
+        box.appendChild(d);
+      });
+    });
+}
 
-    async function submitReview(){
-      submitStatus.className = "status";
-      submitStatus.textContent = "";
-
-      const name = document.getElementById("name").value.trim();
-      const review = document.getElementById("review").value.trim();
-
-      if(!review){
-        submitStatus.className = "status err";
-        submitStatus.textContent = "Please write a short review before submitting.";
-        return;
-      }
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Submitting…";
-
-      try{
-        const payload = { name, stars: selectedStars, review };
-
-        const res = await fetch(API_URL, {
-          method: "POST",
-          headers: { "Content-Type": "text/plain;charset=utf-8" }, 
-          // NOTE: Apps Script sometimes dislikes application/json from fetch.
-          body: JSON.stringify(payload)
-        });
-
-        const out = await res.json().catch(() => ({}));
-
-        if(!res.ok || !out || out.ok !== true){
-          throw new Error("Submit failed");
-        }
-
-        submitStatus.className = "status ok";
-        submitStatus.textContent = "Thank you! Your review was submitted.";
-
-        // reset
-        document.getElementById("name").value = "";
-        document.getElementById("review").value = "";
-        selectedStars = 5;
-        renderStars();
-
-        // reload list
-        loadReviews();
-
-      }catch(err){
-        submitStatus.className = "status err";
-        submitStatus.textContent = "Could not submit right now. Please try again in a moment.";
-      }finally{
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Submit Review";
-      }
-    }
-
-    submitBtn.addEventListener("click", submitReview);
-  </script>
+loadReviews();
+</script>
 </body>
 </html>
