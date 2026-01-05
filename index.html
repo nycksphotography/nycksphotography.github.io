@@ -160,18 +160,32 @@
     }
 
     .videoSection{
-      margin:20px auto 0;
-      max-width:640px;
-    }
+  margin:14px auto 0;
+  max-width:560px; /* smaller boxed feel */
+}
 
-    .videoWrap{
-      border-radius:18px;
-      overflow:hidden;
-      border:1px solid var(--line);
-      box-shadow:0 18px 40px rgba(0,0,0,.45);
-    }
+.videoWrap{
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  box-shadow:0 14px 30px rgba(0,0,0,.45);
+  background:#000;
+}
 
-    video{width:100%;display:block;background:#000;}
+.videoWrap video{
+  width:100%;
+  max-height:300px;
+  height:auto;
+  object-fit:contain;
+  display:block;
+  background:#000;
+}
+
+@media (max-width:600px){
+  .videoWrap video{
+    max-height:220px;
+  }
+}
 
     .services{
       margin:18px auto 0;
