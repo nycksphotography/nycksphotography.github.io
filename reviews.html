@@ -106,35 +106,53 @@
 
     /* Stars */
     .starsRow{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-    .starBtn{
-      width:62px;
-      height:62px;
-      border-radius:16px;
-      border:1px solid rgba(212,175,55,.35);
-      background: rgba(255,255,255,.02);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
-      -webkit-tap-highlight-color: transparent;
-      user-select:none;
-    }
-    .starBtn:active{ transform: translateY(1px); }
-    .starBtn.selected{
-      background: rgba(212,175,55,.12);
-      box-shadow: 0 10px 22px rgba(0,0,0,.35);
-    }
-    .starIcon{
-      font-size:28px;
-      color: rgba(212,175,55,.45);
-      line-height:1;
-    }
+  display:flex;
+  gap:10px;
+  flex-wrap:nowrap;          /* keeps stars on ONE line */
+  align-items:center;
+  justify-content:space-between;
+}
+
+.starBtn{
+  width:48px;                /* smaller */
+  height:48px;
+  border-radius:14px;
+  border:1px solid rgba(212,175,55,.35);
+  background: rgba(255,255,255,.02);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition: transform .12s ease, box-shadow .12 .12s ease, background .12s ease;
+  -webkit-tap-highlight-color: transparent;
+  user-select:none;
+}
+
+.starBtn:active{
+  transform: translateY(1px);
+}
+
+.starBtn.selected{
+  background: rgba(212,175,55,.14);
+  box-shadow: 0 8px 18px rgba(0,0,0,.35);
+}
+
+.starIcon{
+  font-size:22px;            /* smaller star */
+  color: rgba(212,175,55,.55);
+  line-height:1;
+}
+
+/* extra safety for very small phones */
+@media (max-width: 380px){
+  .starBtn{
+    width:44px;
+    height:44px;
+  }
+  .starIcon{
+    font-size:20px;
+  }
+}
     .starBtn.selected .starIcon{
       color: var(--gold);
     }
