@@ -174,9 +174,9 @@
 
     /* Full width rows */
     .quoteRow{
-  margin-top:12px;
-  margin-bottom:2px; /* was 8px */
-}
+      margin-top:12px;
+      margin-bottom:2px; /* tight spacing */
+    }
 
     .btnOutline{
       background: rgba(255,255,255,.02);
@@ -225,21 +225,21 @@
 
     /* CONTENT SECTION */
     .section{
-  padding:6px 18px 30px; /* was 14px */
-  text-align:center;
-}
+      padding:6px 18px 30px;
+      text-align:center;
+    }
     .headline{
-  margin:18px 0 6px; /* adds balance above & below */
-  font-size:40px;
-  letter-spacing:1px;
-  color:var(--gold);
-}}
+      margin:18px 0 6px;
+      font-size:40px;
+      letter-spacing:1px;
+      color:var(--gold);
+    }
     .subline{
-  margin:4px 0 0;
-  color:var(--muted);
-  font-style:italic;
-  font-size:18px;
-}
+      margin:4px 0 0;
+      color:var(--muted);
+      font-style:italic;
+      font-size:18px;
+    }
 
     .servicesHint{
       margin:10px auto 6px;
@@ -312,6 +312,46 @@
     @media (max-width: 600px){
       .videoWrap video{max-height:260px;}
     }
+
+    /* ===== Average Rating (Homepage) ===== */
+    .ratingWidget{
+      margin:10px auto 2px;   /* tight spacing */
+      max-width:760px;
+      text-align:center;
+    }
+    .ratingCaption{
+      color: var(--muted);
+      font-size:14px;
+      font-style:italic;
+      margin:0 0 8px;
+    }
+    .ratingRow{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+    }
+    .starBar{
+      position:relative;
+      display:inline-block;
+      font-size:18px;
+      letter-spacing:2px;
+      line-height:1;
+      color: rgba(212,175,55,.28);
+    }
+    .starBar .fill{
+      position:absolute;
+      top:0; left:0;
+      overflow:hidden;
+      white-space:nowrap;
+      color: var(--gold);
+      width:0%;
+    }
+    .ratingText{
+      font-weight:900;
+      color: rgba(243,243,243,.82);
+      font-size:14px;
+    }
   </style>
 </head>
 
@@ -351,13 +391,23 @@
               Client Galleries
             </a>
           </div>
-          
+
+          <!-- Average Rating (between Galleries and Reviews) -->
+          <div class="ratingWidget" id="ratingWidget" style="display:none;">
+            <div class="ratingCaption">Average rating from client reviews</div>
+            <div class="ratingRow">
+              <div class="starBar" aria-label="Average rating">
+                <div class="fill" id="avgFill">★★★★★</div>
+                ★★★★★
+              </div>
+              <div class="ratingText" id="avgText"></div>
+            </div>
+          </div>
+
           <div class="quoteRow">
-  <a class="btn btnOutline"
-     href="reviews.html">
-    Reviews
-  </a>
-</div>
+            <a class="btn btnOutline" href="reviews.html">Reviews</a>
+          </div>
+
         </div>
       </div>
 
@@ -389,5 +439,48 @@
       </div>
     </div>
   </div>
+
+  <script>
+    // Reviews API (Apps Script Web App)
+    const REVIEWS_API_URL = "https://script.google.com/macros/s/AKfycbzphK-YtvCl37sTNd-Nx2ONXos-rd5raUTRFVBMRsVvRK4Lfgdjvow3ROz0NTNJ96aX/exec";
+
+    async function loadAverageRating(){
+      const widget = document.getElementById("ratingWidget");
+      const fill = document.getElementById("avgFill");
+      const text = document.getElementById("avgText");
+      if(!widget || !fill || !text) return;
+
+      try{
+        const res = await fetch(REVIEWS_API_URL, { method: "GET" });
+        if(!res.ok) throw new Error("Bad response");
+
+        const data = await res.json();
+        const rows = Array.isArray(data.reviews) ? data.reviews : [];
+        if(rows.length === 0) return;
+
+        let sum = 0, count = 0;
+        rows.forEach(r => {
+          const s = parseInt(r.stars, 10);
+          if(s >= 1 && s <= 5){
+            sum += s;
+            count += 1;
+          }
+        });
+        if(count === 0) return;
+
+        const avg = sum / count;
+        const pct = Math.max(0, Math.min(100, (avg / 5) * 100));
+
+        fill.style.width = pct + "%";
+        text.textContent = `${avg.toFixed(1)} / 5 (${count})`;
+
+        widget.style.display = "block";
+      }catch(e){
+        // keep hidden if it can't load (no ugly errors on homepage)
+      }
+    }
+
+    loadAverageRating();
+  </script>
 </body>
 </html>
