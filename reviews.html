@@ -102,7 +102,7 @@
       color: rgba(243,243,243,.45);
     }
 
-    /* ⭐ Average rating card (top of page content) */
+    /* ⭐ Average rating card */
     .avgCard{
       max-width:760px;
       margin:0 auto 14px;
@@ -114,8 +114,6 @@
     }
     .avgStars{
       font-size:24px;
-      color:var(--gold);
-      letter-spacing:2px; /* closer stars */
       line-height:1.1;
     }
     .avgLine{
@@ -133,14 +131,14 @@
     /* Stars (selection) */
     .starsRow{
       display:flex;
-      gap:8px;               /* closer spacing */
+      gap:6px;               /* closer spacing */
       flex-wrap:nowrap;      /* keep on one line */
       align-items:center;
       justify-content:space-between;
     }
     .starBtn{
-      width:46px;            /* smaller */
-      height:46px;
+      width:44px;            /* smaller */
+      height:44px;
       border-radius:14px;
       border:1px solid rgba(212,175,55,.35);
       background: rgba(255,255,255,.02);
@@ -148,7 +146,7 @@
       align-items:center;
       justify-content:center;
       cursor:pointer;
-      transition: transform .12s ease, box-shadow .12s ease, background .12s ease; /* ✅ fixed */
+      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
       -webkit-tap-highlight-color: transparent;
       user-select:none;
     }
@@ -158,17 +156,16 @@
       box-shadow: 0 8px 18px rgba(0,0,0,.35);
     }
     .starIcon{
-      font-size:20px;        /* smaller star */
+      font-size:18px;        /* smaller star */
       color: rgba(212,175,55,.55);
       line-height:1;
     }
     .starBtn.selected .starIcon{ color: var(--gold); }
 
-    /* extra safety for very small phones */
     @media (max-width: 380px){
-      .starsRow{ gap:6px; }
-      .starBtn{ width:42px; height:42px; }
-      .starIcon{ font-size:18px; }
+      .starsRow{ gap:5px; }
+      .starBtn{ width:40px; height:40px; }
+      .starIcon{ font-size:17px; }
     }
 
     .starsMeta{
@@ -322,9 +319,17 @@
 
       <div class="section">
 
-        <!-- ⭐ Average rating (auto-updates from your sheet) -->
+        <!-- ⭐ Average rating -->
         <div class="avgCard">
-          <div class="avgStars" id="avgStars">★★★★★</div>
+          <div class="avgStars" id="avgStars">
+            <!-- filled in by JS -->
+            <span style="position:relative;display:inline-block;color:rgba(212,175,55,.25);letter-spacing:1px;">
+              ★★★★★
+              <span style="position:absolute;left:0;top:0;overflow:hidden;white-space:nowrap;width:0%;color:var(--gold);" id="avgFillStars">
+                ★★★★★
+              </span>
+            </span>
+          </div>
           <div class="avgLine"><span id="avgValue">–</span> / 5</div>
           <div class="avgSub"><span id="avgCount">–</span> reviews</div>
         </div>
@@ -372,7 +377,7 @@
   </div>
 
   <script>
-    // Your Apps Script Web App URL
+    // ✅ Your Apps Script Web App URL (same as the link you pasted)
     const API_URL = "https://script.google.com/macros/s/AKfycbzphK-YtvCl37sTNd-Nx2ONXos-rd5raUTRFVBMRsVvRK4Lfgdjvow3ROz0NTNJ96aX/exec";
 
     let selectedStars = 0;
@@ -385,9 +390,9 @@
     const msgOk = document.getElementById("msgOk");
     const msgErr = document.getElementById("msgErr");
 
-    const avgStarsEl = document.getElementById("avgStars");
     const avgValueEl = document.getElementById("avgValue");
     const avgCountEl = document.getElementById("avgCount");
+    const avgFillStars = document.getElementById("avgFillStars");
 
     function hideMsgs(){
       msgOk.style.display = "none";
@@ -425,24 +430,34 @@
         .replaceAll("'","&#039;");
     }
 
-    function updateAverage(rows){
+    function extractRows(data){
+      // Supports BOTH response shapes:
+      // 1) { reviews: [...] }
+      // 2) [ ... ]
+      if(Array.isArray(data)) return data;
+      if(data && Array.isArray(data.reviews)) return data.reviews;
+      return [];
+    }
+
+    function updateAverageFromRows(rows){
       const starsList = rows
         .map(r => parseInt(r.stars, 10))
         .filter(n => !isNaN(n) && n >= 1 && n <= 5);
 
       const count = starsList.length;
+
       if(!count){
         avgValueEl.textContent = "–";
         avgCountEl.textContent = "0";
-        avgStarsEl.textContent = "☆☆☆☆☆";
+        avgFillStars.style.width = "0%";
         return;
       }
 
       const avg = starsList.reduce((a,b)=>a+b,0) / count;
       const rounded = Math.round(avg * 10) / 10;
+      const pct = Math.max(0, Math.min(100, (avg / 5) * 100));
 
-      const full = Math.round(avg); // simple visual fill
-      avgStarsEl.textContent = starString(full);
+      avgFillStars.style.width = pct + "%";
       avgValueEl.textContent = rounded.toFixed(1);
       avgCountEl.textContent = String(count);
     }
@@ -456,10 +471,9 @@
         if(!res.ok) throw new Error("Bad response");
 
         const data = await res.json();
-        const rows = Array.isArray(data.reviews) ? data.reviews : [];
+        const rows = extractRows(data);
 
-        // Update average display using whatever the API returns
-        updateAverage(rows);
+        updateAverageFromRows(rows);
 
         if(rows.length === 0){
           list.innerHTML = `<div class="hint">No reviews yet.</div>`;
@@ -470,6 +484,8 @@
           const name = escapeHtml(r.name || "Anonymous");
           const stars = Math.min(5, Math.max(1, parseInt(r.stars, 10) || 5));
           const review = escapeHtml(r.review || "");
+
+          // supports either r.timestamp or r[0]-style values if you ever change it
           const date = r.timestamp ? new Date(r.timestamp) : null;
           const dateText = date && !isNaN(date) ? date.toLocaleDateString() : "";
 
@@ -486,10 +502,10 @@
         }).join("");
 
       }catch(err){
-        // Keep the top average card neutral if fetch fails
+        // neutralize average if fetch fails
         avgValueEl.textContent = "–";
         avgCountEl.textContent = "–";
-        avgStarsEl.textContent = "☆☆☆☆☆";
+        avgFillStars.style.width = "0%";
 
         list.innerHTML =
           `<div class="hint" style="color:rgba(255,92,92,.95);font-weight:900">
@@ -504,7 +520,7 @@
       const name = (document.getElementById("name").value || "").trim().slice(0, 60);
       const review = (document.getElementById("review").value || "").trim().slice(0, 1000);
 
-      // Block submit if stars is 0
+      // ✅ Block submit if stars is 0
       if(selectedStars === 0){
         msgErr.textContent = "Please select a star rating before submitting.";
         msgErr.style.display = "block";
@@ -523,6 +539,7 @@
           body: JSON.stringify(payload),
         });
 
+        // Accept either {ok:true} JSON or plain success status
         let ok = false;
         try{
           const data = await res.json();
@@ -533,12 +550,15 @@
 
         if(!ok) throw new Error("Not ok");
 
+        // ✅ Thank you message
         msgOk.style.display = "block";
 
+        // reset form
         document.getElementById("name").value = "";
         document.getElementById("review").value = "";
         setStars(0);
 
+        // refresh list + average
         await loadReviews();
 
       }catch(err){
