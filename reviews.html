@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Reviews – KS Photography</title>
 
 <style>
@@ -10,7 +10,7 @@
   --bg:#0b0b0b;
   --gold:#d4af37;
   --text:#f3f3f3;
-  --muted:rgba(243,243,243,.72);
+  --muted:rgba(243,243,243,.7);
   --line:rgba(212,175,55,.35);
   --card: rgba(255,255,255,.03);
 }
@@ -27,84 +27,97 @@ body{
 }
 
 .wrap{
-  max-width:720px;
+  max-width:760px;
   margin:0 auto;
-  padding:26px 18px 60px;
+  padding:28px 18px 60px;
 }
 
 .panel{
   border:1px solid var(--line);
   border-radius:22px;
   background:linear-gradient(180deg, rgba(255,255,255,.04), transparent);
-  padding:26px 18px;
+  padding:26px 18px 32px;
 }
 
 h1{
   text-align:center;
   color:var(--gold);
   letter-spacing:1px;
-  margin-bottom:8px;
+  margin:0;
 }
 
 .intro{
   text-align:center;
   color:var(--muted);
+  margin:14px auto 18px;
   font-size:16px;
-  margin-bottom:22px;
+  max-width:520px;
 }
 
 .divider{
   height:1px;
   background:var(--line);
-  margin:22px 0;
+  margin:18px auto 22px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:22px;
 }
 
 label{
   display:block;
-  margin:14px 0 6px;
-  font-weight:600;
+  font-weight:700;
+  margin-bottom:6px;
 }
 
 input, textarea{
   width:100%;
-  padding:14px;
-  border-radius:14px;
+  background:rgba(255,255,255,.04);
   border:1px solid rgba(255,255,255,.12);
-  background:#111;
+  border-radius:14px;
+  padding:14px;
   color:var(--text);
-  font-size:16px;
+  font-size:15px;
 }
 
-textarea{min-height:120px; resize:none}
+textarea{min-height:110px;resize:none}
 
 .stars{
   display:flex;
   gap:10px;
-  margin:8px 0;
+  margin-top:10px;
 }
 
 .star{
-  width:48px;
-  height:48px;
+  width:46px;
+  height:46px;
   border-radius:12px;
   border:1px solid var(--line);
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:22px;
   cursor:pointer;
+  font-size:22px;
   color:var(--gold);
-  background:rgba(255,255,255,.03);
+  opacity:.35;
+  transition:.15s;
 }
 
 .star.active{
-  background:rgba(212,175,55,.2);
+  opacity:1;
+  box-shadow:0 0 0 1px var(--gold);
 }
 
-.count{
-  color:var(--muted);
+.star:hover{opacity:.9}
+
+.starCount{
+  margin-top:8px;
   font-size:14px;
-  margin-bottom:10px;
+  color:var(--muted);
 }
 
 .btn{
@@ -112,117 +125,115 @@ textarea{min-height:120px; resize:none}
   height:64px;
   border-radius:999px;
   border:none;
-  font-size:18px;
+  background:linear-gradient(180deg, rgba(212,175,55,.95), rgba(212,175,55,.8));
   font-weight:800;
+  font-size:18px;
   cursor:pointer;
-}
-
-.btnPrimary{
-  background:linear-gradient(180deg, rgba(212,175,55,.95), rgba(212,175,55,.78));
-  color:#111;
-  margin-top:16px;
+  margin-top:18px;
 }
 
 .btnOutline{
-  margin-top:12px;
-  background:rgba(255,255,255,.02);
+  background:transparent;
+  border:1px solid var(--line);
   color:var(--gold);
-  border:1px solid var(--line);
 }
 
-.reviews{
-  margin-top:28px;
+.error{
+  color:#ff6b6b;
+  font-size:14px;
+  margin-top:10px;
+  display:none;
 }
 
-.reviewCard{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:16px;
+.review{
   padding:14px;
-  margin-top:12px;
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-.reviewStars{
-  color:var(--gold);
-  margin-bottom:6px;
-}
+.review:last-child{border-bottom:none}
 
-.footer{
-  text-align:center;
-  color:rgba(243,243,243,.5);
-  font-size:13px;
-  margin-top:28px;
-}
+.reviewName{font-weight:700}
+.reviewStars{color:var(--gold)}
+.reviewText{color:var(--muted); margin-top:6px}
 </style>
 </head>
 
 <body>
 <div class="wrap">
   <div class="panel">
-
     <h1>Reviews</h1>
     <div class="intro">
-      We truly appreciate every review. Your feedback helps future clients feel confident
-      and allows us to continue delivering unforgettable experiences.
+      We truly appreciate every review. Your feedback helps future clients feel confident and allows us to continue delivering unforgettable experiences.
     </div>
 
     <div class="divider"></div>
 
-    <label>Your name</label>
-    <input id="name" placeholder="Full name">
+    <div class="card">
+      <label>Your name</label>
+      <input id="name" placeholder="Full name" />
 
-    <label>Stars</label>
-    <div class="stars" id="stars">
-      <div class="star" data-v="1">★</div>
-      <div class="star" data-v="2">★</div>
-      <div class="star" data-v="3">★</div>
-      <div class="star" data-v="4">★</div>
-      <div class="star" data-v="5">★</div>
+      <label style="margin-top:16px;">Stars</label>
+      <div class="stars" id="stars">
+        <div class="star" data-val="1">★</div>
+        <div class="star" data-val="2">★</div>
+        <div class="star" data-val="3">★</div>
+        <div class="star" data-val="4">★</div>
+        <div class="star" data-val="5">★</div>
+      </div>
+      <div class="starCount" id="starCount">Select a rating</div>
+
+      <label style="margin-top:16px;">Review</label>
+      <textarea id="review" placeholder="Write your review..."></textarea>
+
+      <div class="error" id="errorMsg">Please select a star rating before submitting.</div>
+
+      <button class="btn" onclick="submitReview()">Submit Review</button>
+      <button class="btn btnOutline" onclick="location.href='index.html'">Back to Home</button>
     </div>
-    <div class="count" id="count">5 / 5</div>
 
-    <label>Review</label>
-    <textarea id="review" placeholder="Write your review..."></textarea>
-
-    <button class="btn btnPrimary" onclick="submitReview()">Submit Review</button>
-    <button class="btn btnOutline" onclick="location.href='index.html'">Back to Home</button>
-
-    <div class="reviews">
-      <h3 style="color:var(--gold); margin-bottom:6px;">Recent Reviews</h3>
-      <div id="reviewsList"></div>
+    <div class="card">
+      <h3 style="margin-top:0;">Recent Reviews</h3>
+      <div id="reviews"></div>
     </div>
 
-    <div class="footer">© 2026 KS Photography</div>
+    <div style="text-align:center;color:rgba(243,243,243,.55);font-size:13px;margin-top:18px;">
+      © 2026 KS Photography
+    </div>
   </div>
 </div>
 
 <script>
-const SCRIPT_URL = https://script.google.com/macros/s/AKfycbzphK-YtvCl37sTNd-Nx2ONXos-rd5raUTRFVBMRsVvRK4Lfgdjvow3ROz0NTNJ96aX/exec;
-let stars = 5;
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzphK-YtvCl37sTNd-Nx2ONXos-rd5raUTRFVBMRsVvRK4Lfgdjvow3ROz0NTNJ96aX/exec";
 
-document.querySelectorAll('.star').forEach(s=>{
-  s.onclick = ()=>{
-    stars = Number(s.dataset.v);
-    document.querySelectorAll('.star').forEach(x=>{
-      x.classList.toggle('active', Number(x.dataset.v) <= stars);
+let selectedStars = 0;
+
+document.querySelectorAll(".star").forEach(star=>{
+  star.onclick = ()=>{
+    selectedStars = Number(star.dataset.val);
+    document.querySelectorAll(".star").forEach(s=>{
+      s.classList.toggle("active", Number(s.dataset.val)<=selectedStars);
     });
-    document.getElementById('count').innerText = stars+" / 5";
+    document.getElementById("starCount").innerText = `${selectedStars} / 5`;
+    document.getElementById("errorMsg").style.display="none";
   };
-  s.classList.add('active');
 });
 
 function submitReview(){
+  if(selectedStars === 0){
+    document.getElementById("errorMsg").style.display="block";
+    return;
+  }
+
   fetch(SCRIPT_URL,{
     method:"POST",
     body:JSON.stringify({
-      name:document.getElementById('name').value,
-      stars:stars,
-      review:document.getElementById('review').value
+      name:document.getElementById("name").value,
+      stars:selectedStars,
+      review:document.getElementById("review").value
     })
   }).then(()=>{
-    document.getElementById('review').value="";
-    loadReviews();
     alert("Thank you for your review!");
+    location.reload();
   });
 }
 
@@ -230,20 +241,18 @@ function loadReviews(){
   fetch(SCRIPT_URL)
     .then(r=>r.json())
     .then(data=>{
-      const box=document.getElementById('reviewsList');
+      const box=document.getElementById("reviews");
       box.innerHTML="";
       data.forEach(r=>{
-        const d=document.createElement('div');
-        d.className="reviewCard";
-        d.innerHTML=
-          `<div class="reviewStars">${"★".repeat(r.stars)}</div>
-           <strong>${r.name}</strong>
-           <div>${r.review}</div>`;
-        box.appendChild(d);
+        box.innerHTML+=`
+          <div class="review">
+            <div class="reviewName">${r.name}</div>
+            <div class="reviewStars">${"★".repeat(r.stars)}</div>
+            <div class="reviewText">${r.review}</div>
+          </div>`;
       });
     });
 }
-
 loadReviews();
 </script>
 </body>
