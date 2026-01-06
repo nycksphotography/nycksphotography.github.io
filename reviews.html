@@ -524,7 +524,7 @@
       submitBtn.textContent = "Submitting…";
 
       try{
-        const payload = { name, stars: selectedStars, review }; // review optional
+        const payload = { name, stars: selectedStars, review }; // ✅ review optional
 
         const res = await fetch(API_URL, {
           method: "POST",
