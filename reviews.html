@@ -503,11 +503,26 @@
         return;
       }
 
+      // ✅ REQUIRE NAME (matches your new Apps Script)
+      if(!name){
+        msgErr.textContent = "Please enter your name before submitting.";
+        msgErr.style.display = "block";
+        return;
+      }
+
+      // ✅ REQUIRE REVIEW (matches your new Apps Script)
+      if(!review){
+        msgErr.textContent = "Please write a review before submitting.";
+        msgErr.style.display = "block";
+        return;
+      }
+
       submitBtn.disabled = true;
       submitBtn.textContent = "Submitting…";
 
       try{
-        const payload = { name: name || "Anonymous", stars: selectedStars, review };
+        // ✅ DO NOT FORCE "Anonymous" anymore (otherwise name-required won't work)
+        const payload = { name, stars: selectedStars, review };
 
         const res = await fetch(API_URL, {
           method: "POST",
@@ -515,15 +530,17 @@
           body: JSON.stringify(payload),
         });
 
-        let ok = false;
+        let data = null;
         try{
-          const data = await res.json();
-          ok = !!data.ok;
+          data = await res.json();
         }catch(e){
-          ok = res.ok;
+          data = null;
         }
 
-        if(!ok) throw new Error("Not ok");
+        if(!data || data.ok !== true){
+          const errMsg = (data && data.error) ? data.error : "Could not submit your review. Please try again.";
+          throw new Error(errMsg);
+        }
 
         msgOk.style.display = "block";
 
@@ -534,7 +551,7 @@
         await loadReviews();
 
       }catch(err){
-        msgErr.textContent = "Could not submit your review. Please try again.";
+        msgErr.textContent = err.message || "Could not submit your review. Please try again.";
         msgErr.style.display = "block";
       }finally{
         submitBtn.disabled = false;
