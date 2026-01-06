@@ -81,6 +81,16 @@
       font-weight:900;
       margin:18px 0 8px;
       font-size:22px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .reqStar{
+      color: var(--danger);
+      font-weight:900;
+      font-size:18px;
+      line-height:1;
+      transform: translateY(-1px);
     }
 
     .input, .textarea{
@@ -328,7 +338,7 @@
         <div class="card">
           <div class="label">Leave a Review</div>
 
-          <div class="fieldLabel">Your name</div>
+          <div class="fieldLabel">Your name <span class="reqStar" aria-hidden="true">*</span></div>
           <input id="name" class="input" type="text" placeholder="Full name" autocomplete="name" />
 
           <div class="fieldLabel">Stars</div>
@@ -342,7 +352,7 @@
           <div class="starsMeta" id="starsMeta">Select a rating</div>
 
           <div class="fieldLabel">Review</div>
-          <textarea id="review" class="textarea" placeholder="Write your review..."></textarea>
+          <textarea id="review" class="textarea" placeholder="Write your review (optional)..."></textarea>
 
           <div class="btnRow">
             <button id="submitBtn" class="btn" type="button">Submit Review</button>
@@ -473,7 +483,7 @@
                 <div class="reviewName">${name}</div>
                 <div class="reviewStars">${starString(stars)}</div>
               </div>
-              <div class="reviewText">${review}</div>
+              ${review ? `<div class="reviewText">${review}</div>` : ``}
               ${dateText ? `<div class="reviewDate">${dateText}</div>` : ``}
             </div>
           `;
@@ -503,16 +513,9 @@
         return;
       }
 
-      // ✅ REQUIRE NAME (matches your new Apps Script)
+      // ✅ Name required (shows clear message)
       if(!name){
-        msgErr.textContent = "Please enter your name before submitting.";
-        msgErr.style.display = "block";
-        return;
-      }
-
-      // ✅ REQUIRE REVIEW (matches your new Apps Script)
-      if(!review){
-        msgErr.textContent = "Please write a review before submitting.";
+        msgErr.textContent = "Name is required. Please enter your name.";
         msgErr.style.display = "block";
         return;
       }
@@ -521,12 +524,11 @@
       submitBtn.textContent = "Submitting…";
 
       try{
-        // ✅ DO NOT FORCE "Anonymous" anymore (otherwise name-required won't work)
-        const payload = { name, stars: selectedStars, review };
+        const payload = { name, stars: selectedStars, review }; // review optional
 
         const res = await fetch(API_URL, {
           method: "POST",
-          headers: { "Content-Type": "text/plain;charset=utf-8" }, // ✅ FIX (no CORS preflight)
+          headers: { "Content-Type": "text/plain;charset=utf-8" }, // ✅ no CORS preflight
           body: JSON.stringify(payload),
         });
 
@@ -551,6 +553,7 @@
         await loadReviews();
 
       }catch(err){
+        // ✅ Show server's message (e.g., "Name is required.")
         msgErr.textContent = err.message || "Could not submit your review. Please try again.";
         msgErr.style.display = "block";
       }finally{
