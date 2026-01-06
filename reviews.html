@@ -142,12 +142,14 @@
 
     /* Stars (selection) */
     .starsRow{
-      display:flex;
-      gap:8px;
-      flex-wrap:nowrap;
-      align-items:center;
-      justify-content:space-between;
-    }
+  display:flex;
+  gap:12px;                 /* nice spacing between stars */
+  flex-wrap:nowrap;
+  align-items:center;
+  justify-content:center;  /* center instead of stretching */
+  max-width: 360px;        /* keeps stars grouped */
+  margin: 0 auto;          /* centers the row */
+}
     .starBtn{
       width:46px;
       height:46px;
