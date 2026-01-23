@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KS Contract Builder</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b0b0b;
+      color: #ffffff;
+      margin: 0;
+      padding: 30px 16px;
+    }
+
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      background: #121212;
+      padding: 28px;
+      border-radius: 14px;
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.15);
+    }
+
+    h1 {
+      margin-top: 0;
+      color: #f5c97a;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #bbb;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    label {
+      display: block;
+      margin-top: 14px;
+      margin-bottom: 6px;
+      font-weight: bold;
+      color: #f0d38a;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #333;
+      background: #1a1a1a;
+      color: #fff;
+      font-size: 15px;
+    }
+
+    textarea { resize: vertical; }
+
+    button {
+      margin-top: 24px;
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
+      background: linear-gradient(135deg, #f5c97a, #d4a642);
+      color: #000;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .status {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 15px;
+      white-space: pre-wrap;
+    }
+
+    .success { color: #7CFC9A; }
+    .error { color: #ff6b6b; }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <h1>KS Contract Builder</h1>
+    <div class="subtitle">Private Internal Portal — KS Photography</div>
+
+    <form id="contractForm">
+
+      <label>Client Name</label>
+      <input name="clientName" required />
+
+      <label>Client Email</label>
+      <input name="clientEmail" type="email" required />
+
+      <label>Date Contract Being Made</label>
+      <input name="contractDate" placeholder="January 23, 2026" required />
+
+      <label>Service Being Provided</label>
+      <input name="service" placeholder="DSLR Photobooth – 3 Hours" required />
+
+      <label>Flat Fee</label>
+      <input name="flatFee" placeholder="$850" required />
+
+      <label>Deposit</label>
+      <input name="deposit" placeholder="$200" required />
+
+      <label>Location (Venue name + full address)</label>
+      <textarea name="location" rows="3" required></textarea>
+
+      <label>Event Date (Day of week and date)</label>
+      <input name="eventDate" placeholder="Saturday, June 14, 2026" required />
+
+      <label>Start Time of Services</label>
+      <input name="startTime" placeholder="7:00 PM" required />
+
+      <label>End Time of Services</label>
+      <input name="endTime" placeholder="10:00 PM" required />
+
+      <label style="display:flex; gap:10px; align-items:center; margin-top:18px;">
+        <input type="checkbox" name="sendCopyToMe" style="width:auto;">
+        Send me a copy as well
+      </label>
+
+      <label>My Email (only if sending yourself a copy)</label>
+      <input name="myEmail" type="email" placeholder="your email" />
+
+      <button type="submit">Generate & Email Contract</button>
+
+      <div id="status" class="status"></div>
+    </form>
+  </div>
+
+  <script>
+    // Your LIVE Google Apps Script Web App URL
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwP5Ec7GZtaB6ZhtlA1qQFfweEriZJC10JrhikKZgQmwNB7Mzs9eQyYmaYiKFGe5BtW/exec";
+
+    const form = document.getElementById("contractForm");
+    const status = document.getElementById("status");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      status.textContent = "Generating contract and sending email...";
+      status.className = "status";
+
+      const formData = new FormData(form);
+      const payload = Object.fromEntries(formData.entries());
+      payload.sendCopyToMe = !!formData.get("sendCopyToMe");
+
+      try {
+        const res = await fetch(WEB_APP_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload)
+        });
+
+        const json = await res.json();
+
+        if (json.ok) {
+          status.textContent = "Done ✅ Contract created and emailed successfully.";
+          status.className = "status success";
+          form.reset();
+        } else {
+          status.textContent = "Error ❌ " + json.error;
+          status.className = "status error";
+        }
+
+      } catch (err) {
+        status.textContent = "Request failed ❌ " + err.message;
+        status.className = "status error";
+      }
+    });
+  </script>
+</body>
+</html>
